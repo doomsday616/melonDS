@@ -58,13 +58,13 @@ InterfaceSettingsDialog::InterfaceSettingsDialog(QWidget* parent) : QDialog(pare
             ui->cbxUITheme->setCurrentIndex(i + 1);
     }
 
-    // Language: empty = follow the system locale. Native names are shown untranslated on purpose.
-    ui->cbxLanguage->addItem(tr("Automatic (system language)"), "");
-    ui->cbxLanguage->addItem("English", "en");
-    ui->cbxLanguage->addItem(QString::fromUtf8("\xE7\xAE\x80\xE4\xBD\x93\xE4\xB8\xAD\xE6\x96\x87"), "zh_CN");
-    int langIdx = ui->cbxLanguage->findData(cfg.GetQString("Language"));
+    // Same list as the Language menu. Native names are shown untranslated on purpose.
+    ui->cbxLanguage->addItem(tr("Automatic (system language)"), QString("auto"));
+    for (int i = 0; i < uiLanguagesNum; i++)
+        ui->cbxLanguage->addItem(QString::fromUtf8(uiLanguages[i].nativeName), QString(uiLanguages[i].code));
+    oldLanguage = uiLanguageSetting();
+    int langIdx = ui->cbxLanguage->findData(oldLanguage);
     ui->cbxLanguage->setCurrentIndex(langIdx < 0 ? 0 : langIdx);
-    oldLanguage = cfg.GetQString("Language");
 }
 
 InterfaceSettingsDialog::~InterfaceSettingsDialog()
@@ -146,15 +146,8 @@ void InterfaceSettingsDialog::done(int r)
         cfg.SetQString("UITheme", themeName);
 
         QString language = ui->cbxLanguage->currentData().toString();
-        cfg.SetQString("Language", language);
 
         Config::Save();
-
-        if (language != oldLanguage)
-        {
-            QMessageBox::information(this, "melonDS",
-                tr("The language change will take effect after restarting melonDS."));
-        }
 
         if (!themeName.isEmpty())
             qApp->setStyle(themeName);
@@ -162,6 +155,10 @@ void InterfaceSettingsDialog::done(int r)
             qApp->setStyle(*systemThemeName);
 
         emit updateInterfaceSettings();
+
+        // saves the config and switches the UI language live
+        if (language != oldLanguage)
+            setUILanguage(language);
     }
 
     QDialog::done(r);

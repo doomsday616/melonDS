@@ -1480,10 +1480,6 @@ Please check file/folder write permissions.</source>
         <translation>语言</translation>
     </message>
     <message>
-        <source>Takes effect after restarting melonDS.</source>
-        <translation>重启 melonDS 后生效。</translation>
-    </message>
-    <message>
         <source>Hide mouse after inactivity</source>
         <translation>闲置后隐藏鼠标</translation>
     </message>
@@ -1558,10 +1554,6 @@ Please check file/folder write permissions.</source>
     <message>
         <source>Automatic (system language)</source>
         <translation>自动（跟随系统语言）</translation>
-    </message>
-    <message>
-        <source>The language change will take effect after restarting melonDS.</source>
-        <translation>语言更改将在重启 melonDS 后生效。</translation>
     </message>
 </context>
 <context>
@@ -2095,6 +2087,14 @@ Please check file/folder write permissions.</source>
     <message>
         <source>Audio sync</source>
         <translation>音频同步</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation>语言</translation>
+    </message>
+    <message>
+        <source>Automatic (system language)</source>
+        <translation>自动（跟随系统语言）</translation>
     </message>
     <message>
         <source>Help</source>

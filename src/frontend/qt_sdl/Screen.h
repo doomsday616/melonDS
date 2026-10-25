@@ -126,6 +126,7 @@ protected:
     QPixmap splashLogo;
     OSDItem splashText[3];
     QPoint splashPos[4];
+    bool splashRetranslate; // set on language change, handled in osdUpdate()
 
     void loadConfig();
 
@@ -144,7 +145,7 @@ protected:
     void showCursor();
 
     int osdFindBreakPoint(const uint* text, int i);
-    void osdLayoutText(const uint* text, const QFontMetrics& fm, int* width, int* height, int* breaks);
+    void osdLayoutText(const uint* text, const QFontMetrics& fm, const QFontMetrics& fmLatin, int* width, int* height, int* breaks);
     unsigned int osdRainbowColor(int inc);
 
     virtual void osdRenderItem(OSDItem* item);

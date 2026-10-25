@@ -238,6 +238,13 @@ MainWindow::MainWindow(int id, EmuInstance* inst, QWidget* parent) :
 
     if (hasMenu)
     {
+        // The menus are built with their English source texts: this local
+        // tr() shadows MainWindow::tr() (lupdate still extracts the strings
+        // under the MainWindow context). Each action's source text is then
+        // stored and retranslateMenus() applies the active language, which
+        // is also what happens on a live language switch.
+        auto tr = [](const char* text) { return QString::fromUtf8(text); };
+
         QMenuBar * menubar = new QMenuBar();
         {
             QMenu * menu = menubar->addMenu(tr("File"));
@@ -625,6 +632,35 @@ MainWindow::MainWindow(int id, EmuInstance* inst, QWidget* parent) :
             connect(actAudioSync, &QAction::triggered, this, &MainWindow::onChangeAudioSync);
         }
         {
+            // Top-level so it is easy to find whatever the current language is.
+            // Language names are shown in their own language and never translated.
+            languageMenu = menubar->addMenu(tr("Language"));
+            languageMenu->menuAction()->setProperty("melonNoTr", true); // see retranslateMenus()
+            grpLanguage = new QActionGroup(languageMenu);
+
+            actLanguageAuto = languageMenu->addAction(tr("Automatic (system language)"));
+            actLanguageAuto->setData(QString("auto"));
+            actLanguageAuto->setCheckable(true);
+            actLanguageAuto->setActionGroup(grpLanguage);
+
+            languageMenu->addSeparator();
+
+            for (int i = 0; i < uiLanguagesNum; i++)
+            {
+                QAction* act = languageMenu->addAction(QString::fromUtf8(uiLanguages[i].nativeName));
+                act->setData(QString(uiLanguages[i].code));
+                act->setCheckable(true);
+                act->setActionGroup(grpLanguage);
+                act->setProperty("melonNoTr", true);
+                actLanguage.append(act);
+            }
+
+            connect(grpLanguage, &QActionGroup::triggered, this, [](QAction* act)
+            {
+                setUILanguage(act->data().toString());
+            });
+        }
+        {
             QMenu * menu = menubar->addMenu(tr("Help"));
             actAbout = menu->addAction(tr("About..."));
             connect(actAbout, &QAction::triggered, this, [&]
@@ -636,8 +672,34 @@ MainWindow::MainWindow(int id, EmuInstance* inst, QWidget* parent) :
 
         setMenuBar(menubar);
 
-        if (localCfg.GetString("Firmware.Username") == "Arisotura")
-            actMPNewInstance->setText("Fart");
+        // Remember the source text of every fixed menu entry. Entries whose
+        // text is built at runtime are refreshed separately in retranslateMenus().
+        actCurrentCart->setProperty("melonNoTr", true);
+        actCurrentGBACart->setProperty("melonNoTr", true);
+        for (QAction* act : actInsertGBAAddon)
+            act->setProperty("melonNoTr", true);
+        for (int i = 0; i < AspectRatiosNum; i++)
+        {
+            actScreenAspectTop[i]->setProperty("melonNoTr", true);
+            actScreenAspectBot[i]->setProperty("melonNoTr", true);
+        }
+        auto storeSourceText = [](QAction* act)
+        {
+            if (act->isSeparator() || act->property("melonNoTr").toBool()
+                || act->property("melonTrSource").isValid())
+                return;
+            act->setProperty("melonTrSource", act->text());
+        };
+        for (QMenu* m : menubar->findChildren<QMenu*>())
+        {
+            storeSourceText(m->menuAction());
+            if (m == recentMenu) continue; // rebuilt by loadRecentFilesMenu()
+            for (QAction* act : m->actions())
+                storeSourceText(act);
+        }
+
+        retranslateMenus();
+        updateLanguageMenu();
     }
 
 #ifdef Q_OS_MAC
@@ -1631,6 +1693,78 @@ void MainWindow::onImportSavefile()
         QMessageBox::critical(this, "melonDS", tr("Could not import the given savefile."));
         return;
     }
+}
+
+void MainWindow::retranslateMenus()
+{
+    if (!hasMenu) return;
+
+    auto retranslate = [this](QAction* act)
+    {
+        const QVariant src = act->property("melonTrSource");
+        if (src.isValid())
+            act->setText(tr(src.toString().toUtf8().constData()));
+    };
+    for (QMenu* m : menuBar()->findChildren<QMenu*>())
+    {
+        retranslate(m->menuAction());
+        if (m == recentMenu) continue;
+        for (QAction* act : m->actions())
+            retranslate(act);
+    }
+
+    // entries whose text is built at runtime
+
+    // Keep the English word in the Language menu title so it can be found
+    // even when the current UI language cannot be read.
+    {
+        const QString title = tr("Language");
+        if (title.contains("Language", Qt::CaseInsensitive))
+            languageMenu->setTitle(title);
+        else
+            languageMenu->setTitle(title + " / Language");
+    }
+
+    if (emuInstance)
+    {
+        actCurrentCart->setText(tr("DS slot: %1").arg(emuInstance->cartLabel()));
+        actCurrentGBACart->setText(tr("GBA slot: %1").arg(emuInstance->gbaCartLabel()));
+        for (QAction* act : actInsertGBAAddon)
+            act->setText(emuInstance->gbaAddonName(act->data().toInt()));
+
+        if (localCfg.GetString("Firmware.Username") == "Arisotura")
+            actMPNewInstance->setText("Fart");
+    }
+
+    for (int i = 0; i < AspectRatiosNum; i++)
+    {
+        const QString label = tr(aspectRatios[i].label);
+        actScreenAspectTop[i]->setText(tr("Top %1").arg(label));
+        actScreenAspectBot[i]->setText(tr("Bottom %1").arg(label));
+    }
+
+    loadRecentFilesMenu(false);
+}
+
+void MainWindow::updateLanguageMenu()
+{
+    if (!hasMenu) return;
+
+    const QString setting = uiLanguageSetting();
+    actLanguageAuto->setChecked(setting == "auto");
+    for (QAction* act : actLanguage)
+        act->setChecked(act->data().toString() == setting);
+}
+
+void MainWindow::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        retranslateMenus();
+        updateLanguageMenu();
+    }
+
+    QMainWindow::changeEvent(event);
 }
 
 void MainWindow::onQuit()

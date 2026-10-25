@@ -39,6 +39,8 @@
 #include <QTranslator>
 #include <QLocale>
 #include <QLibraryInfo>
+#include <QMutex>
+#include <QMutexLocker>
 #ifndef _WIN32
 #include <QGuiApplication>
 #include <QSocketNotifier>
@@ -277,57 +279,134 @@ static void signalHandler(int signal)
 }
 #endif
 
-// Install the UI translation selected in the config ("Language").
-// Empty means: follow the system UI language. Translations are embedded
-// as Qt resources under :/i18n, so the binary is self-contained.
-static void installTranslations(QApplication& app)
+// UI languages. English is the source language; the others are embedded as
+// Qt resources under :/i18n (melonDS_<code>.qm and qtbase_<code>.qm), so the
+// binary is self-contained. Native names are UTF-8 and never translated.
+const UILanguageInfo uiLanguages[] =
 {
-    QString lang = Config::GetGlobalTable().GetQString("Language");
+    {"en",    "English"},
+    {"zh_CN", "\xE7\xAE\x80\xE4\xBD\x93\xE4\xB8\xAD\xE6\x96\x87"},
+    {"zh_TW", "\xE7\xB9\x81\xE9\xAB\x94\xE4\xB8\xAD\xE6\x96\x87"},
+    {"ja",    "\xE6\x97\xA5\xE6\x9C\xAC\xE8\xAA\x9E"},
+    {"de",    "Deutsch"},
+    {"fr",    "Fran\xC3\xA7" "ais"},
+    {"ko",    "\xED\x95\x9C\xEA\xB5\xAD\xEC\x96\xB4"},
+    {"it",    "Italiano"},
+};
+const int uiLanguagesNum = sizeof(uiLanguages) / sizeof(uiLanguages[0]);
 
-    QLocale locale;
-    if (lang.isEmpty())
+static QTranslator* appTranslator = nullptr;
+static QTranslator* qtTranslator = nullptr;
+static QString activeUILanguage = "en";
+static QMutex activeUILanguageMutex; // read by the OSD renderer on the emu thread
+
+static bool isSupportedUILanguage(const QString& code)
+{
+    for (int i = 0; i < uiLanguagesNum; i++)
     {
-        const QStringList uiLangs = QLocale::system().uiLanguages();
-        for (const QString& l : uiLangs)
+        if (code == uiLanguages[i].code)
+            return true;
+    }
+    return false;
+}
+
+QString uiLanguageSetting()
+{
+    // Older builds stored "" for automatic mode.
+    QString setting = Config::GetGlobalTable().GetQString("Language");
+    if (!isSupportedUILanguage(setting))
+        return "auto";
+    return setting;
+}
+
+QString currentUILanguage()
+{
+    QMutexLocker locker(&activeUILanguageMutex);
+    return activeUILanguage;
+}
+
+// Map the system UI languages (in order of preference) to a supported language.
+static QString detectSystemUILanguage()
+{
+    const QStringList uiLangs = QLocale::system().uiLanguages();
+    for (const QString& l : uiLangs)
+    {
+        const QString tag = l.toLower().replace('_', '-');
+        const QString lang = tag.section('-', 0, 0);
+
+        if (lang == "zh")
         {
-            QString norm = l;
-            norm.replace('-', '_');
-            if (norm.startsWith("zh", Qt::CaseInsensitive))
-            {
-                // Any Chinese variant: we only ship Simplified Chinese.
-                lang = "zh_CN";
-                break;
-            }
-            if (norm.startsWith("en", Qt::CaseInsensitive))
-                break;
+            if (tag.contains("-hant")) return "zh_TW";
+            if (tag.contains("-hans")) return "zh_CN";
+            if (tag.contains("-tw") || tag.contains("-hk") || tag.contains("-mo"))
+                return "zh_TW";
+            return "zh_CN";
         }
+        if (lang == "en") return "en";
+        if (isSupportedUILanguage(lang)) return lang;
+    }
+    return "en";
+}
+
+void applyUILanguage()
+{
+    QString setting = uiLanguageSetting();
+    QString lang = (setting == "auto") ? detectSystemUILanguage() : setting;
+
+    if (!appTranslator)
+    {
+        appTranslator = new QTranslator(qApp);
+        qtTranslator = new QTranslator(qApp);
     }
 
-    if (lang.isEmpty() || lang == "en")
+    // Removing/installing translators posts QEvent::LanguageChange to every
+    // widget, which retranslates the main window menus and the OSD splash.
+    QCoreApplication::removeTranslator(appTranslator);
+    QCoreApplication::removeTranslator(qtTranslator);
+
+    {
+        QMutexLocker locker(&activeUILanguageMutex);
+        activeUILanguage = lang;
+    }
+    if (lang == "en")
         return;
 
-    locale = QLocale(lang);
+    if (appTranslator->load(QString(":/i18n/melonDS_%1.qm").arg(lang)))
+        QCoreApplication::installTranslator(appTranslator);
 
-    auto* appTr = new QTranslator(&app);
-    if (appTr->load(QString(":/i18n/melonDS_%1.qm").arg(lang)))
-        app.installTranslator(appTr);
-    else
-        delete appTr;
-
-    // Qt's own strings (standard buttons, file dialogs). Prefer an embedded
-    // copy if one was bundled, then fall back to Qt's translations directory.
+    // Qt's own strings (standard buttons, file dialogs). Prefer the embedded
+    // copy, then fall back to Qt's translations directory.
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     const QString qtTrDir = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
 #else
     const QString qtTrDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 #endif
-    auto* qtTr = new QTranslator(&app);
-    if (qtTr->load(QString(":/i18n/qtbase_%1.qm").arg(lang))
-        || qtTr->load(locale, "qtbase", "_", qtTrDir)
-        || qtTr->load(locale, "qt", "_", qtTrDir))
-        app.installTranslator(qtTr);
-    else
-        delete qtTr;
+    const QLocale locale(lang);
+    if (qtTranslator->load(QString(":/i18n/qtbase_%1.qm").arg(lang))
+        || qtTranslator->load(locale, "qtbase", "_", qtTrDir)
+        || qtTranslator->load(locale, "qt", "_", qtTrDir))
+        QCoreApplication::installTranslator(qtTranslator);
+}
+
+void setUILanguage(const QString& setting)
+{
+    QString value = isSupportedUILanguage(setting) ? setting : QString("auto");
+
+    Config::Table cfg = Config::GetGlobalTable();
+    cfg.SetQString("Language", value);
+    Config::Save();
+
+    applyUILanguage();
+
+    // Switching between two languages that both need no translator (e.g.
+    // automatic -> English) posts no LanguageChange, so refresh the menus
+    // explicitly to keep the checked entry in sync (secondary windows are
+    // children of the main window, hence allWidgets()).
+    for (QWidget* w : QApplication::allWidgets())
+    {
+        if (auto* win = qobject_cast<MainWindow*>(w))
+            win->updateLanguageMenu();
+    }
 }
 
 int main(int argc, char** argv)
@@ -424,7 +503,7 @@ int main(int argc, char** argv)
                               "melonDS",
                               QCoreApplication::translate("main", "Unable to write to config.\nPlease check the write permissions of the folder you placed melonDS in."));
 
-    installTranslations(melon);
+    applyUILanguage();
 
     camStarted[0] = false;
     camStarted[1] = false;

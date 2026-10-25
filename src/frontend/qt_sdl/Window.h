@@ -88,7 +88,14 @@ public:
     void loadRecentFilesMenu(bool loadcfg);
     //void updateVideoSettings(bool glchange);
 
+    // Re-apply translated texts to the menus built in code (live language switch).
+    void retranslateMenus();
+    // Check the entry of the language menu matching the current setting.
+    void updateLanguageMenu();
+
 protected:
+    void changeEvent(QEvent* event) override;
+
     void keyPressEvent(QKeyEvent* event) override;
     void keyReleaseEvent(QKeyEvent* event) override;
 
@@ -294,6 +301,11 @@ public:
     QAction* actShowOSD;
     QAction* actLimitFramerate;
     QAction* actAudioSync;
+
+    QMenu* languageMenu;
+    QActionGroup* grpLanguage;
+    QAction* actLanguageAuto;
+    QList<QAction*> actLanguage;
 
     QAction* actAbout;
 };

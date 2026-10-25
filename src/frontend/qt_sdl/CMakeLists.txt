@@ -56,11 +56,14 @@ set(SOURCES_QT_SDL
     ${CMAKE_SOURCE_DIR}/res/melon.qrc
 
     # UI translations, embedded as Qt resources under :/i18n.
-    # translations/melonDS_zh_CN.ts is the editable source; the compiled .qm
-    # is committed next to it so builds do not depend on Qt LinguistTools
-    # (vcpkg/distro Qt packages often lack it). After changing UI strings:
-    #   lupdate -no-obsolete -locations none src/frontend/qt_sdl -ts src/frontend/qt_sdl/translations/melonDS_zh_CN.ts
-    #   lrelease src/frontend/qt_sdl/translations/melonDS_zh_CN.ts
+    # translations/melonDS_<lang>.ts (zh_CN, zh_TW, ja, de, fr, ko, it) are the
+    # editable sources; the compiled .qm files are committed next to them so
+    # builds do not depend on Qt LinguistTools (vcpkg/distro Qt packages often
+    # lack it). qtbase_<lang>.qm are Qt's own translations (from Qt 6.12).
+    # After changing UI strings (list every melonDS_*.ts):
+    #   lupdate -no-obsolete -locations none src/frontend/qt_sdl -ts src/frontend/qt_sdl/translations/melonDS_*.ts
+    #   lrelease src/frontend/qt_sdl/translations/melonDS_*.ts
+    # New languages also need an entry in uiLanguages (main.cpp) and translations.qrc.
     translations/translations.qrc
 
     CLI.h

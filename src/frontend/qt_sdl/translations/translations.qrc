@@ -2,6 +2,18 @@
 <RCC version="1.0">
     <qresource prefix="/i18n">
         <file>melonDS_zh_CN.qm</file>
+        <file>melonDS_zh_TW.qm</file>
+        <file>melonDS_ja.qm</file>
+        <file>melonDS_de.qm</file>
+        <file>melonDS_fr.qm</file>
+        <file>melonDS_ko.qm</file>
+        <file>melonDS_it.qm</file>
         <file>qtbase_zh_CN.qm</file>
+        <file>qtbase_zh_TW.qm</file>
+        <file>qtbase_ja.qm</file>
+        <file>qtbase_de.qm</file>
+        <file>qtbase_fr.qm</file>
+        <file>qtbase_ko.qm</file>
+        <file>qtbase_it.qm</file>
     </qresource>
 </RCC>

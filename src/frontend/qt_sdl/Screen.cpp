@@ -19,6 +19,7 @@
 #include <string.h>
 
 #include <optional>
+#include <algorithm>
 #include <cmath>
 
 #include <QPaintEvent>
@@ -105,6 +106,7 @@ ScreenPanel::ScreenPanel(QWidget* parent) : QWidget(parent)
     splashText[1].color = 0;
     splashText[1].rendered = false;
     splashText[1].rainbowstart = -1;
+    splashRetranslate = false;
 
     std::string url = MELONDS_URL;
     int urlpos = url.find("://");
@@ -398,6 +400,15 @@ bool ScreenPanel::event(QEvent* event)
         mainWindow->onFocusIn();
     else if (event->type() == QEvent::FocusOut)
         mainWindow->onFocusOut();
+    else if (event->type() == QEvent::LanguageChange)
+    {
+        // The splash texts are re-rendered by osdUpdate(), which runs where
+        // their textures may be (re)created.
+        osdMutex.lock();
+        splashRetranslate = true;
+        osdMutex.unlock();
+        update();
+    }
 
     return QWidget::event(event);
 }
@@ -418,24 +429,106 @@ QTimer* ScreenPanel::setupMouseTimer()
     return mouseTimer;
 }
 
-// The built-in bitmap font only covers ASCII. Any other code point (e.g. in
-// translated messages) is drawn with a system font into the same 12-pixel
-// glyph cell, then thresholded to solid pixels so it gets the same color,
-// rainbow and outline treatment as the bitmap glyphs.
-static QFont osdFallbackFont()
+// The built-in bitmap font only covers ASCII. Lowercase accented Latin
+// letters (é, ü, à, ç...) are composed from the bitmap base letter plus a
+// small bitmap mark so they match the rest of the text. Any other code point
+// (CJK, uppercase accented letters, other symbols) is drawn with a system
+// font into the same glyph line, then thresholded to solid pixels so it gets
+// the same color, rainbow and outline treatment as the bitmap glyphs.
+
+// Font families to try for non-ASCII OSD text, most suitable for the active
+// UI language first; Qt's own font fallback covers anything else.
+static QStringList osdFontFamiliesFor(const QString& lang)
+{
+    const QStringList sc = {"Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB",
+                            "Noto Sans CJK SC", "Source Han Sans SC", "WenQuanYi Micro Hei"};
+    const QStringList tc = {"Microsoft JhengHei UI", "Microsoft JhengHei", "PingFang TC",
+                            "Noto Sans CJK TC", "Source Han Sans TC"};
+    const QStringList ja = {"Yu Gothic UI", "Meiryo UI", "Meiryo", "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+                            "Noto Sans CJK JP", "Source Han Sans JP"};
+    const QStringList ko = {"Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans CJK KR", "Source Han Sans KR"};
+    const QStringList latin = {"Segoe UI", "Helvetica Neue", "Helvetica", "DejaVu Sans", "Noto Sans"};
+
+    QStringList list;
+    if (lang == "zh_TW")    list << tc << sc << ja << ko;
+    else if (lang == "ja")  list << ja << sc << tc << ko;
+    else if (lang == "ko")  list << ko << sc << tc << ja;
+    else if (lang == "zh_CN") list << sc << tc << ja << ko;
+    else                    list << latin << sc << tc << ja << ko;
+
+    // for Latin text in CJK languages
+    if (lang.startsWith("zh") || lang == "ja" || lang == "ko")
+        list << latin;
+
+    return list;
+}
+
+static QFont osdFallbackFont(const QStringList& families, bool bold)
 {
     QFont font = QGuiApplication::font();
 #if QT_VERSION >= QT_VERSION_CHECK(5, 13, 0)
-    // Preferred CJK families first; Qt's own font fallback covers the rest.
-    font.setFamilies({"Microsoft YaHei UI", "Microsoft YaHei",
-                      "PingFang SC", "Hiragino Sans GB",
-                      "Noto Sans CJK SC", "Source Han Sans SC",
-                      "WenQuanYi Micro Hei", font.family()});
+    font.setFamilies(QStringList(families) << font.family());
 #endif
     font.setPixelSize(12);
+    // Latin/Greek/Cyrillic glyphs are drawn bold to match the 2-pixel
+    // strokes of the bitmap font; CJK glyphs stay regular to remain legible.
+    font.setBold(bold);
     // crisp, pixel-font-like glyphs (also hinted where the font supports it)
     font.setStyleStrategy(QFont::NoAntialias);
     return font;
+}
+
+static bool osdIsCJK(uint ch)
+{
+    return ch >= 0x2E80;
+}
+
+// Small bitmap marks for composing accented lowercase letters. Bits are
+// columns (bit 0 = leftmost), like the bitmap font rows.
+struct OSDMark
+{
+    uint codepoint; // combining character
+    int width;
+    bool below;
+    u16 rows[2];
+};
+
+static const OSDMark osdMarks[] =
+{
+    {0x0300, 3, false, {0x3, 0x6}},   // grave:      ##.  .##
+    {0x0301, 3, false, {0x6, 0x3}},   // acute:      .##  ##.
+    {0x0302, 4, false, {0x6, 0x9}},   // circumflex: .##. #..#
+    {0x0303, 5, false, {0x16, 0xD}},  // tilde:      .##.# #.##.
+    {0x0308, 5, false, {0x1B, 0x1B}}, // diaeresis:  ##.## ##.##
+    {0x0327, 3, true,  {0x6, 0x3}},   // cedilla:    .##  ##.
+};
+
+// If ch is a lowercase ASCII letter with one supported mark, return the
+// base letter and the mark.
+static bool osdDecomposeLatin(uint ch, uint* base, const OSDMark** mark)
+{
+    if (ch < 0xC0 || ch > 0x24F)
+        return false;
+
+    const QString dec = QChar::decomposition(ch);
+    if (dec.size() != 2)
+        return false;
+
+    const uint b = dec[0].unicode();
+    const uint m = dec[1].unicode();
+    if (b < 'a' || b > 'z')
+        return false;
+
+    for (const OSDMark& om : osdMarks)
+    {
+        if (om.codepoint == m)
+        {
+            *base = b;
+            *mark = &om;
+            return true;
+        }
+    }
+    return false;
 }
 
 static QString osdCodePointString(uint ch)
@@ -458,10 +551,17 @@ static int osdFallbackAdvance(const QFontMetrics& fm, uint ch)
 }
 
 // Width taken by one character, including spacing.
-static int osdGlyphWidth(const QFontMetrics& fm, uint ch)
+static int osdGlyphWidth(const QFontMetrics& fm, const QFontMetrics& fmLatin, uint ch)
 {
     if (ch == ' ')
         return 6;
+
+    uint base; const OSDMark* mark;
+    if (osdDecomposeLatin(ch, &base, &mark))
+    {
+        int glyphsize = ::font[(base-0x10) << 4];
+        return std::max(glyphsize, mark->width) + 2;
+    }
 
     int glyphsize;
     if (ch < 0x80)
@@ -474,7 +574,7 @@ static int osdGlyphWidth(const QFontMetrics& fm, uint ch)
     }
     else
     {
-        glyphsize = osdFallbackAdvance(fm, ch);
+        glyphsize = osdFallbackAdvance(osdIsCJK(ch) ? fm : fmLatin, ch);
         if (glyphsize <= 0) glyphsize = 6;
         else                glyphsize += 1;
     }
@@ -495,7 +595,7 @@ int ScreenPanel::osdFindBreakPoint(const uint* text, int i)
     return i;
 }
 
-void ScreenPanel::osdLayoutText(const uint* text, const QFontMetrics& fm, int* width, int* height, int* breaks)
+void ScreenPanel::osdLayoutText(const uint* text, const QFontMetrics& fm, const QFontMetrics& fmLatin, int* width, int* height, int* breaks)
 {
     int w = 0;
     int h = 14;
@@ -508,7 +608,7 @@ void ScreenPanel::osdLayoutText(const uint* text, const QFontMetrics& fm, int* w
 
     for (int i = 0; text[i] != '\0'; )
 	{
-	    int glyphsize = osdGlyphWidth(fm, text[i]);
+	    int glyphsize = osdGlyphWidth(fm, fmLatin, text[i]);
 
 		w += glyphsize;
 		if (w > maxw)
@@ -567,8 +667,11 @@ void ScreenPanel::osdRenderItem(OSDItem* item)
     const uint* text = textbuf.constData();
     u32 color = item->color;
 
-    const QFont fallbackFont = osdFallbackFont();
+    const QStringList families = osdFontFamiliesFor(currentUILanguage());
+    const QFont fallbackFont = osdFallbackFont(families, false);
+    const QFont latinFont = osdFallbackFont(families, true);
     const QFontMetrics fm(fallbackFont);
+    const QFontMetrics fmLatin(latinFont);
 
     bool rainbow = (color == 0);
     u32 rainbowinc;
@@ -583,7 +686,7 @@ void ScreenPanel::osdRenderItem(OSDItem* item)
     color |= 0xFF000000;
     const u32 shadow = 0xE0000000;
 
-    osdLayoutText(text, fm, &w, &h, breaks);
+    osdLayoutText(text, fm, fmLatin, &w, &h, breaks);
 
     item->bitmap = QImage(w, h, QImage::Format_ARGB32_Premultiplied);
     u32* bitmap = (u32*)item->bitmap.bits();
@@ -593,6 +696,8 @@ void ScreenPanel::osdRenderItem(OSDItem* item)
     u32 maxw = ((QWidget*)this)->width() - (kOSDMargin*2);
     int curline = 0;
     u16* ptr;
+    uint base;
+    const OSDMark* mark;
 
     for (int i = 0; text[i] != '\0'; )
 	{
@@ -600,10 +705,56 @@ void ScreenPanel::osdRenderItem(OSDItem* item)
 		{
 			x += 6;
 		}
+		else if (osdDecomposeLatin(text[i], &base, &mark))
+        {
+            // accented lowercase letter: bitmap base letter plus a bitmap mark
+            if (rainbow)
+            {
+                color = osdRainbowColor(rainbowinc);
+                rainbowinc = (rainbowinc + 30) % 600;
+            }
+
+            ptr = &::font[(base-0x10) << 4];
+            int glyphsize = ptr[0];
+            int cellw = std::max(glyphsize, mark->width);
+            int bx = x + 1 + (cellw - glyphsize) / 2;
+            int mx = x + 1 + (cellw - mark->width) / 2;
+
+            // the bitmap 'i' has its dot in rows 0-1: drop it under a mark
+            int firstrow = (base == 'i') ? 2 : 0;
+            for (int cy = firstrow; cy < 12; cy++)
+            {
+                u16 val = ptr[4+cy];
+                for (int cx = 0; cx < glyphsize; cx++)
+                {
+                    if ((val & (1<<cx)) && (bx+cx) < w)
+                        bitmap[((y+cy) * w) + bx+cx] = color;
+                }
+            }
+
+            // marks above use rows -1..0 (one free row above the x-height;
+            // on 'i' they replace the dot in rows 0..1), marks below use rows 10..11
+            int my = mark->below ? (y + 10) : ((base == 'i') ? y : (y - 1));
+            for (int cy = 0; cy < 2; cy++)
+            {
+                int py = my + cy;
+                if (py < 0 || py >= h) continue;
+                for (int cx = 0; cx < mark->width; cx++)
+                {
+                    if ((mark->rows[cy] & (1<<cx)) && (mx+cx) < w)
+                        bitmap[(py * w) + mx+cx] = color;
+                }
+            }
+
+            x += cellw + 2;
+        }
 		else if (text[i] >= 0x80)
         {
             // non-ASCII: rasterize with the fallback font into the glyph cell
-            int adv = osdFallbackAdvance(fm, text[i]);
+            const bool cjk = osdIsCJK(text[i]);
+            const QFont& gfont = cjk ? fallbackFont : latinFont;
+            const QFontMetrics& gfm = cjk ? fm : fmLatin;
+            int adv = osdFallbackAdvance(gfm, text[i]);
             if (adv <= 0) x += 6;
             else
             {
@@ -619,9 +770,11 @@ void ScreenPanel::osdRenderItem(OSDItem* item)
                 glyph.fill(0);
                 {
                     QPainter gp(&glyph);
-                    gp.setFont(fallbackFont);
+                    gp.setFont(gfont);
                     gp.setPen(Qt::white);
-                    int baseline = (14 + fm.ascent() - fm.descent()) / 2;
+                    // CJK glyphs are centered in the line; other scripts sit
+                    // on the bitmap font baseline (bottom of row 9 of the cell)
+                    int baseline = cjk ? (14 + gfm.ascent() - gfm.descent()) / 2 : 11;
                     gp.drawText(0, baseline, osdCodePointString(text[i]));
                 }
 
@@ -780,6 +933,28 @@ void ScreenPanel::osdUpdate()
     }
 
     // render splashscreen text items if needed
+
+    if (splashRetranslate)
+    {
+        splashRetranslate = false;
+
+        const char* src[2] = {QT_TRANSLATE_NOOP("OSD", "File->Open ROM..."), QT_TRANSLATE_NOOP("OSD", "to get started")};
+        for (int i = 0; i < 3; i++)
+        {
+            if (i < 2)
+            {
+                strncpy(splashText[i].text, QCoreApplication::translate("OSD", src[i]).toUtf8().constData(), 255);
+                splashText[i].text[255] = '\0';
+            }
+
+            // the URL is not translated, but is re-rendered so the rainbow
+            // colors stay continuous across the three splash lines
+            if (splashText[i].rendered)
+                osdDeleteItem(&splashText[i]);
+            splashText[i].rendered = false;
+            splashText[i].rainbowstart = -1;
+        }
+    }
 
     int rainbowinc = -1;
     bool needrecalc = false;

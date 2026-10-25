@@ -63,4 +63,24 @@ void broadcastInstanceCommand(int cmd, QVariant& param, int sourceinst);
 
 void setMPInterface(melonDS::MPInterfaceType type);
 
+// UI language (config key "Language", global table).
+// Setting values: "auto" (follow the system UI language) or one of the codes in
+// uiLanguages. Empty or unknown values behave like "auto".
+struct UILanguageInfo
+{
+    const char* code;       // config value and translation file suffix
+    const char* nativeName; // UTF-8, never translated
+};
+extern const UILanguageInfo uiLanguages[];
+extern const int uiLanguagesNum;
+
+// Normalized config value: "auto" or a supported code.
+QString uiLanguageSetting();
+// Language code actually in use ("en", "zh_CN", ...).
+QString currentUILanguage();
+// Store the setting, save the config and switch the UI live.
+void setUILanguage(const QString& setting);
+// Install the translators for the current setting.
+void applyUILanguage();
+
 #endif // MAIN_H
