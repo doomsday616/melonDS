@@ -174,12 +174,6 @@
           </property>
           <item>
            <widget class="QPushButton" name="pbQuarter">
-            <property name="maximumSize">
-             <size>
-              <width>63</width>
-              <height>16777215</height>
-             </size>
-            </property>
             <property name="text">
              <string>1/4</string>
             </property>
@@ -187,12 +181,6 @@
           </item>
           <item>
            <widget class="QPushButton" name="pbHalf">
-            <property name="maximumSize">
-             <size>
-              <width>62</width>
-              <height>16777215</height>
-             </size>
-            </property>
             <property name="text">
              <string>1/2</string>
             </property>
@@ -252,12 +240,6 @@
           </property>
           <item>
            <widget class="QPushButton" name="pbAccurate">
-            <property name="maximumSize">
-             <size>
-              <width>63</width>
-              <height>16777215</height>
-             </size>
-            </property>
             <property name="text">
              <string>Accurate</string>
             </property>
@@ -265,12 +247,6 @@
           </item>
           <item>
            <widget class="QPushButton" name="pbClean">
-            <property name="maximumSize">
-             <size>
-              <width>62</width>
-              <height>16777215</height>
-             </size>
-            </property>
             <property name="text">
              <string>Clean</string>
             </property>
@@ -285,12 +261,6 @@
           </property>
           <item>
            <widget class="QPushButton" name="pb2x">
-            <property name="maximumSize">
-             <size>
-              <width>41</width>
-              <height>16777215</height>
-             </size>
-            </property>
             <property name="text">
              <string>2x</string>
             </property>
@@ -298,12 +268,6 @@
           </item>
           <item>
            <widget class="QPushButton" name="pb3x">
-            <property name="maximumSize">
-             <size>
-              <width>41</width>
-              <height>16777215</height>
-             </size>
-            </property>
             <property name="text">
              <string>3x</string>
             </property>
@@ -311,12 +275,6 @@
           </item>
           <item>
            <widget class="QPushButton" name="pbMAX">
-            <property name="maximumSize">
-             <size>
-              <width>41</width>
-              <height>16777215</height>
-             </size>
-            </property>
             <property name="text">
              <string>MAX</string>
             </property>

@@ -483,6 +483,28 @@ static bool osdIsCJK(uint ch)
     return ch >= 0x2E80;
 }
 
+// True if the text contains Han, Kana or Hangul. Such messages are drawn
+// entirely (ASCII included) with the system font, so that Latin letters,
+// digits and symbols match the size and weight of the CJK glyphs instead of
+// mixing in the bitmap font.
+static bool osdHasCJKScript(const uint* text)
+{
+    for (int i = 0; text[i] != '\0'; i++)
+    {
+        switch (QChar::script(text[i]))
+        {
+        case QChar::Script_Han:
+        case QChar::Script_Hiragana:
+        case QChar::Script_Katakana:
+        case QChar::Script_Hangul:
+            return true;
+        default:
+            break;
+        }
+    }
+    return false;
+}
+
 // Small bitmap marks for composing accented lowercase letters. Bits are
 // columns (bit 0 = leftmost), like the bitmap font rows.
 struct OSDMark
@@ -550,11 +572,32 @@ static int osdFallbackAdvance(const QFontMetrics& fm, uint ch)
 #endif
 }
 
-// Width taken by one character, including spacing.
-static int osdGlyphWidth(const QFontMetrics& fm, const QFontMetrics& fmLatin, uint ch)
+static int osdSpaceAdvance(const QFontMetrics& fm)
+{
+    int adv = osdFallbackAdvance(fm, ' ');
+    return (adv > 0) ? adv : 4;
+}
+
+// Height of one text line. Bitmap-font text uses 14 pixels; system-font
+// (CJK) messages get the full font height so Latin descenders (g, p, y)
+// are not cut off.
+static int osdLineHeight(const QFontMetrics& fm, bool sysText)
+{
+    return sysText ? std::max(14, fm.height()) : 14;
+}
+
+// Width taken by one character, including spacing. sysText: the whole
+// message is drawn with the system font (see osdHasCJKScript()).
+static int osdGlyphWidth(const QFontMetrics& fm, const QFontMetrics& fmLatin, uint ch, bool sysText)
 {
     if (ch == ' ')
-        return 6;
+        return sysText ? osdSpaceAdvance(fm) : 6;
+
+    if (sysText)
+    {
+        int adv = osdFallbackAdvance(fm, ch);
+        return (adv > 0) ? (adv + 1) : 6;
+    }
 
     uint base; const OSDMark* mark;
     if (osdDecomposeLatin(ch, &base, &mark))
@@ -595,10 +638,11 @@ int ScreenPanel::osdFindBreakPoint(const uint* text, int i)
     return i;
 }
 
-void ScreenPanel::osdLayoutText(const uint* text, const QFontMetrics& fm, const QFontMetrics& fmLatin, int* width, int* height, int* breaks)
+void ScreenPanel::osdLayoutText(const uint* text, const QFontMetrics& fm, const QFontMetrics& fmLatin, bool sysText, int* width, int* height, int* breaks)
 {
     int w = 0;
-    int h = 14;
+    const int lineh = osdLineHeight(fm, sysText);
+    int h = lineh;
     int totalw = 0;
     int maxw = ((QWidget*)this)->width() - (kOSDMargin*2);
     int lastbreak = -1;
@@ -608,7 +652,7 @@ void ScreenPanel::osdLayoutText(const uint* text, const QFontMetrics& fm, const 
 
     for (int i = 0; text[i] != '\0'; )
 	{
-	    int glyphsize = osdGlyphWidth(fm, fmLatin, text[i]);
+	    int glyphsize = osdGlyphWidth(fm, fmLatin, text[i], sysText);
 
 		w += glyphsize;
 		if (w > maxw)
@@ -632,7 +676,7 @@ void ScreenPanel::osdLayoutText(const uint* text, const QFontMetrics& fm, const 
             }
 
             w = 0;
-            h += 14;
+            h += lineh;
         }
         else
             i++;
@@ -673,6 +717,10 @@ void ScreenPanel::osdRenderItem(OSDItem* item)
     const QFontMetrics fm(fallbackFont);
     const QFontMetrics fmLatin(latinFont);
 
+    // messages with CJK text use the system font for every character
+    const bool sysText = osdHasCJKScript(text);
+    const int lineh = osdLineHeight(fm, sysText);
+
     bool rainbow = (color == 0);
     u32 rainbowinc;
     if (item->rainbowstart == -1)
@@ -686,7 +734,7 @@ void ScreenPanel::osdRenderItem(OSDItem* item)
     color |= 0xFF000000;
     const u32 shadow = 0xE0000000;
 
-    osdLayoutText(text, fm, fmLatin, &w, &h, breaks);
+    osdLayoutText(text, fm, fmLatin, sysText, &w, &h, breaks);
 
     item->bitmap = QImage(w, h, QImage::Format_ARGB32_Premultiplied);
     u32* bitmap = (u32*)item->bitmap.bits();
@@ -703,9 +751,9 @@ void ScreenPanel::osdRenderItem(OSDItem* item)
 	{
 		if (text[i] == ' ')
 		{
-			x += 6;
+			x += sysText ? osdSpaceAdvance(fm) : 6;
 		}
-		else if (osdDecomposeLatin(text[i], &base, &mark))
+		else if (!sysText && osdDecomposeLatin(text[i], &base, &mark))
         {
             // accented lowercase letter: bitmap base letter plus a bitmap mark
             if (rainbow)
@@ -748,10 +796,12 @@ void ScreenPanel::osdRenderItem(OSDItem* item)
 
             x += cellw + 2;
         }
-		else if (text[i] >= 0x80)
+		else if (sysText || text[i] >= 0x80)
         {
-            // non-ASCII: rasterize with the fallback font into the glyph cell
-            const bool cjk = osdIsCJK(text[i]);
+            // non-ASCII, or any character of a CJK message: rasterize with
+            // the system font into the glyph cell. In a CJK message every
+            // glyph uses the CJK font and the same centered baseline.
+            const bool cjk = sysText || osdIsCJK(text[i]);
             const QFont& gfont = cjk ? fallbackFont : latinFont;
             const QFontMetrics& gfm = cjk ? fm : fmLatin;
             int adv = osdFallbackAdvance(gfm, text[i]);
@@ -764,9 +814,10 @@ void ScreenPanel::osdRenderItem(OSDItem* item)
                     rainbowinc = (rainbowinc + 30) % 600;
                 }
 
-                // the glyph uses the full 14-pixel line (one row above and
-                // below the 12-pixel bitmap glyph cell)
-                QImage glyph(adv, 14, QImage::Format_ARGB32_Premultiplied);
+                // the glyph uses the full line (14 pixels: one row above and
+                // below the 12-pixel bitmap glyph cell; taller for system-font
+                // messages, see osdLineHeight())
+                QImage glyph(adv, lineh, QImage::Format_ARGB32_Premultiplied);
                 glyph.fill(0);
                 {
                     QPainter gp(&glyph);
@@ -774,11 +825,11 @@ void ScreenPanel::osdRenderItem(OSDItem* item)
                     gp.setPen(Qt::white);
                     // CJK glyphs are centered in the line; other scripts sit
                     // on the bitmap font baseline (bottom of row 9 of the cell)
-                    int baseline = cjk ? (14 + gfm.ascent() - gfm.descent()) / 2 : 11;
+                    int baseline = cjk ? (lineh + gfm.ascent() - gfm.descent()) / 2 : 11;
                     gp.drawText(0, baseline, osdCodePointString(text[i]));
                 }
 
-                for (int cy = 0; cy < 14; cy++)
+                for (int cy = 0; cy < lineh; cy++)
                 {
                     int py = y - 1 + cy;
                     if (py < 0 || py >= h) continue;
@@ -837,7 +888,7 @@ void ScreenPanel::osdRenderItem(OSDItem* item)
             if (text[i] == ' ') i++;
 
             x = 0;
-            y += 14;
+            y += lineh;
         }
     }
 
