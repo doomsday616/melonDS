@@ -40,12 +40,12 @@ static constexpr std::initializer_list<int> hk_addons =
 
 static constexpr std::initializer_list<const char*> hk_addons_labels =
 {
-    "[Boktai] Sunlight + ",
-    "[Boktai] Sunlight - ",
-    "[Guitar Grip] Green",
-    "[Guitar Grip] Red",
-    "[Guitar Grip] Yellow",
-    "[Guitar Grip] Blue",
+    QT_TRANSLATE_NOOP("InputConfigDialog", "[Boktai] Sunlight + "),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "[Boktai] Sunlight - "),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "[Guitar Grip] Green"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "[Guitar Grip] Red"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "[Guitar Grip] Yellow"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "[Guitar Grip] Blue"),
 };
 
 static_assert(hk_addons.size() == hk_addons_labels.size());
@@ -73,23 +73,23 @@ static constexpr std::initializer_list<int> hk_general =
 
 static constexpr std::initializer_list<const char*> hk_general_labels =
 {
-    "Pause/resume",
-    "Reset",
-    "Frame step",
-    "Fast forward",
-    "Toggle fast forward",
-    "Slow mo",
-    "Toggle slow mo",
-    "Toggle FPS limit",
-    "Toggle fullscreen",
-    "Close/open lid",
-    "Microphone",
-    "Swap screens",
-    "Swap screen emphasis",
-    "DSi Power button",
-    "DSi Volume up",
-    "DSi Volume down",
-    "Toggle audio mute"
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Pause/resume"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Reset"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Frame step"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Fast forward"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Toggle fast forward"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Slow mo"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Toggle slow mo"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Toggle FPS limit"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Toggle fullscreen"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Close/open lid"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Microphone"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Swap screens"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Swap screen emphasis"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "DSi Power button"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "DSi Volume up"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "DSi Volume down"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Toggle audio mute")
 };
 
 static_assert(hk_general.size() == hk_general_labels.size());

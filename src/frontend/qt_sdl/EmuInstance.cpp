@@ -496,25 +496,25 @@ QString EmuInstance::verifyDSBIOS()
     long len;
 
     f = Platform::OpenLocalFile(globalCfg.GetString("DS.BIOS9Path"), FileMode::Read);
-    if (!f) return "DS ARM9 BIOS was not found or could not be accessed. Check your emu settings.";
+    if (!f) return tr("DS ARM9 BIOS was not found or could not be accessed. Check your emu settings.");
 
     len = FileLength(f);
     if (len != 0x1000)
     {
         CloseFile(f);
-        return "DS ARM9 BIOS is not a valid BIOS dump.";
+        return tr("DS ARM9 BIOS is not a valid BIOS dump.");
     }
 
     CloseFile(f);
 
     f = Platform::OpenLocalFile(globalCfg.GetString("DS.BIOS7Path"), FileMode::Read);
-    if (!f) return "DS ARM7 BIOS was not found or could not be accessed. Check your emu settings.";
+    if (!f) return tr("DS ARM7 BIOS was not found or could not be accessed. Check your emu settings.");
 
     len = FileLength(f);
     if (len != 0x4000)
     {
         CloseFile(f);
-        return "DS ARM7 BIOS is not a valid BIOS dump.";
+        return tr("DS ARM7 BIOS is not a valid BIOS dump.");
     }
 
     CloseFile(f);
@@ -530,25 +530,25 @@ QString EmuInstance::verifyDSiBIOS()
     // TODO: check the first 32 bytes
 
     f = Platform::OpenLocalFile(globalCfg.GetString("DSi.BIOS9Path"), FileMode::Read);
-    if (!f) return "DSi ARM9 BIOS was not found or could not be accessed. Check your emu settings.";
+    if (!f) return tr("DSi ARM9 BIOS was not found or could not be accessed. Check your emu settings.");
 
     len = FileLength(f);
     if (len != 0x10000)
     {
         CloseFile(f);
-        return "DSi ARM9 BIOS is not a valid BIOS dump.";
+        return tr("DSi ARM9 BIOS is not a valid BIOS dump.");
     }
 
     CloseFile(f);
 
     f = Platform::OpenLocalFile(globalCfg.GetString("DSi.BIOS7Path"), FileMode::Read);
-    if (!f) return "DSi ARM7 BIOS was not found or could not be accessed. Check your emu settings.";
+    if (!f) return tr("DSi ARM7 BIOS was not found or could not be accessed. Check your emu settings.");
 
     len = FileLength(f);
     if (len != 0x10000)
     {
         CloseFile(f);
-        return "DSi ARM7 BIOS is not a valid BIOS dump.";
+        return tr("DSi ARM7 BIOS is not a valid BIOS dump.");
     }
 
     CloseFile(f);
@@ -564,10 +564,10 @@ QString EmuInstance::verifyDSFirmware()
     std::string fwpath = globalCfg.GetString("DS.FirmwarePath");
 
     f = Platform::OpenLocalFile(fwpath, FileMode::Read);
-    if (!f) return "DS firmware was not found or could not be accessed. Check your emu settings.";
+    if (!f) return tr("DS firmware was not found or could not be accessed. Check your emu settings.");
 
     if (!Platform::CheckFileWritable(fwpath))
-        return "DS firmware is unable to be written to.\nPlease check file/folder write permissions.";
+        return tr("DS firmware is unable to be written to.\nPlease check file/folder write permissions.");
 
     len = FileLength(f);
     if (len == 0x20000)
@@ -580,7 +580,7 @@ QString EmuInstance::verifyDSFirmware()
     else if (len != 0x40000 && len != 0x80000)
     {
         CloseFile(f);
-        return "DS firmware is not a valid firmware dump.";
+        return tr("DS firmware is not a valid firmware dump.");
     }
 
     CloseFile(f);
@@ -596,10 +596,10 @@ QString EmuInstance::verifyDSiFirmware()
     std::string fwpath = globalCfg.GetString("DSi.FirmwarePath");
 
     f = Platform::OpenLocalFile(fwpath, FileMode::Read);
-    if (!f) return "DSi firmware was not found or could not be accessed. Check your emu settings.";
+    if (!f) return tr("DSi firmware was not found or could not be accessed. Check your emu settings.");
 
     if (!Platform::CheckFileWritable(fwpath))
-        return "DSi firmware is unable to be written to.\nPlease check file/folder write permissions.";
+        return tr("DSi firmware is unable to be written to.\nPlease check file/folder write permissions.");
 
     len = FileLength(f);
     if (len != 0x20000)
@@ -607,7 +607,7 @@ QString EmuInstance::verifyDSiFirmware()
         // not 128KB
         // TODO: check whether those work
         CloseFile(f);
-        return "DSi firmware is not a valid firmware dump.";
+        return tr("DSi firmware is not a valid firmware dump.");
     }
 
     CloseFile(f);
@@ -624,10 +624,10 @@ QString EmuInstance::verifyDSiNAND(bool isoptional)
 
     f = Platform::OpenLocalFile(nandpath, FileMode::ReadWriteExisting);
     if (!f && isoptional) return "";
-    if (!f) return "DSi NAND was not found or could not be accessed. Check your emu settings.";
+    if (!f) return tr("DSi NAND was not found or could not be accessed. Check your emu settings.");
 
     if (!Platform::CheckFileWritable(nandpath))
-        return "DSi NAND is unable to be written to.\nPlease check file/folder write permissions.";
+        return tr("DSi NAND is unable to be written to.\nPlease check file/folder write permissions.");
 
     // TODO: some basic checks
     // check that it has the nocash footer, and all
@@ -1461,14 +1461,14 @@ bool EmuInstance::bootToMenu(QString& errorstr)
     if (!updateConsole())
     {
         // Try to update the console, but keep the existing cart. If that fails...
-        errorstr = "Failed to boot the firmware.";
+        errorstr = tr("Failed to boot the firmware.");
         return false;
     }
 
     // BIOS and firmware files are loaded, patched, and installed in UpdateConsole
     if (nds->NeedsDirectBoot())
     {
-        errorstr = "This firmware is not bootable.";
+        errorstr = tr("This firmware is not bootable.");
         return false;
     }
 
@@ -1852,13 +1852,9 @@ bool EmuInstance::loadROMData(const QStringList& filepath, std::unique_ptr<u8[]>
 
 QString EmuInstance::getSavErrorString(std::string& filepath, bool gba)
 {
-    std::string console = gba ? "GBA" : "DS";
-    std::string err1 = "Unable to write to ";
-    std::string err2 = " save.\nPlease check file/folder write permissions.\n\nAttempted to Access:\n";
-
-    err1 += console + err2 + filepath;
-
-    return QString::fromStdString(err1);
+    QString console = gba ? "GBA" : "DS";
+    return tr("Unable to write to %1 save.\nPlease check file/folder write permissions.\n\nAttempted to Access:\n%2")
+        .arg(console, QString::fromStdString(filepath));
 }
 
 bool EmuInstance::loadROM(QStringList filepath, bool reset, QString& errorstr)
@@ -1870,7 +1866,7 @@ bool EmuInstance::loadROM(QStringList filepath, bool reset, QString& errorstr)
 
     if (!loadROMData(filepath, filedata, filelen, basepath, romname))
     {
-        errorstr = "Failed to load the DS ROM.";
+        errorstr = tr("Failed to load the DS ROM.");
         return false;
     }
 
@@ -1927,7 +1923,7 @@ bool EmuInstance::loadROM(QStringList filepath, bool reset, QString& errorstr)
     if (!cart)
     {
         // If we couldn't parse the ROM...
-        errorstr = "Failed to load the DS ROM.";
+        errorstr = tr("Failed to load the DS ROM.");
         return false;
     }
 
@@ -1938,7 +1934,7 @@ bool EmuInstance::loadROM(QStringList filepath, bool reset, QString& errorstr)
 
         if (!updateConsole())
         {
-            errorstr = "Failed to load the DS ROM.";
+            errorstr = tr("Failed to load the DS ROM.");
             return false;
         }
 
@@ -2002,7 +1998,7 @@ bool EmuInstance::cartInserted()
 QString EmuInstance::cartLabel()
 {
     if (cartType == -1)
-        return "(none)";
+        return tr("(none)");
 
     QString ret = QString::fromStdString(baseROMName);
 
@@ -2018,7 +2014,7 @@ bool EmuInstance::loadGBAROM(QStringList filepath, QString& errorstr)
 {
     if (consoleType == 1)
     {
-        errorstr = "The DSi doesn't have a GBA slot.";
+        errorstr = tr("The DSi doesn't have a GBA slot.");
         return false;
     }
 
@@ -2029,7 +2025,7 @@ bool EmuInstance::loadGBAROM(QStringList filepath, QString& errorstr)
 
     if (!loadROMData(filepath, filedata, filelen, basepath, romname))
     {
-        errorstr = "Failed to load the GBA ROM.";
+        errorstr = tr("Failed to load the GBA ROM.");
         return false;
     }
 
@@ -2079,7 +2075,7 @@ bool EmuInstance::loadGBAROM(QStringList filepath, QString& errorstr)
     auto cart = GBACart::ParseROM(std::move(filedata), filelen, std::move(savedata), savelen, this);
     if (!cart)
     {
-        errorstr = "Failed to load the GBA ROM.";
+        errorstr = tr("Failed to load the GBA ROM.");
         return false;
     }
 
@@ -2105,7 +2101,7 @@ void EmuInstance::loadGBAAddon(int type, QString& errorstr)
     auto cart = GBACart::LoadAddon(type, this);
     if (!cart)
     {
-        errorstr = "Failed to load the GBA addon.";
+        errorstr = tr("Failed to load the GBA addon.");
         return;
     }
 
@@ -2156,21 +2152,21 @@ QString EmuInstance::gbaAddonName(int addon)
     switch (addon)
     {
     case GBAAddon_RumblePak:
-        return "Rumble Pak";
+        return tr("Rumble Pak");
     case GBAAddon_RAMExpansion:
-        return "Memory expansion";
+        return tr("Memory expansion");
     case GBAAddon_SolarSensorBoktai1:
-        return "Solar Sensor (Boktai 1)";
+        return tr("Solar Sensor (Boktai 1)");
     case GBAAddon_SolarSensorBoktai2:
-        return "Solar Sensor (Boktai 2)";
+        return tr("Solar Sensor (Boktai 2)");
     case GBAAddon_SolarSensorBoktai3:
-        return "Solar Sensor (Boktai 3)";
+        return tr("Solar Sensor (Boktai 3)");
     case GBAAddon_MotionPakHomebrew:
-        return "Motion Pak (Homebrew)";
+        return tr("Motion Pak (Homebrew)");
     case GBAAddon_MotionPakRetail:
-        return "Motion Pack (Retail)";
+        return tr("Motion Pack (Retail)");
     case GBAAddon_GuitarGrip:
-        return "Guitar Grip";
+        return tr("Guitar Grip");
     }
 
     return "???";
@@ -2178,7 +2174,7 @@ QString EmuInstance::gbaAddonName(int addon)
 
 QString EmuInstance::gbaCartLabel()
 {
-    if (consoleType == 1) return "none (DSi)";
+    if (consoleType == 1) return tr("none (DSi)");
 
     if (gbaCartType == 0)
     {
@@ -2195,7 +2191,7 @@ QString EmuInstance::gbaCartLabel()
         return gbaAddonName(gbaCartType);
     }
 
-    return "(none)";
+    return tr("(none)");
 }
 
 

@@ -82,8 +82,8 @@ CameraSettingsDialog::CameraSettingsDialog(QWidget* parent) : QDialog(parent), u
         oldCamSettings[i].XFlip = cfg.GetBool("XFlip");
     }
 
-    ui->cbCameraSel->addItem("DSi outer camera");
-    ui->cbCameraSel->addItem("DSi inner camera");
+    ui->cbCameraSel->addItem(tr("DSi outer camera"));
+    ui->cbCameraSel->addItem(tr("DSi inner camera"));
 
 #if QT_VERSION >= 0x060000
     const QList<QCameraDevice> cameras = QMediaDevices::videoInputs();
@@ -95,9 +95,9 @@ CameraSettingsDialog::CameraSettingsDialog(QWidget* parent) : QDialog(parent), u
         {
             name += " (";
             if (pos == QCameraDevice::FrontFace)
-                name += "inner camera";
+                name += tr("inner camera");
             else if (pos == QCameraDevice::BackFace)
-                name += "outer camera";
+                name += tr("outer camera");
             name += ")";
         }
 
@@ -113,9 +113,9 @@ CameraSettingsDialog::CameraSettingsDialog(QWidget* parent) : QDialog(parent), u
         {
             name += " (";
             if (pos == QCamera::FrontFace)
-                name += "inner camera";
+                name += tr("inner camera");
             else if (pos == QCamera::BackFace)
-                name += "outer camera";
+                name += tr("outer camera");
             name += ")";
         }
 
@@ -256,9 +256,9 @@ void CameraSettingsDialog::on_txtSrcImagePath_textChanged()
 void CameraSettingsDialog::on_btnSrcImageBrowse_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this,
-                                                "Select image file...",
+                                                tr("Select image file..."),
                                                 emuDirectory,
-                                                "Image files (*.png *.jpg *.jpeg *.bmp);;Any file (*.*)");
+                                                tr("Image files") + " (*.png *.jpg *.jpeg *.bmp);;" + tr("Any file") + " (*.*)");
 
     if (file.isEmpty()) return;
 

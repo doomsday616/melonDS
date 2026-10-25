@@ -20,6 +20,7 @@
 #define EMUINSTANCE_H
 
 #include <SDL2/SDL.h>
+#include <QCoreApplication>
 
 #include "Platform.h"
 #include "main.h"
@@ -83,6 +84,8 @@ int getEventKeyVal(QKeyEvent* event);
 
 class EmuInstance
 {
+    Q_DECLARE_TR_FUNCTIONS(EmuInstance)
+
 public:
     EmuInstance(int inst);
     ~EmuInstance();

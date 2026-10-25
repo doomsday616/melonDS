@@ -55,6 +55,14 @@ set(SOURCES_QT_SDL
 
     ${CMAKE_SOURCE_DIR}/res/melon.qrc
 
+    # UI translations, embedded as Qt resources under :/i18n.
+    # translations/melonDS_zh_CN.ts is the editable source; the compiled .qm
+    # is committed next to it so builds do not depend on Qt LinguistTools
+    # (vcpkg/distro Qt packages often lack it). After changing UI strings:
+    #   lupdate -no-obsolete -locations none src/frontend/qt_sdl -ts src/frontend/qt_sdl/translations/melonDS_zh_CN.ts
+    #   lrelease src/frontend/qt_sdl/translations/melonDS_zh_CN.ts
+    translations/translations.qrc
+
     CLI.h
     CLI.cpp
 

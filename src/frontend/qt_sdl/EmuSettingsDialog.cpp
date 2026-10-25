@@ -73,7 +73,7 @@ EmuSettingsDialog::EmuSettingsDialog(QWidget* parent) : QDialog(parent), ui(new 
     ui->txtDSiNANDPath->setText(cfg.GetQString("DSi.NANDPath"));
 
     ui->cbxConsoleType->addItem("DS");
-    ui->cbxConsoleType->addItem("DSi (experimental)");
+    ui->cbxConsoleType->addItem(tr("DSi (experimental)"));
     ui->cbxConsoleType->setCurrentIndex(cfg.GetInt("Emu.ConsoleType"));
 
     ui->chkDirectBoot->setChecked(cfg.GetBool("Emu.DirectBoot"));
@@ -113,8 +113,8 @@ EmuSettingsDialog::EmuSettingsDialog(QWidget* parent) : QDialog(parent), ui(new 
 
     const int imgsizes[] = {256, 512, 1024, 2048, 4096, 0};
 
-    ui->cbxDLDISize->addItem("Auto");
-    ui->cbxDSiSDSize->addItem("Auto");
+    ui->cbxDLDISize->addItem(tr("Auto"));
+    ui->cbxDSiSDSize->addItem(tr("Auto"));
 
     for (int i = 0; imgsizes[i] != 0; i++)
     {
@@ -205,10 +205,10 @@ void EmuSettingsDialog::verifyFirmware()
     if (!memcmp(chk1, chk2, 0x180))
     {
         QMessageBox::warning((QWidget*)this->parent(),
-                      "Problematic firmware dump",
-                      "You are using an old hacked firmware dump.\n"
+                      tr("Problematic firmware dump"),
+                      tr("You are using an old hacked firmware dump.\n"
                       "Firmware boot will stop working if you run any game that alters WFC settings.\n\n"
-                      "Note that the issue is not from melonDS, it would also happen on an actual DS.");
+                      "Note that the issue is not from melonDS, it would also happen on an actual DS."));
     }
 }
 
@@ -251,8 +251,8 @@ void EmuSettingsDialog::done(int r)
         if (modified)
         {
             if (emuInstance->emuIsActive()
-                && QMessageBox::warning(this, "Reset necessary to apply changes",
-                    "The emulation will be reset for the changes to take place.",
+                && QMessageBox::warning(this, tr("Reset necessary to apply changes"),
+                    tr("The emulation will be reset for the changes to take place."),
                     QMessageBox::Ok, QMessageBox::Cancel) != QMessageBox::Ok)
                 return;
 
@@ -318,9 +318,9 @@ void EmuSettingsDialog::done(int r)
 void EmuSettingsDialog::on_btnBIOS9Browse_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this,
-                                                "Select DS-mode ARM9 BIOS...",
+                                                tr("Select DS-mode ARM9 BIOS..."),
                                                 lastBIOSFolder,
-                                                "BIOS files (*.bin *.rom);;Any file (*.*)");
+                                                tr("BIOS files") + " (*.bin *.rom);;" + tr("Any file") + " (*.*)");
 
     if (file.isEmpty()) return;
 
@@ -332,9 +332,9 @@ void EmuSettingsDialog::on_btnBIOS9Browse_clicked()
 void EmuSettingsDialog::on_btnBIOS7Browse_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this,
-                                                "Select DS-mode ARM7 BIOS...",
+                                                tr("Select DS-mode ARM7 BIOS..."),
                                                 lastBIOSFolder,
-                                                "BIOS files (*.bin *.rom);;Any file (*.*)");
+                                                tr("BIOS files") + " (*.bin *.rom);;" + tr("Any file") + " (*.*)");
 
     if (file.isEmpty()) return;
 
@@ -346,15 +346,15 @@ void EmuSettingsDialog::on_btnBIOS7Browse_clicked()
 void EmuSettingsDialog::on_btnFirmwareBrowse_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this,
-                                                "Select DS-mode firmware...",
+                                                tr("Select DS-mode firmware..."),
                                                 lastBIOSFolder,
-                                                "Firmware files (*.bin *.rom);;Any file (*.*)");
+                                                tr("Firmware files") + " (*.bin *.rom);;" + tr("Any file") + " (*.*)");
 
     if (file.isEmpty()) return;
 
     if (!Platform::CheckFileWritable(file.toStdString()))
     {
-        QMessageBox::critical(this, "melonDS", "Unable to write to firmware file.\nPlease check file/folder write permissions.");
+        QMessageBox::critical(this, "melonDS", tr("Unable to write to firmware file.\nPlease check file/folder write permissions."));
         return;
     }
 
@@ -366,9 +366,9 @@ void EmuSettingsDialog::on_btnFirmwareBrowse_clicked()
 void EmuSettingsDialog::on_btnDSiBIOS9Browse_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this,
-                                                "Select DSi-mode ARM9 BIOS...",
+                                                tr("Select DSi-mode ARM9 BIOS..."),
                                                 lastBIOSFolder,
-                                                "BIOS files (*.bin *.rom);;Any file (*.*)");
+                                                tr("BIOS files") + " (*.bin *.rom);;" + tr("Any file") + " (*.*)");
 
     if (file.isEmpty()) return;
 
@@ -380,9 +380,9 @@ void EmuSettingsDialog::on_btnDSiBIOS9Browse_clicked()
 void EmuSettingsDialog::on_btnDSiBIOS7Browse_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this,
-                                                "Select DSi-mode ARM7 BIOS...",
+                                                tr("Select DSi-mode ARM7 BIOS..."),
                                                 lastBIOSFolder,
-                                                "BIOS files (*.bin *.rom);;Any file (*.*)");
+                                                tr("BIOS files") + " (*.bin *.rom);;" + tr("Any file") + " (*.*)");
 
     if (file.isEmpty()) return;
 
@@ -408,15 +408,15 @@ void EmuSettingsDialog::on_cbDLDIEnable_toggled()
 void EmuSettingsDialog::on_btnDLDISDBrowse_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this,
-                                                "Select DLDI SD image...",
+                                                tr("Select DLDI SD image..."),
                                                 lastBIOSFolder,
-                                                "Image files (*.bin *.rom *.img *.dmg);;Any file (*.*)");
+                                                tr("Image files") + " (*.bin *.rom *.img *.dmg);;" + tr("Any file") + " (*.*)");
 
     if (file.isEmpty()) return;
 
     if (!Platform::CheckFileWritable(file.toStdString()))
     {
-        QMessageBox::critical(this, "melonDS", "Unable to write to DLDI SD image.\nPlease check file/folder write permissions.");
+        QMessageBox::critical(this, "melonDS", tr("Unable to write to DLDI SD image.\nPlease check file/folder write permissions."));
         return;
     }
 
@@ -435,7 +435,7 @@ void EmuSettingsDialog::on_cbDLDIFolder_toggled()
 void EmuSettingsDialog::on_btnDLDIFolderBrowse_clicked()
 {
     QString dir = QFileDialog::getExistingDirectory(this,
-                                                     "Select DLDI SD folder...",
+                                                     tr("Select DLDI SD folder..."),
                                                      lastBIOSFolder);
 
     if (dir.isEmpty()) return;
@@ -446,15 +446,15 @@ void EmuSettingsDialog::on_btnDLDIFolderBrowse_clicked()
 void EmuSettingsDialog::on_btnDSiFirmwareBrowse_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this,
-                                                "Select DSi DS-mode firmware...",
+                                                tr("Select DSi DS-mode firmware..."),
                                                 lastBIOSFolder,
-                                                "Firmware files (*.bin *.rom);;Any file (*.*)");
+                                                tr("Firmware files") + " (*.bin *.rom);;" + tr("Any file") + " (*.*)");
 
     if (file.isEmpty()) return;
 
     if (!Platform::CheckFileWritable(file.toStdString()))
     {
-        QMessageBox::critical(this, "melonDS", "Unable to write to DSi firmware file.\nPlease check file/folder write permissions.");
+        QMessageBox::critical(this, "melonDS", tr("Unable to write to DSi firmware file.\nPlease check file/folder write permissions."));
         return;
     }
 
@@ -467,15 +467,15 @@ void EmuSettingsDialog::on_btnDSiFirmwareBrowse_clicked()
 void EmuSettingsDialog::on_btnDSiNANDBrowse_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this,
-                                                "Select DSi NAND...",
+                                                tr("Select DSi NAND..."),
                                                 lastBIOSFolder,
-                                                "NAND files (*.bin *.mmc *.rom);;Any file (*.*)");
+                                                tr("NAND files") + " (*.bin *.mmc *.rom);;" + tr("Any file") + " (*.*)");
 
     if (file.isEmpty()) return;
 
     if (!Platform::CheckFileWritable(file.toStdString()))
     {
-        QMessageBox::critical(this, "melonDS", "Unable to write to DSi NAND image.\nPlease check file/folder write permissions.");
+        QMessageBox::critical(this, "melonDS", tr("Unable to write to DSi NAND image.\nPlease check file/folder write permissions."));
         return;
     }
 
@@ -502,15 +502,15 @@ void EmuSettingsDialog::on_cbDSiSDEnable_toggled()
 void EmuSettingsDialog::on_btnDSiSDBrowse_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this,
-                                                "Select DSi SD image...",
+                                                tr("Select DSi SD image..."),
                                                 lastBIOSFolder,
-                                                "Image files (*.bin *.rom *.img *.sd *.dmg);;Any file (*.*)");
+                                                tr("Image files") + " (*.bin *.rom *.img *.sd *.dmg);;" + tr("Any file") + " (*.*)");
 
     if (file.isEmpty()) return;
 
     if (!Platform::CheckFileWritable(file.toStdString()))
     {
-        QMessageBox::critical(this, "melonDS", "Unable to write to DSi SD image.\nPlease check file/folder write permissions.");
+        QMessageBox::critical(this, "melonDS", tr("Unable to write to DSi SD image.\nPlease check file/folder write permissions."));
         return;
     }
 
@@ -529,7 +529,7 @@ void EmuSettingsDialog::on_cbDSiSDFolder_toggled()
 void EmuSettingsDialog::on_btnDSiSDFolderBrowse_clicked()
 {
     QString dir = QFileDialog::getExistingDirectory(this,
-                                                     "Select DSi SD folder...",
+                                                     tr("Select DSi SD folder..."),
                                                      lastBIOSFolder);
 
     if (dir.isEmpty()) return;

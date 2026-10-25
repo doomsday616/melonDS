@@ -36,6 +36,9 @@
 #include <QVector>
 #include <QCommandLineParser>
 #include <QStandardPaths>
+#include <QTranslator>
+#include <QLocale>
+#include <QLibraryInfo>
 #ifndef _WIN32
 #include <QGuiApplication>
 #include <QSocketNotifier>
@@ -274,6 +277,59 @@ static void signalHandler(int signal)
 }
 #endif
 
+// Install the UI translation selected in the config ("Language").
+// Empty means: follow the system UI language. Translations are embedded
+// as Qt resources under :/i18n, so the binary is self-contained.
+static void installTranslations(QApplication& app)
+{
+    QString lang = Config::GetGlobalTable().GetQString("Language");
+
+    QLocale locale;
+    if (lang.isEmpty())
+    {
+        const QStringList uiLangs = QLocale::system().uiLanguages();
+        for (const QString& l : uiLangs)
+        {
+            QString norm = l;
+            norm.replace('-', '_');
+            if (norm.startsWith("zh", Qt::CaseInsensitive))
+            {
+                // Any Chinese variant: we only ship Simplified Chinese.
+                lang = "zh_CN";
+                break;
+            }
+            if (norm.startsWith("en", Qt::CaseInsensitive))
+                break;
+        }
+    }
+
+    if (lang.isEmpty() || lang == "en")
+        return;
+
+    locale = QLocale(lang);
+
+    auto* appTr = new QTranslator(&app);
+    if (appTr->load(QString(":/i18n/melonDS_%1.qm").arg(lang)))
+        app.installTranslator(appTr);
+    else
+        delete appTr;
+
+    // Qt's own strings (standard buttons, file dialogs). Prefer an embedded
+    // copy if one was bundled, then fall back to Qt's translations directory.
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    const QString qtTrDir = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
+#else
+    const QString qtTrDir = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+#endif
+    auto* qtTr = new QTranslator(&app);
+    if (qtTr->load(QString(":/i18n/qtbase_%1.qm").arg(lang))
+        || qtTr->load(locale, "qtbase", "_", qtTrDir)
+        || qtTr->load(locale, "qt", "_", qtTrDir))
+        app.installTranslator(qtTr);
+    else
+        delete qtTr;
+}
+
 int main(int argc, char** argv)
 {
     sysTimer.start();
@@ -351,7 +407,7 @@ int main(int argc, char** argv)
     if (SDL_Init(SDL_INIT_AUDIO) < 0)
     {
         const char* err = SDL_GetError();
-        QString errorStr = "Failed to initialize SDL. This could indicate an issue with your audio driver.\n\nThe error was: ";
+        QString errorStr = QCoreApplication::translate("main", "Failed to initialize SDL. This could indicate an issue with your audio driver.\n\nThe error was: ");
         errorStr += err;
 
         QMessageBox::critical(nullptr, "melonDS", errorStr);
@@ -366,7 +422,9 @@ int main(int argc, char** argv)
     if (!Config::Load())
         QMessageBox::critical(nullptr,
                               "melonDS",
-                              "Unable to write to config.\nPlease check the write permissions of the folder you placed melonDS in.");
+                              QCoreApplication::translate("main", "Unable to write to config.\nPlease check the write permissions of the folder you placed melonDS in."));
+
+    installTranslations(melon);
 
     camStarted[0] = false;
     camStarted[1] = false;

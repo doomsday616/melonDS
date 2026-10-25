@@ -1,3 +1,14 @@
+## melonDS 简体中文汉化版（非官方）
+
+本仓库是 [melonDS](https://github.com/melonDS-emu/melonDS) 的非官方简体中文分支，仅对 Qt 前端界面做了汉化：菜单、所有设置对话框、提示信息和错误信息均已翻译。模拟核心与上游保持一致，未作任何改动。
+
+- **下载**：在 [Releases](https://github.com/doomsday616/melonDS/releases) 页面下载最新版本。Windows 用户下载 `melonDS-windows-x86_64` 压缩包，解压后直接运行 `melonDS.exe`；Linux 用户可下载 AppImage。每次推送的构建也可在 [Actions](https://github.com/doomsday616/melonDS/actions) 中找到。
+- **切换语言**：默认跟随系统语言（中文系统自动显示中文）。也可以在“设置 → 界面设置 → 语言”中手动选择“简体中文”或 “English”，重启 melonDS 后生效。
+- **说明**：屏幕左上角的 OSD 提示（例如“State saved to slot 1”）使用模拟器内置的英文点阵字体，无法显示汉字，因此保持英文。
+- **问题反馈**：翻译问题请在本仓库提交 Issue，请勿反馈到上游 melonDS 仓库。
+
+---
+
 <p align="center"><img src="https://raw.githubusercontent.com/melonDS-emu/melonDS/master/res/icon/melon_128x128.png"></p>
 <h2 align="center"><b>melonDS</b></h2>
 <p align="center">

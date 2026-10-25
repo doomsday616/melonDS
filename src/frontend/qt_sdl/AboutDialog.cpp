@@ -30,12 +30,11 @@ AboutDialog::AboutDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->lblVersionInfo->setText("Version " MELONDS_VERSION);
+    ui->lblVersionInfo->setText(tr("Version %1").arg(QString(MELONDS_VERSION)));
 #ifdef MELONDS_EMBED_BUILD_INFO
     ui->lblBuildInfo->setText(
-        "Branch: " MELONDS_GIT_BRANCH "\n"
-        "Commit: " MELONDS_GIT_HASH "\n"
-        "Built by: " MELONDS_BUILD_PROVIDER
+        tr("Branch: %1\nCommit: %2\nBuilt by: %3")
+            .arg(QString(MELONDS_GIT_BRANCH), QString(MELONDS_GIT_HASH), QString(MELONDS_BUILD_PROVIDER))
     );
 #else
     ui->lblBuildInfo->hide();

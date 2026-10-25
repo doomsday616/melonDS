@@ -74,7 +74,7 @@ FirmwareSettingsDialog::FirmwareSettingsDialog(QWidget* parent) : QDialog(parent
 
     int inst = emuInstance->getInstanceID();
     if (inst > 0)
-        ui->lblInstanceNum->setText(QString("Configuring settings for instance %1").arg(inst+1));
+        ui->lblInstanceNum->setText(tr("Configuring settings for instance %1").arg(inst+1));
     else
         ui->lblInstanceNum->hide();
 
@@ -145,8 +145,8 @@ void FirmwareSettingsDialog::done(int r)
     {
         if (!verifyMAC())
         {
-            QMessageBox::critical(this, "Invalid MAC address",
-                                  "The MAC address you entered isn't valid. It should contain 6 pairs of hexadecimal digits, optionally separated.");
+            QMessageBox::critical(this, tr("Invalid MAC address"),
+                                  tr("The MAC address you entered isn't valid. It should contain 6 pairs of hexadecimal digits, optionally separated."));
 
             return;
         }
@@ -173,8 +173,8 @@ void FirmwareSettingsDialog::done(int r)
         if (modified)
         {
             if (emuInstance->emuIsActive()
-                && QMessageBox::warning(this, "Reset necessary to apply changes",
-                    "The emulation will be reset for the changes to take place.",
+                && QMessageBox::warning(this, tr("Reset necessary to apply changes"),
+                    tr("The emulation will be reset for the changes to take place."),
                     QMessageBox::Ok, QMessageBox::Cancel) != QMessageBox::Ok)
                 return;
 

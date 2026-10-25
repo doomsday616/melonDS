@@ -81,7 +81,7 @@ void RAMInfoDialog::OnSearchFinished()
     ui->ramTable->clearContents();
     ui->ramTable->setRowCount(SearchThread->GetResults()->size());
     ui->ramTable->verticalScrollBar()->setSliderPosition(0);
-    ui->txtFound->setText(QString("Found: %1").arg(SearchThread->GetResults()->size()));
+    ui->txtFound->setText(tr("Found: %1").arg(SearchThread->GetResults()->size()));
 }
 
 void RAMInfoDialog::ShowRowsInTable()

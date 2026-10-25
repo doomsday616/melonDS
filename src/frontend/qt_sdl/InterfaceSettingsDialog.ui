@@ -47,6 +47,27 @@
        </layout>
       </item>
       <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_lang">
+        <item>
+         <widget class="QLabel" name="lblLanguage">
+          <property name="text">
+           <string>Language</string>
+          </property>
+          <property name="buddy">
+           <cstring>cbxLanguage</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="cbxLanguage">
+          <property name="toolTip">
+           <string>Takes effect after restarting melonDS.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
        <widget class="QCheckBox" name="cbMouseHide">
         <property name="text">
          <string>Hide mouse after inactivity</string>

@@ -72,6 +72,7 @@ private slots:
 
 private:
     Ui::InterfaceSettingsDialog* ui;
+    QString oldLanguage;
 
     EmuInstance* emuInstance;
 };

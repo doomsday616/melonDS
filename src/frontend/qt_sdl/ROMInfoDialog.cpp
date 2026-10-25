@@ -38,7 +38,7 @@ QString IntToHex(u64 num)
 
 QString QStringBytes(u64 num)
 {
-    return (QString::number(num) + " bytes");
+    return ROMInfoDialog::tr("%1 bytes").arg(num);
 }
 
 ROMInfoDialog* ROMInfoDialog::currentDlg = nullptr;
@@ -123,12 +123,12 @@ void ROMInfoDialog::populateBannerInfo(const NDSBanner* banner)
     if (banner->Version > 1)
         ui->chineseTitle->setText(QString::fromUtf16(banner->ChineseTitle));
     else
-        ui->chineseTitle->setText("None");
+        ui->chineseTitle->setText(tr("None"));
 
     if (banner->Version > 2)
         ui->koreanTitle->setText(QString::fromUtf16(banner->KoreanTitle));
     else
-        ui->koreanTitle->setText("None");
+        ui->koreanTitle->setText(tr("None"));
 }
 
 void ROMInfoDialog::populateHeaderInfo(const NDSHeader& header)
@@ -169,9 +169,9 @@ void ROMInfoDialog::done(int r)
 void ROMInfoDialog::on_saveIconButton_clicked()
 {
     QString filename = QFileDialog::getSaveFileName(this,
-                                                    "Save Icon",
+                                                    tr("Save Icon"),
                                                     emuInstance->getGlobalConfig().GetQString("LastROMFolder"),
-                                                    "PNG Images (*.png)");
+                                                    tr("PNG Images") + " (*.png)");
     if (filename.isEmpty())
         return;
 
@@ -181,9 +181,9 @@ void ROMInfoDialog::on_saveIconButton_clicked()
 void ROMInfoDialog::on_saveAnimatedIconButton_clicked()
 {
     QString filename = QFileDialog::getSaveFileName(this,
-                                                    "Save Animated Icon",
+                                                    tr("Save Animated Icon"),
                                                     emuInstance->getGlobalConfig().GetQString("LastROMFolder"),
-                                                    "GIF Images (*.gif)");
+                                                    tr("GIF Images") + " (*.gif)");
     if (filename.isEmpty())
         return;
 

@@ -75,7 +75,7 @@ void LANStartHostDialog::done(int r)
     {
         if (ui->txtPlayerName->text().trimmed().isEmpty())
         {
-            QMessageBox::warning(this, "melonDS", "Please enter a player name.");
+            QMessageBox::warning(this, "melonDS", tr("Please enter a player name."));
             return;
         }
 
@@ -84,7 +84,7 @@ void LANStartHostDialog::done(int r)
 
         if (!lan().StartHost(player.c_str(), numplayers))
         {
-            QMessageBox::warning(this, "melonDS", "Failed to start LAN game.");
+            QMessageBox::warning(this, "melonDS", tr("Failed to start LAN game."));
             return;
         }
 
@@ -116,16 +116,16 @@ LANStartClientDialog::LANStartClientDialog(QWidget* parent) : QDialog(parent), u
 
     QStandardItemModel* model = new QStandardItemModel();
     ui->tvAvailableGames->setModel(model);
-    const QStringList listheader = {"Name", "Players", "Status", "Host IP"};
+    const QStringList listheader = {tr("Name"), tr("Players"), tr("Status"), tr("Host IP")};
     model->setHorizontalHeaderLabels(listheader);
 
     connect(ui->tvAvailableGames->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
             this, SLOT(onGameSelectionChanged(const QItemSelection&, const QItemSelection&)));
 
-    ui->buttonBox->button(QDialogButtonBox::Ok)->setText("Connect");
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Connect"));
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 
-    QPushButton* btn = ui->buttonBox->addButton("Direct connect...", QDialogButtonBox::ActionRole);
+    QPushButton* btn = ui->buttonBox->addButton(tr("Direct connect..."), QDialogButtonBox::ActionRole);
     connect(btn, SIGNAL(clicked()), this, SLOT(onDirectConnect()));
 
     lanClientDlg = this;
@@ -164,11 +164,11 @@ void LANStartClientDialog::onDirectConnect()
 {
     if (ui->txtPlayerName->text().trimmed().isEmpty())
     {
-        QMessageBox::warning(this, "melonDS", "Please enter a player name before connecting.");
+        QMessageBox::warning(this, "melonDS", tr("Please enter a player name before connecting."));
         return;
     }
 
-    QString host = QInputDialog::getText(this, "Direct connect", "Host address:");
+    QString host = QInputDialog::getText(this, tr("Direct connect"), tr("Host address:"));
     if (host.isEmpty()) return;
 
     std::string hostname = host.toStdString();
@@ -178,7 +178,7 @@ void LANStartClientDialog::onDirectConnect()
     lan().EndDiscovery();
     if (!lan().StartClient(player.c_str(), hostname.c_str()))
     {
-        QString msg = QString("Failed to connect to the host %0.").arg(QString::fromStdString(hostname));
+        QString msg = tr("Failed to connect to the host %1.").arg(QString::fromStdString(hostname));
         QMessageBox::warning(this, "melonDS", msg);
         setEnabled(true);
         lan().StartDiscovery();
@@ -202,7 +202,7 @@ void LANStartClientDialog::done(int r)
     {
         if (ui->txtPlayerName->text().trimmed().isEmpty())
         {
-            QMessageBox::warning(this, "melonDS", "Please enter a player name before connecting.");
+            QMessageBox::warning(this, "melonDS", tr("Please enter a player name before connecting."));
             return;
         }
 
@@ -221,7 +221,7 @@ void LANStartClientDialog::done(int r)
         lan().EndDiscovery();
         if (!lan().StartClient(player.c_str(), hostname))
         {
-            QString msg = QString("Failed to connect to the host %0.").arg(QString(hostname));
+            QString msg = tr("Failed to connect to the host %1.").arg(QString(hostname));
             QMessageBox::warning(this, "melonDS", msg);
             setEnabled(true);
             lan().StartDiscovery();
@@ -285,8 +285,8 @@ void LANStartClientDialog::doUpdateDiscoveryList()
         QString status;
         switch (data.Status)
         {
-            case 0: status = "Idle"; break;
-            case 1: status = "Playing"; break;
+            case 0: status = tr("Idle"); break;
+            case 1: status = tr("Playing"); break;
         }
         model->item(i, 2)->setText(status);
 
@@ -305,7 +305,7 @@ LANDialog::LANDialog(QWidget* parent) : QDialog(parent), ui(new Ui::LANDialog)
 
     QStandardItemModel* model = new QStandardItemModel();
     ui->tvPlayerList->setModel(model);
-    const QStringList header = {"#", "Player", "Status", "Ping", "IP"};
+    const QStringList header = {"#", tr("Player"), tr("Status"), tr("Ping"), "IP"};
     model->setHorizontalHeaderLabels(header);
 
     timerID = startTimer(1000);
@@ -337,7 +337,7 @@ void LANDialog::done(int r)
 
     if (showwarning)
     {
-        if (QMessageBox::warning(this, "melonDS", "Really leave this LAN game?",
+        if (QMessageBox::warning(this, "melonDS", tr("Really leave this LAN game?"),
                                  QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No)
             return;
     }
@@ -392,16 +392,16 @@ void LANDialog::doUpdatePlayerList()
         switch (player.Status)
         {
             case LAN::Player_Client:
-                status = "Connected";
+                status = tr("Connected");
                 break;
             case LAN::Player_Host:
-                status = "Game host";
+                status = tr("Game host");
                 break;
             case LAN::Player_Connecting:
-                status = "Connecting";
+                status = tr("Connecting");
                 break;
             case LAN::Player_Disconnected:
-                status = "Connection lost";
+                status = tr("Connection lost");
                 break;
             case LAN::Player_None:
                 break;
@@ -411,14 +411,14 @@ void LANDialog::doUpdatePlayerList()
         if (player.IsLocalPlayer)
         {
             model->item(i, 3)->setText("-");
-            model->item(i, 4)->setText("(local)");
+            model->item(i, 4)->setText(tr("(local)"));
         }
         else
         {
             if (player.Status == LAN::Player_Client ||
                 player.Status == LAN::Player_Host)
             {
-                QString ping = QString("%0 ms").arg(player.Ping);
+                QString ping = tr("%1 ms").arg(player.Ping);
                 model->item(i, 3)->setText(ping);
             }
             else

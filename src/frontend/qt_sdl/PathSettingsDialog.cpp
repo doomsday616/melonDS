@@ -36,7 +36,7 @@ PathSettingsDialog* PathSettingsDialog::currentDlg = nullptr;
 
 bool PathSettingsDialog::needsReset = false;
 
-constexpr char errordialog[] = "melonDS cannot write to that directory.";
+constexpr char errordialog[] = QT_TRANSLATE_NOOP("PathSettingsDialog", "melonDS cannot write to that directory.");
 
 PathSettingsDialog::PathSettingsDialog(QWidget* parent) : QDialog(parent), ui(new Ui::PathSettingsDialog)
 {
@@ -52,7 +52,7 @@ PathSettingsDialog::PathSettingsDialog(QWidget* parent) : QDialog(parent), ui(ne
 
     int inst = emuInstance->getInstanceID();
     if (inst > 0)
-        ui->lblInstanceNum->setText(QString("Configuring paths for instance %1").arg(inst+1));
+        ui->lblInstanceNum->setText(tr("Configuring paths for instance %1").arg(inst+1));
     else
         ui->lblInstanceNum->hide();
 
@@ -103,8 +103,8 @@ void PathSettingsDialog::done(int r)
         if (modified)
         {
             if (emuInstance->emuIsActive()
-                && QMessageBox::warning(this, "Reset necessary to apply changes",
-                    "The emulation will be reset for the changes to take place.",
+                && QMessageBox::warning(this, tr("Reset necessary to apply changes"),
+                    tr("The emulation will be reset for the changes to take place."),
                     QMessageBox::Ok, QMessageBox::Cancel) != QMessageBox::Ok)
                 return;
 
@@ -127,14 +127,14 @@ void PathSettingsDialog::done(int r)
 void PathSettingsDialog::on_btnSaveFileBrowse_clicked()
 {
     QString dir = QFileDialog::getExistingDirectory(this,
-                                                     "Select save files path...",
+                                                     tr("Select save files path..."),
                                                      emuDirectory);
 
     if (dir.isEmpty()) return;
     
     if (!QTemporaryFile(dir).open())
     {
-        QMessageBox::critical(this, "melonDS", errordialog);
+        QMessageBox::critical(this, "melonDS", tr(errordialog));
         return;
     }
 
@@ -144,14 +144,14 @@ void PathSettingsDialog::on_btnSaveFileBrowse_clicked()
 void PathSettingsDialog::on_btnSavestateBrowse_clicked()
 {
     QString dir = QFileDialog::getExistingDirectory(this,
-                                                     "Select savestates path...",
+                                                     tr("Select savestates path..."),
                                                      emuDirectory);
 
     if (dir.isEmpty()) return;
     
     if (!QTemporaryFile(dir).open())
     {
-        QMessageBox::critical(this, "melonDS", errordialog);
+        QMessageBox::critical(this, "melonDS", tr(errordialog));
         return;
     }
 
@@ -161,14 +161,14 @@ void PathSettingsDialog::on_btnSavestateBrowse_clicked()
 void PathSettingsDialog::on_btnCheatFileBrowse_clicked()
 {
     QString dir = QFileDialog::getExistingDirectory(this,
-                                                     "Select cheat files path...",
+                                                     tr("Select cheat files path..."),
                                                      emuDirectory);
 
     if (dir.isEmpty()) return;
     
     if (!QTemporaryFile(dir).open())
     {
-        QMessageBox::critical(this, "melonDS", errordialog);
+        QMessageBox::critical(this, "melonDS", tr(errordialog));
         return;
     }
 

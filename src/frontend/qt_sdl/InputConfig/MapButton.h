@@ -103,7 +103,7 @@ private slots:
     {
         if (isChecked())
         {
-            setText("[press key]");
+            setText(tr("[press key]"));
         }
         else
         {
@@ -116,9 +116,9 @@ private:
     {
         int key = *mapping;
 
-        if (key == -1) return "None";
+        if (key == -1) return tr("None");
 
-        QString isright = (key & (1<<31)) ? "Right " : "Left ";
+        QString isright = (key & (1<<31)) ? tr("Right ") : tr("Left ");
         key &= ~(1<<31);
 
     #ifndef __APPLE__
@@ -302,7 +302,7 @@ private slots:
     {
         if (isChecked())
         {
-            setText("[press button/axis]");
+            setText(tr("[press button/axis]"));
             timerID = startTimer(50);
 
             memset(axesRest, 0, sizeof(axesRest));
@@ -333,7 +333,7 @@ private:
     {
         int id = *mapping;
 
-        if (id == -1) return "None";
+        if (id == -1) return tr("None");
 
         bool hasbtn = ((id & 0xFFFF) != 0xFFFF);
         QString str;
@@ -346,17 +346,17 @@ private:
 
                 switch (id & 0xF)
                 {
-                case 0x1: str = "Hat %1 up"; break;
-                case 0x2: str = "Hat %1 right"; break;
-                case 0x4: str = "Hat %1 down"; break;
-                case 0x8: str = "Hat %1 left"; break;
+                case 0x1: str = tr("Hat %1 up"); break;
+                case 0x2: str = tr("Hat %1 right"); break;
+                case 0x4: str = tr("Hat %1 down"); break;
+                case 0x8: str = tr("Hat %1 left"); break;
                 }
 
                 str = str.arg(hatnum);
             }
             else
             {
-                str = QString("Button %1").arg((id & 0xFFFF) + 1);
+                str = tr("Button %1").arg((id & 0xFFFF) + 1);
             }
         }
         else
@@ -372,9 +372,9 @@ private:
 
             switch ((id >> 20) & 0xF)
             {
-            case 0: str += QString("Axis %1 +").arg(axisnum); break;
-            case 1: str += QString("Axis %1 -").arg(axisnum); break;
-            case 2: str += QString("Trigger %1").arg(axisnum); break;
+            case 0: str += tr("Axis %1 +").arg(axisnum); break;
+            case 1: str += tr("Axis %1 -").arg(axisnum); break;
+            case 2: str += tr("Trigger %1").arg(axisnum); break;
             }
         }
 

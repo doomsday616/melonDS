@@ -51,16 +51,16 @@ AudioSettingsDialog::AudioSettingsDialog(QWidget* parent) : QDialog(parent), ui(
     volume = oldVolume;
     dsiSync = oldDSiSync;
 
-    ui->cbInterpolation->addItem("None");
-    ui->cbInterpolation->addItem("Linear");
-    ui->cbInterpolation->addItem("Cosine");
-    ui->cbInterpolation->addItem("Cubic");
-    ui->cbInterpolation->addItem("Gaussian (SNES)");
+    ui->cbInterpolation->addItem(tr("None"));
+    ui->cbInterpolation->addItem(tr("Linear"));
+    ui->cbInterpolation->addItem(tr("Cosine"));
+    ui->cbInterpolation->addItem(tr("Cubic"));
+    ui->cbInterpolation->addItem(tr("Gaussian (SNES)"));
     ui->cbInterpolation->setCurrentIndex(oldInterp);
 
-    ui->cbBitDepth->addItem("Automatic");
-    ui->cbBitDepth->addItem("10-bit");
-    ui->cbBitDepth->addItem("16-bit");
+    ui->cbBitDepth->addItem(tr("Automatic"));
+    ui->cbBitDepth->addItem(tr("10-bit"));
+    ui->cbBitDepth->addItem(tr("16-bit"));
     ui->cbBitDepth->setCurrentIndex(oldBitDepth);
 
     bool state = ui->slVolume->blockSignals(true);
@@ -119,7 +119,7 @@ AudioSettingsDialog::AudioSettingsDialog(QWidget* parent) : QDialog(parent), ui(
     int inst = emuInstance->getInstanceID();
     if (inst > 0)
     {
-        ui->lblInstanceNum->setText(QString("Configuring settings for instance %1").arg(inst+1));
+        ui->lblInstanceNum->setText(tr("Configuring settings for instance %1").arg(inst+1));
         ui->cbInterpolation->setEnabled(false);
         ui->cbBitDepth->setEnabled(false);
         for (QAbstractButton* btn : grpMicMode->buttons())
@@ -269,9 +269,9 @@ void AudioSettingsDialog::onChangeMicMode(int mode)
 void AudioSettingsDialog::on_btnMicWavBrowse_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this,
-                                                "Select WAV file...",
+                                                tr("Select WAV file..."),
                                                 emuDirectory,
-                                                "WAV files (*.wav);;Any file (*.*)");
+                                                tr("WAV files") + " (*.wav);;" + tr("Any file") + " (*.*)");
 
     if (file.isEmpty()) return;
 

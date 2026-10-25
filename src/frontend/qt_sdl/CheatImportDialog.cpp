@@ -321,16 +321,16 @@ void CheatImportDialog::populateCheatInfo()
         // category
 
         ui->gbCodeInfo->show();
-        ui->gbCodeInfo->setTitle("Selected category");
+        ui->gbCodeInfo->setTitle(tr("Selected category"));
 
         auto cat = index.data(Qt::UserRole+1).value<ARCodeCat*>();
         QString catname = QString::fromStdString(cat->Name);
         QString catdesc = QString::fromStdString(cat->Description);
-        QString codeenable = cat->OnlyOneCodeEnabled ? "Only one" : "Multiple";
+        QString codeenable = cat->OnlyOneCodeEnabled ? tr("Only one") : tr("Multiple");
 
         ui->lblCodeName->setText(catname);
         ui->lblCodeDesc->setText(catdesc);
-        ui->lblCodeStatusLabel->setText("Code enable:");
+        ui->lblCodeStatusLabel->setText(tr("Code enable:"));
         ui->lblCodeStatus->setText(codeenable);
 
         ui->lblCodeCodeLabel->hide();
@@ -341,16 +341,16 @@ void CheatImportDialog::populateCheatInfo()
         // cheat
 
         ui->gbCodeInfo->show();
-        ui->gbCodeInfo->setTitle("Selected code");
+        ui->gbCodeInfo->setTitle(tr("Selected code"));
 
         auto code = index.data(Qt::UserRole+1).value<ARCode*>();
         QString codename = QString::fromStdString(code->Name);
         QString codedesc = QString::fromStdString(code->Description);
-        QString codeenable = code->Enabled ? "Enabled" : "Disabled";
+        QString codeenable = code->Enabled ? tr("Enabled") : tr("Disabled");
 
         ui->lblCodeName->setText(codename);
         ui->lblCodeDesc->setText(codedesc);
-        ui->lblCodeStatusLabel->setText("Status:");
+        ui->lblCodeStatusLabel->setText(tr("Status:"));
         ui->lblCodeStatus->setText(codeenable);
 
         QString codecode = "";

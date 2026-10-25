@@ -61,10 +61,10 @@ WifiSettingsDialog::WifiSettingsDialog(QWidget* parent) : QDialog(parent), ui(ne
     if (pcap)
         adapters = pcap->GetAdapters();
 
-    ui->rbDirectMode->setText("Direct mode (requires " PCAP_NAME " and ethernet connection)");
+    ui->rbDirectMode->setText(tr("Direct mode (requires %1 and ethernet connection)").arg(QString(PCAP_NAME)));
 
-    ui->lblAdapterMAC->setText("(none)");
-    ui->lblAdapterIP->setText("(none)");
+    ui->lblAdapterMAC->setText(tr("(none)"));
+    ui->lblAdapterIP->setText(tr("(none)"));
 
     int sel = 0;
     for (int i = 0; i < adapters.size(); i++)

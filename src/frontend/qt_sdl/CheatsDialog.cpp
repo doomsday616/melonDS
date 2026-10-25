@@ -92,7 +92,7 @@ void CheatsDialog::on_btnNewCat_clicked()
 
     ARCodeCat cat;
     cat.Parent = &parentcat;
-    cat.Name = "(new category)";
+    cat.Name = tr("(new category)").toStdString();
     cat.OnlyOneCodeEnabled = false;
 
     parentcat.Children.emplace_back(cat);
@@ -136,7 +136,7 @@ void CheatsDialog::on_btnNewARCode_clicked()
 
     ARCode code;
     code.Parent = cat;
-    code.Name = "(new AR code)";
+    code.Name = tr("(new AR code)").toStdString();
     code.Enabled = false;
 
     cat->Children.emplace_back(code);
@@ -166,8 +166,8 @@ void CheatsDialog::on_btnDeleteCode_clicked()
     }
 
     QMessageBox::StandardButton res = QMessageBox::question(this,
-                                                            "Confirm deletion",
-                                                            "Really delete the selected item?",
+                                                            tr("Confirm deletion"),
+                                                            tr("Really delete the selected item?"),
                                                             QMessageBox::Yes|QMessageBox::No,
                                                             QMessageBox::No);
     if (res != QMessageBox::Yes) return;
@@ -222,9 +222,9 @@ void CheatsDialog::on_btnDeleteCode_clicked()
 void CheatsDialog::on_btnImportCheats_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this,
-                                                "Select cheat database...",
+                                                tr("Select cheat database..."),
                                                 emuDirectory,
-                                                "R4 cheat database (*.dat);;Any file (*.*)");
+                                                tr("R4 cheat database") + " (*.dat);;" + tr("Any file") + " (*.*)");
 
     if (file.isEmpty()) return;
 
@@ -232,7 +232,7 @@ void CheatsDialog::on_btnImportCheats_clicked()
     if (importDB->Error)
     {
         QMessageBox::critical(this, "melonDS",
-                              "Failed to open this cheat database file.");
+                              tr("Failed to open this cheat database file."));
         delete importDB;
         return;
     }
@@ -240,7 +240,7 @@ void CheatsDialog::on_btnImportCheats_clicked()
     if (!importDB->FindGameCode(gameCode))
     {
         QMessageBox::critical(this, "melonDS",
-                              "No cheat codes were found in this database for the current game.");
+                              tr("No cheat codes were found in this database for the current game."));
         delete importDB;
         return;
     }
@@ -361,7 +361,7 @@ void CheatsDialog::on_btnSaveCode_clicked()
 
     if (ui->txtItemName->text().trimmed().isEmpty())
     {
-        QMessageBox::critical(this, "melonDS", "Error: no name entered.");
+        QMessageBox::critical(this, "melonDS", tr("Error: no name entered."));
         return;
     }
 
@@ -385,7 +385,7 @@ void CheatsDialog::on_btnSaveCode_clicked()
         auto codeconv = convertCodeInput();
         if (codeconv.empty())
         {
-            QMessageBox::critical(this, "melonDS", "Error: the code entered is empty or invalid.");
+            QMessageBox::critical(this, "melonDS", tr("Error: the code entered is empty or invalid."));
             return;
         }
 
@@ -466,7 +466,7 @@ void CheatsDialog::populateCheatInfo()
         ui->txtItemDesc->clear();
         ui->txtItemDesc->setReadOnly(true);
 
-        ui->chkItemOption->setText("Enabled");
+        ui->chkItemOption->setText(tr("Enabled"));
         ui->chkItemOption->setChecked(false);
         ui->chkItemOption->setEnabled(false);
 
@@ -498,7 +498,7 @@ void CheatsDialog::populateCheatInfo()
         ui->txtItemDesc->setText(QString::fromStdString(cat->Description));
         ui->txtItemDesc->setReadOnly(true);
 
-        ui->chkItemOption->setText("Only allow one code enabled");
+        ui->chkItemOption->setText(tr("Only allow one code enabled"));
         ui->chkItemOption->setChecked(cat->OnlyOneCodeEnabled);
         ui->chkItemOption->setEnabled(false);
 
@@ -521,7 +521,7 @@ void CheatsDialog::populateCheatInfo()
         ui->txtItemDesc->setText(QString::fromStdString(code->Description));
         ui->txtItemDesc->setReadOnly(true);
 
-        ui->chkItemOption->setText("Enabled");
+        ui->chkItemOption->setText(tr("Enabled"));
         ui->chkItemOption->setChecked(code->Enabled);
         ui->chkItemOption->setEnabled(false);
 
