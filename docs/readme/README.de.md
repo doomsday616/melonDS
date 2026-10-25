@@ -86,32 +86,34 @@ Alle Pakete gibt es unter [Releases → latest](https://github.com/doomsday616/m
 
 | Plattform | Datei |
 |---|---|
-| Windows (x86_64) | `melonDS-1.1-i18n-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-1.1-i18n-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-1.1-i18n-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-1.1-i18n-linux-aarch64.AppImage` |
-| macOS (Universal, Intel + Apple Silicon) | `melonDS-1.1-i18n-macos-universal.zip` |
+| Windows (x86_64) | `melonDS-i18n-1.0.0-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-i18n-1.0.0-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-i18n-1.0.0-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-i18n-1.0.0-linux-aarch64.AppImage` |
+| macOS (Universal, Intel + Apple Silicon) | `melonDS-i18n-1.0.0-macos-universal.zip` |
 
 Das Windows-Archiv enthält nur `melonDS.exe` und ist portabel: Es wird nichts installiert, die Einstellungen landen in `melonDS.toml` im selben Ordner.
+
+Version 1.0.0 enthält außerdem 10 Fehlerkorrekturen aus Pull Requests, die im Original-melonDS noch nicht übernommen wurden. Die [Release Notes](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0) beschreiben jede einzeln.
 
 ## Schnellstart
 
 <p align="center"><img src="../images/de/quickstart.jpg" alt="Schnellstart in drei Schritten" width="100%"></p>
 
 1. **Herunterladen und entpacken** – das passende Paket für dein System laden, entpacken bzw. die AppImage ausführbar machen und starten.
-2. **BIOS/Firmware (optional)** – dank des eingebauten FreeBIOS laufen viele Spiele per Direktstart auch ohne eigene Dateien. Wer das echte Firmware-Menü booten oder den DSi-Modus nutzen will, hinterlegt seine Dumps unter **Einstellungen → Emulatoreinstellungen**.
+2. **BIOS/Firmware (optional)** – dank des eingebauten FreeBIOS laufen viele Spiele per Direktstart auch ohne eigene Dateien. Wer das echte Firmware-Menü booten oder den DSi-Modus nutzen will, hinterlegt seine Dumps unter **Einstellungen → Emulatoreinstellungen** (Reiter **DS-Modus** und **DSi-Modus**).
 3. **Spiel laden** – über **Datei → ROM öffnen...** eine eigene ROM auswählen.
 
 ## FAQ
 
 **macOS meldet „nicht verifizierter Entwickler“.**
-Die Builds sind nicht signiert. Rechtsklick auf die App → **Öffnen**, oder unter **Systemeinstellungen → Datenschutz & Sicherheit** auf **Dennoch öffnen** klicken.
+Die Builds sind nicht signiert. Versuche die App einmal zu öffnen, klicke dann unter **Systemeinstellungen → Datenschutz & Sicherheit** im Bereich „Sicherheit“ auf **Dennoch öffnen** und bestätige mit deinem Passwort.
 
 **Windows SmartScreen warnt beim Start.**
 Ebenfalls wegen der fehlenden Signatur. Auf **Weitere Informationen** und dann **Trotzdem ausführen** klicken.
 
 **Unter Linux fehlen chinesische, japanische oder koreanische Zeichen in den Einblendungen.**
-Die Einblendungen nutzen für solche Zeichen eine Systemschrift. Installiere eine CJK-Schrift, z. B. Noto Sans CJK (Paket meist `fonts-noto-cjk` oder `noto-fonts-cjk`).
+Die Einblendungen nutzen für solche Zeichen eine Systemschrift. Installiere eine CJK-Schrift, z. B. Noto Sans CJK – `fonts-noto-cjk` unter Debian/Ubuntu, `noto-fonts-cjk` unter Arch, `google-noto-sans-cjk-fonts` unter Fedora – und starte melonDS neu.
 
 **Brauche ich BIOS- oder Firmware-Dateien?**
 Für den Direktstart nicht – FreeBIOS ist eingebaut. Zum Booten der Firmware brauchst du Dumps eines eigenen DS oder DS Lite; die 128-KB-Firmware aus dem DS-Modus eines DSi oder 3DS ist nicht bootfähig. Der DSi-Modus benötigt DSi-BIOS- und NAND-Dumps. Die einzige legale Quelle ist deine eigene Konsole – dieses Projekt verlinkt keine Download-Seiten für BIOS oder ROMs.
@@ -120,7 +122,7 @@ Für den Direktstart nicht – FreeBIOS ist eingebaut. Zum Booten der Firmware b
 Das ist erwartet: Bereits geöffnete Dialoge einfach schließen und erneut öffnen.
 
 **Wo werden die Einstellungen gespeichert?**
-In `melonDS.toml` neben der ausführbaren Datei.
+Unter Windows in `melonDS.toml` neben `melonDS.exe`. Unter Linux und macOS im Ordner `melonDS` deines Benutzer-Konfigurationsverzeichnisses (z. B. `~/.config/melonDS/`), außer neben dem Programm liegt ein Ordner `portable`.
 
 ## Übersetzungen beitragen
 

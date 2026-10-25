@@ -85,32 +85,34 @@
 
 | プラットフォーム | ファイル |
 |---|---|
-| Windows（x86_64、一般的な PC） | `melonDS-1.1-i18n-windows-x86_64.zip` |
-| Windows（ARM64） | `melonDS-1.1-i18n-windows-arm64.zip` |
-| Linux（x86_64） | `melonDS-1.1-i18n-linux-x86_64.AppImage` |
-| Linux（aarch64） | `melonDS-1.1-i18n-linux-aarch64.AppImage` |
-| macOS（Intel・Apple シリコン） | `melonDS-1.1-i18n-macos-universal.zip` |
+| Windows（x86_64、一般的な PC） | `melonDS-i18n-1.0.0-windows-x86_64.zip` |
+| Windows（ARM64） | `melonDS-i18n-1.0.0-windows-arm64.zip` |
+| Linux（x86_64） | `melonDS-i18n-1.0.0-linux-x86_64.AppImage` |
+| Linux（aarch64） | `melonDS-i18n-1.0.0-linux-aarch64.AppImage` |
+| macOS（Intel・Apple シリコン） | `melonDS-i18n-1.0.0-macos-universal.zip` |
 
 Windows 版の zip には `melonDS.exe` が 1 つ入っているだけです。インストール不要のポータブル版で、設定は実行ファイルと同じフォルダーに保存されます。
+
+バージョン 1.0.0 には、本家 melonDS にまだ取り込まれていない 10 件の不具合修正も含まれています。各修正の内容は[リリースノート](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0)をご覧ください。
 
 ## クイックスタート
 
 <p align="center"><img src="../images/ja/quickstart.jpg" alt="3 ステップですぐ遊べる" width="100%"></p>
 
 1. お使いのプラットフォーム用のファイルを**ダウンロードして展開**します（Linux では AppImage に実行権限を付けてから起動してください）。
-2. **BIOS／ファームウェア（任意）**：内蔵の FreeBIOS のおかげで、ほとんどのゲームは吸い出しデータなしで直接起動できます。DS のファームウェアメニューから起動したい場合や DSi モードを使う場合は、「**設定 → エミュレーター設定**」で自分で吸い出したファイルを指定してください。
+2. **BIOS／ファームウェア（任意）**：内蔵の FreeBIOS のおかげで、ほとんどのゲームは吸い出しデータなしで直接起動できます。DS のファームウェアメニューから起動したい場合や DSi モードを使う場合は、「**設定 → エミュレーター設定**」の「**DS モード**」「**DSi モード**」タブで、自分で吸い出したファイルを指定してください。
 3. 「**ファイル → ROM を開く...**」で、自分が所有するカートリッジから吸い出した ROM を選んで**ゲームを読み込みます**。
 
 ## よくある質問
 
 **macOS で「開発元を確認できない」と表示される。**
-ビルドに署名がないためです。アプリを右クリックして「**開く**」を選ぶか、「**システム設定 → プライバシーとセキュリティ**」で「**このまま開く**」をクリックしてください。
+ビルドに署名がないためです。一度アプリを開こうとしたあと、「**システム設定 → プライバシーとセキュリティ**」の「セキュリティ」で「**このまま開く**」をクリックし、ログインパスワードを入力してください。
 
 **Windows SmartScreen の警告が出る。**
 同じく実行ファイルに署名がないためです。「**詳細情報**」をクリックしてから「**実行**」を選んでください。
 
 **Linux で、画面通知の日本語・中国語・韓国語が四角（豆腐）になる。**
-OSD はシステムフォントで文字を描画します。Noto Sans CJK などの CJK フォント（Debian／Ubuntu なら `fonts-noto-cjk`）をインストールして、melonDS を再起動してください。
+OSD はシステムフォントで文字を描画します。Noto Sans CJK などの CJK フォント（Debian／Ubuntu なら `fonts-noto-cjk`、Arch なら `noto-fonts-cjk`、Fedora なら `google-noto-sans-cjk-fonts`）をインストールして、melonDS を再起動してください。
 
 **BIOS やファームウェアとは何で、どこで入手できる？**
 実機の中に入っている起動用プログラムと設定データです。melonDS には FreeBIOS が内蔵されているので、ゲームを直接起動するだけなら必要ありません。ファームウェアメニューから起動するには、初代 DS または DS Lite から吸い出したデータが必要です（DSi や 3DS の DS モード用 128 KB ファームウェアでは起動できません）。DSi モードには DSi の BIOS と NAND の吸い出しデータが必要です。合法な入手方法は、自分が所有する本体から吸い出すことだけです。本プロジェクトはダウンロードサイトへのリンクを一切掲載しません。
@@ -143,3 +145,5 @@ Windows では `melonDS.exe` と同じフォルダーの `melonDS.toml` に保�
 - ビルド方法や本家の完全なクレジットは [melonDS 公式リポジトリ](https://github.com/melonDS-emu/melonDS) をご覧ください。
 
 melonDS i18n は melonDS と同じく [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0) で公開されているフリーソフトウェアです。
+
+melonDS i18n は非公式プロジェクトであり、任天堂および melonDS チームとは一切関係ありません。

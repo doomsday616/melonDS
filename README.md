@@ -86,32 +86,34 @@ Grab the latest build from the [Releases page](https://github.com/doomsday616/me
 
 | Platform | File |
 |---|---|
-| Windows (x86_64, most PCs) | `melonDS-1.1-i18n-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-1.1-i18n-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-1.1-i18n-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-1.1-i18n-linux-aarch64.AppImage` |
-| macOS (Intel and Apple silicon) | `melonDS-1.1-i18n-macos-universal.zip` |
+| Windows (x86_64, most PCs) | `melonDS-i18n-1.0.0-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-i18n-1.0.0-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-i18n-1.0.0-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-i18n-1.0.0-linux-aarch64.AppImage` |
+| macOS (Intel and Apple silicon) | `melonDS-i18n-1.0.0-macos-universal.zip` |
 
 The Windows zip contains just `melonDS.exe`. It is portable: nothing is installed, and settings are written next to the executable.
+
+Version 1.0.0 also includes 10 bug fixes taken from upstream pull requests that have not been merged into melonDS yet. The [release notes](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0) list each one.
 
 ## Quick start
 
 <p align="center"><img src="docs/images/en/quickstart.jpg" alt="Up and running in 3 steps" width="100%"></p>
 
 1. **Download and extract** the build for your platform (on Linux, make the AppImage executable and run it).
-2. **BIOS / firmware (optional).** Thanks to the built-in FreeBIOS, most games boot directly without any dumps. If you want to boot through the DS firmware menu, or use DSi mode, set up your own dumps under **Config → Emu settings**.
+2. **BIOS / firmware (optional).** Thanks to the built-in FreeBIOS, most games boot directly without any dumps. If you want to boot through the DS firmware menu, or use DSi mode, set up your own dumps under **Config → Emu settings** (tabs **DS-mode** and **DSi-mode**).
 3. **Load a game** with **File → Open ROM...** and pick a ROM you dumped from a cartridge you own.
 
 ## FAQ
 
 **macOS says the app is from an unidentified developer.**
-The builds are not signed. Right-click the app and choose **Open**, or go to **System Settings → Privacy & Security** and click **Open Anyway**.
+The builds are not signed. Try to open the app once, then go to **System Settings → Privacy & Security**, click **Open Anyway** in the Security section and confirm with your password.
 
 **Windows SmartScreen warns me.**
 Same reason — the executable is unsigned. Click **More info**, then **Run anyway**.
 
 **On Linux, Chinese/Japanese/Korean on-screen messages show up as boxes.**
-The OSD draws text with a system font. Install a CJK font such as Noto Sans CJK (for example `fonts-noto-cjk` on Debian/Ubuntu) and restart melonDS.
+The OSD draws text with a system font. Install a CJK font such as Noto Sans CJK — `fonts-noto-cjk` on Debian/Ubuntu, `noto-fonts-cjk` on Arch, `google-noto-sans-cjk-fonts` on Fedora — and restart melonDS.
 
 **What are the BIOS and firmware files, and where do I get them?**
 They are the boot code and settings stored inside a real console. melonDS ships FreeBIOS, so they are optional for direct boot. Booting the firmware menu needs dumps from an original DS or DS Lite (the 128 KB DS-mode firmware from a DSi or 3DS is not bootable). DSi mode needs DSi BIOS and NAND dumps. The only legal source is dumping them from a console you own; this project does not link to download sites.
@@ -144,3 +146,5 @@ The exact commands are also kept in a comment in `src/frontend/qt_sdl/CMakeLists
 - Build instructions and the full upstream credits are in the [upstream melonDS repository](https://github.com/melonDS-emu/melonDS).
 
 melonDS i18n is free software released under the [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0), the same license as melonDS.
+
+melonDS i18n is an unofficial project and is not affiliated with Nintendo or the melonDS team.

@@ -86,32 +86,34 @@
 
 | 平台 | 文件 |
 |---|---|
-| Windows（x86_64，绝大多数电脑） | `melonDS-1.1-i18n-windows-x86_64.zip` |
-| Windows（ARM64） | `melonDS-1.1-i18n-windows-arm64.zip` |
-| Linux（x86_64） | `melonDS-1.1-i18n-linux-x86_64.AppImage` |
-| Linux（aarch64） | `melonDS-1.1-i18n-linux-aarch64.AppImage` |
-| macOS（Intel 与 Apple 芯片通用） | `melonDS-1.1-i18n-macos-universal.zip` |
+| Windows（x86_64，绝大多数电脑） | `melonDS-i18n-1.0.0-windows-x86_64.zip` |
+| Windows（ARM64） | `melonDS-i18n-1.0.0-windows-arm64.zip` |
+| Linux（x86_64） | `melonDS-i18n-1.0.0-linux-x86_64.AppImage` |
+| Linux（aarch64） | `melonDS-i18n-1.0.0-linux-aarch64.AppImage` |
+| macOS（Intel 与 Apple 芯片通用） | `melonDS-i18n-1.0.0-macos-universal.zip` |
 
 Windows 压缩包里只有一个 `melonDS.exe`，属于绿色版：不用安装，设置文件就写在 exe 旁边。
+
+1.0.0 版还合入了 10 个上游 melonDS 尚未合并的 bug 修复，逐条说明见[发布说明](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0)。
 
 ## 快速上手
 
 <p align="center"><img src="../images/zh-CN/quickstart.jpg" alt="三步上手" width="100%"></p>
 
 1. **下载并解压**对应平台的版本（Linux 下给 AppImage 加上可执行权限后直接运行）。
-2. **BIOS / 固件（可选）**。melonDS 内置 FreeBIOS，大多数游戏不需要任何导出文件就能直接启动。如果想从 DS 固件菜单启动，或者使用 DSi 模式，请在 **设置 → 模拟器设置** 里配置你自己导出的文件。
+2. **BIOS / 固件（可选）**。melonDS 内置 FreeBIOS，大多数游戏不需要任何导出文件就能直接启动。如果想从 DS 固件菜单启动，或者使用 DSi 模式，请在 **设置 → 模拟器设置** 的 **DS 模式** 和 **DSi 模式** 标签页里配置你自己导出的文件。
 3. **载入游戏**：点 **文件 → 打开 ROM...**，选择从你自己的卡带导出的 ROM。
 
 ## 常见问题
 
 **macOS 提示“无法验证开发者”。**
-安装包没有签名。右键点应用选择 **打开**，或者到 **系统设置 → 隐私与安全性** 里点 **仍要打开**。
+程序没有签名。先尝试打开一次，然后到 **系统设置 → 隐私与安全** 的“安全性”部分点 **仍要打开**，再输入登录密码确认。
 
 **Windows 弹出 SmartScreen 警告。**
 同样是因为程序没有签名。点 **更多信息**，再点 **仍要运行**。
 
 **Linux 下游戏内的中文提示显示成方块。**
-OSD 提示用系统字体绘制文字。装一个中日韩字体即可，比如 Noto Sans CJK（Debian/Ubuntu 上是 `fonts-noto-cjk` 软件包），然后重启 melonDS。
+OSD 提示用系统字体绘制文字。装一个中日韩字体即可，比如 Noto Sans CJK（Debian/Ubuntu 上是 `fonts-noto-cjk`，Arch 上是 `noto-fonts-cjk`，Fedora 上是 `google-noto-sans-cjk-fonts`），然后重启 melonDS。
 
 **BIOS 和固件是什么，从哪里来？**
 它们是真实 DS 主机里自带的启动程序和设置数据。melonDS 自带 FreeBIOS，所以直接启动游戏时可以不用。想从固件菜单启动，需要从原版 DS 或 DS Lite 导出（从 DSi 或 3DS 导出的 128 KB DS 模式固件无法用来启动）。DSi 模式需要 DSi 的 BIOS 和 NAND 导出文件。唯一合法的来源是从你自己的主机上导出；本项目不提供任何下载链接。
@@ -144,3 +146,5 @@ Windows 上保存在 `melonDS.exe` 旁边的 `melonDS.toml`。Linux 和 macOS �
 - 构建说明和完整的上游致谢名单请见 [melonDS 官方仓库](https://github.com/melonDS-emu/melonDS)。
 
 melonDS i18n 是自由软件，与 melonDS 一样以 [GNU 通用公共许可证 第 3 版（GPLv3）](https://www.gnu.org/licenses/gpl-3.0)发布。
+
+melonDS i18n 是非官方项目，与任天堂及 melonDS 团队均无关联。

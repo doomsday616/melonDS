@@ -31,7 +31,7 @@
 - **8 langues entièrement traduites** – chaque langue couvre les 745 textes de l’interface.
 - **Détection automatique** – au premier lancement, la langue du système est reprise.
 - **Changement en direct** – changez de langue sans redémarrer l’émulateur.
-- **Notifications à l’écran traduites (OSD)** – par exemple « État sauvegardé dans l’emplacement 1 » directement sur l’image du jeu.
+- **Notifications à l’écran traduites (OSD)** – par exemple « État sauvegardé dans l'emplacement 1 » directement sur l’image du jeu.
 - **Éléments Qt standard compris** – boutons comme « OK » / « Annuler » et sélecteurs de fichiers suivent la langue choisie (fichiers `qtbase_*.qm` intégrés).
 
 ## Captures d’écran
@@ -74,7 +74,7 @@ Par défaut, l’option **« Automatique (langue du système) »** est active.
 Vous pouvez aussi choisir vous-même, à deux endroits toujours synchronisés :
 
 1. Le menu **« Langue / Language »**, entre « Configuration » et « Aide ». La mention anglaise dans le titre permet de retrouver ce menu même dans une langue que l’on ne lit pas.
-2. **Configuration → Paramètres de l’interface → Langue**.
+2. **Configuration → Paramètres de l'interface → Langue**.
 
 Les noms de langue restent toujours écrits dans leur propre langue (English, 简体中文, 繁體中文, 日本語, Deutsch, Français, 한국어, Italiano). Le changement s’applique immédiatement, sans redémarrage ; une fenêtre déjà ouverte affiche la nouvelle langue dès que vous la rouvrez.
 
@@ -86,32 +86,34 @@ Tous les paquets sont disponibles sur [Releases → latest](https://github.com/d
 
 | Plateforme | Fichier |
 |---|---|
-| Windows (x86_64) | `melonDS-1.1-i18n-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-1.1-i18n-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-1.1-i18n-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-1.1-i18n-linux-aarch64.AppImage` |
-| macOS (Universal, Intel + Apple Silicon) | `melonDS-1.1-i18n-macos-universal.zip` |
+| Windows (x86_64) | `melonDS-i18n-1.0.0-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-i18n-1.0.0-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-i18n-1.0.0-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-i18n-1.0.0-linux-aarch64.AppImage` |
+| macOS (Universal, Intel + Apple Silicon) | `melonDS-i18n-1.0.0-macos-universal.zip` |
 
 L’archive Windows contient uniquement `melonDS.exe` et fonctionne en mode portable : rien n’est installé, les paramètres sont enregistrés dans `melonDS.toml`, dans le même dossier.
+
+La version 1.0.0 intègre aussi 10 corrections de bogues issues de pull requests pas encore fusionnées dans melonDS. Les [notes de version](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0) les détaillent une par une.
 
 ## Démarrage rapide
 
 <p align="center"><img src="../images/fr/quickstart.jpg" alt="Démarrage rapide en trois étapes" width="100%"></p>
 
 1. **Télécharger et extraire** – récupérez le paquet adapté à votre système, décompressez-le (ou rendez l’AppImage exécutable) puis lancez-le.
-2. **BIOS/firmware (facultatif)** – grâce au FreeBIOS intégré, de nombreux jeux démarrent directement sans aucun fichier. Pour démarrer sur le vrai menu du firmware ou utiliser le mode DSi, indiquez vos propres dumps dans **Configuration → Paramètres de l’émulateur**.
+2. **BIOS/firmware (facultatif)** – grâce au FreeBIOS intégré, de nombreux jeux démarrent directement sans aucun fichier. Pour démarrer sur le vrai menu du firmware ou utiliser le mode DSi, indiquez vos propres dumps dans **Configuration → Paramètres de l'émulateur** (onglets **Mode DS** et **Mode DSi**).
 3. **Lancer un jeu** – choisissez votre ROM via **Fichier → Ouvrir une ROM...**.
 
 ## FAQ
 
 **macOS indique que le développeur n’est pas identifié.**
-Les builds ne sont pas signés. Faites un clic droit sur l’application → **Ouvrir**, ou allez dans **Réglages Système → Confidentialité et sécurité** et cliquez sur **Ouvrir quand même**.
+Les builds ne sont pas signés. Essayez d’ouvrir l’application une fois, puis allez dans **Réglages Système → Confidentialité et sécurité**, section « Sécurité », cliquez sur **Ouvrir quand même** et confirmez avec votre mot de passe.
 
 **Windows SmartScreen affiche un avertissement.**
 Même cause : l’absence de signature. Cliquez sur **Informations complémentaires**, puis sur **Exécuter quand même**.
 
 **Sous Linux, les caractères chinois, japonais ou coréens manquent dans les notifications à l’écran.**
-Ces notifications utilisent une police du système pour ces caractères. Installez une police CJK, par exemple Noto Sans CJK (paquet généralement nommé `fonts-noto-cjk` ou `noto-fonts-cjk`).
+Ces notifications utilisent une police du système pour ces caractères. Installez une police CJK, par exemple Noto Sans CJK – `fonts-noto-cjk` sous Debian/Ubuntu, `noto-fonts-cjk` sous Arch, `google-noto-sans-cjk-fonts` sous Fedora – puis relancez melonDS.
 
 **Ai-je besoin d’un BIOS ou d’un firmware ?**
 Pas pour le démarrage direct : FreeBIOS est intégré. Pour démarrer sur le firmware, il faut des dumps issus de votre propre DS ou DS Lite ; le firmware de 128 Ko du mode DS d’une DSi ou d’une 3DS n’est pas amorçable. Le mode DSi nécessite les dumps du BIOS et de la NAND d’une DSi. La seule source légale est votre propre console – ce projet ne renvoie vers aucun site de téléchargement de BIOS ou de ROM.
@@ -120,7 +122,7 @@ Pas pour le démarrage direct : FreeBIOS est intégré. Pour démarrer sur le f
 C’est normal : fermez-la et rouvrez-la.
 
 **Où sont enregistrés les paramètres ?**
-Dans `melonDS.toml`, à côté de l’exécutable.
+Sous Windows, dans `melonDS.toml` à côté de `melonDS.exe`. Sous Linux et macOS, dans le dossier `melonDS` de votre répertoire de configuration utilisateur (par exemple `~/.config/melonDS/`), sauf si un dossier `portable` se trouve à côté de l’exécutable.
 
 ## Contribuer aux traductions
 

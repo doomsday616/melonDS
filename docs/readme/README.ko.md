@@ -69,7 +69,7 @@
 - 일본어 · 독일어 · 프랑스어 · 한국어 · 이탈리아어 → 해당 언어
 - 그 외 모든 언어 → English
 
-직접 고르고 싶다면 메뉴 막대의 **설정**과 **도움말** 사이에 있는 **언어 / Language** 메뉴를 여세요. 영어가 아닌 UI에서는 언어를 몰라도 찾을 수 있도록 제목에 항상 "Language"가 함께 붙습니다. 메뉴에는 **자동 (시스템 언어)** 와 각 언어가 원어 이름(English, 简体中文, 繁體中文, 日本語, Deutsch, Français, 한국어, Italiano)으로 나열됩니다. **설정 → 인터페이스 설정 → 언어:** 에서도 같은 설정을 바꿀 수 있으며, 두 곳은 항상 동기화됩니다.
+직접 고르고 싶다면 메뉴 막대의 **설정**과 **도움말** 사이에 있는 **언어 / Language** 메뉴를 여세요. 영어가 아닌 UI에서는 언어를 몰라도 찾을 수 있도록 제목에 항상 "Language"가 함께 붙습니다. 메뉴에는 **자동 (시스템 언어)** 와 각 언어가 원어 이름(English, 简体中文, 繁體中文, 日本語, Deutsch, Français, 한국어, Italiano)으로 나열됩니다. **설정 → 인터페이스 설정 → 언어** 에서도 같은 설정을 바꿀 수 있으며, 두 곳은 항상 동기화됩니다.
 
 언어는 그 자리에서 바로 바뀌고 재시작이 필요 없습니다. 다만 이미 열려 있던 설정 창은 한 번 닫았다가 다시 열어야 새 언어로 표시됩니다.
 
@@ -81,32 +81,34 @@
 
 | 플랫폼 | 파일 |
 | --- | --- |
-| Windows (x86_64) | `melonDS-1.1-i18n-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-1.1-i18n-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-1.1-i18n-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-1.1-i18n-linux-aarch64.AppImage` |
-| macOS (Universal) | `melonDS-1.1-i18n-macos-universal.zip` |
+| Windows (x86_64) | `melonDS-i18n-1.0.0-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-i18n-1.0.0-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-i18n-1.0.0-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-i18n-1.0.0-linux-aarch64.AppImage` |
+| macOS (Universal) | `melonDS-i18n-1.0.0-macos-universal.zip` |
 
 Windows용 압축 파일에는 `melonDS.exe` 하나만 들어 있습니다. 설치가 필요 없는 포터블 방식이라 설정은 같은 폴더의 `melonDS.toml`에 저장됩니다.
+
+1.0.0 버전에는 원본 melonDS에 아직 병합되지 않은 버그 수정 10개도 들어 있습니다. 각 수정 내용은 [릴리스 노트](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0)에서 볼 수 있습니다.
 
 ## 빠른 시작
 
 <p align="center"><img src="../images/ko/quickstart.jpg" alt="빠른 시작" width="100%"></p>
 
 1. **다운로드 후 압축 해제** – 위 표에서 파일을 받아 원하는 폴더에 풀어 둡니다(Linux는 AppImage에 실행 권한만 주면 됩니다).
-2. **BIOS/펌웨어 (선택)** – 내장 FreeBIOS 덕분에 직접 부팅(direct boot)이라면 따로 파일이 없어도 됩니다. 펌웨어 부팅이나 DSi 모드가 필요하면 **설정 → 에뮬레이터 설정** 에서 본인 기기에서 덤프한 파일을 지정하세요.
+2. **BIOS/펌웨어 (선택)** – 내장 FreeBIOS 덕분에 직접 부팅(direct boot)이라면 따로 파일이 없어도 됩니다. 펌웨어 부팅이나 DSi 모드가 필요하면 **설정 → 에뮬레이터 설정** 의 **DS 모드** · **DSi 모드** 탭에서 본인 기기에서 덤프한 파일을 지정하세요.
 3. **ROM 실행** – **파일 → ROM 열기...** 를 선택해 본인이 가진 게임의 ROM 파일을 엽니다.
 
 ## 자주 묻는 질문
 
 **macOS에서 "확인되지 않은 개발자" 경고가 떠요.**
-릴리스는 서명되지 않은 빌드입니다. 앱을 마우스 오른쪽 버튼으로 클릭한 뒤 **열기**를 누르거나, **시스템 설정 → 개인정보 보호 및 보안**에서 **그래도 열기**를 선택하세요.
+릴리스는 서명되지 않은 빌드입니다. 앱을 한 번 열어 본 다음 **시스템 설정 → 개인정보 보호 및 보안**의 보안 항목에서 **그래도 열기**를 클릭하고 로그인 암호로 확인하세요.
 
 **Windows SmartScreen이 실행을 막아요.**
 서명되지 않은 실행 파일이라 경고가 나올 수 있습니다. **추가 정보 → 실행**을 누르면 됩니다.
 
 **Linux에서 화면 알림의 한글이 네모로 보여요.**
-화면 알림은 시스템 글꼴로 그려지므로 CJK 글꼴이 설치되어 있어야 합니다. 배포판 패키지 관리자로 Noto Sans CJK KR 같은 글꼴을 설치하세요.
+화면 알림은 시스템 글꼴로 그려지므로 CJK 글꼴이 설치되어 있어야 합니다. Noto Sans CJK 같은 글꼴을 설치한 뒤(Debian/Ubuntu는 `fonts-noto-cjk`, Arch는 `noto-fonts-cjk`, Fedora는 `google-noto-sans-cjk-fonts`) melonDS를 다시 시작하세요.
 
 **BIOS나 펌웨어 파일이 꼭 필요한가요?**
 직접 부팅에는 필요 없습니다. FreeBIOS가 내장되어 있습니다. 펌웨어로 부팅하려면 본인이 가진 DS 또는 DS Lite에서 덤프한 파일이 필요하며, DSi나 3DS의 DS 모드 펌웨어(128KB)로는 부팅할 수 없습니다. DSi 모드에는 DSi BIOS와 NAND 덤프가 필요합니다. 합법적인 입수 방법은 본인 기기에서 직접 덤프하는 것뿐이며, 이 프로젝트는 ROM이나 BIOS 다운로드 사이트를 안내하지 않습니다.
@@ -115,7 +117,7 @@ Windows용 압축 파일에는 `melonDS.exe` 하나만 들어 있습니다. 설�
 이미 열려 있던 창은 닫았다가 다시 열면 새 언어로 표시됩니다.
 
 **설정은 어디에 저장되나요?**
-실행 파일과 같은 폴더의 `melonDS.toml`에 저장됩니다.
+Windows에서는 `melonDS.exe`와 같은 폴더의 `melonDS.toml`에 저장됩니다. Linux와 macOS에서는 사용자 설정 디렉터리의 `melonDS` 폴더(예: `~/.config/melonDS/`)에 저장되며, 실행 파일 옆에 `portable` 폴더가 있으면 그 폴더를 사용합니다.
 
 ## 번역 참여하기
 

@@ -69,7 +69,7 @@ L'impostazione predefinita è **Automatica (lingua di sistema)**, che sceglie in
 - giapponese, tedesco, francese, coreano, italiano → la lingua corrispondente
 - tutto il resto → English
 
-Per scegliere a mano, apri il menu **Lingua / Language** nella barra dei menu, tra **Configurazione** e **Aiuto**. Quando l'interfaccia non è in inglese, il titolo riporta sempre anche «Language», così lo trovi anche senza conoscere la lingua attiva. Il menu contiene **Automatica (lingua di sistema)** e l'elenco delle lingue con il loro nome originale (English, 简体中文, 繁體中文, 日本語, Deutsch, Français, 한국어, Italiano). La stessa scelta è disponibile in **Configurazione → Impostazioni interfaccia → Lingua:**, e le due opzioni restano sempre sincronizzate.
+Per scegliere a mano, apri il menu **Lingua / Language** nella barra dei menu, tra **Configurazione** e **Aiuto**. Quando l'interfaccia non è in inglese, il titolo riporta sempre anche «Language», così lo trovi anche senza conoscere la lingua attiva. Il menu contiene **Automatica (lingua di sistema)** e l'elenco delle lingue con il loro nome originale (English, 简体中文, 繁體中文, 日本語, Deutsch, Français, 한국어, Italiano). La stessa scelta è disponibile in **Configurazione → Impostazioni interfaccia → Lingua**, e le due opzioni restano sempre sincronizzate.
 
 Il cambio è immediato e non richiede il riavvio. Le finestre già aperte mostrano la nuova lingua dopo averle chiuse e riaperte.
 
@@ -81,32 +81,34 @@ Scarica il file per la tua piattaforma dalla [pagina dell'ultima release](https:
 
 | Piattaforma | File |
 | --- | --- |
-| Windows (x86_64) | `melonDS-1.1-i18n-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-1.1-i18n-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-1.1-i18n-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-1.1-i18n-linux-aarch64.AppImage` |
-| macOS (Universal) | `melonDS-1.1-i18n-macos-universal.zip` |
+| Windows (x86_64) | `melonDS-i18n-1.0.0-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-i18n-1.0.0-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-i18n-1.0.0-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-i18n-1.0.0-linux-aarch64.AppImage` |
+| macOS (Universal) | `melonDS-i18n-1.0.0-macos-universal.zip` |
 
 L'archivio per Windows contiene solo `melonDS.exe` ed è portatile: non serve installare nulla e le impostazioni vengono salvate in `melonDS.toml` nella stessa cartella.
+
+La versione 1.0.0 include anche 10 correzioni di bug prese da pull request non ancora integrate in melonDS. Le [note di rilascio](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0) le descrivono una per una.
 
 ## Guida rapida
 
 <p align="center"><img src="../images/it/quickstart.jpg" alt="Guida rapida" width="100%"></p>
 
 1. **Scarica ed estrai** – prendi il file dalla tabella qui sopra ed estrailo in una cartella a piacere (su Linux basta rendere eseguibile l'AppImage).
-2. **BIOS/firmware (facoltativo)** – grazie a FreeBIOS integrato, l'avvio diretto funziona senza file aggiuntivi. Per avviare dal firmware o usare la modalità DSi, indica i dump della tua console in **Configurazione → Impostazioni emulatore**.
+2. **BIOS/firmware (facoltativo)** – grazie a FreeBIOS integrato, l'avvio diretto funziona senza file aggiuntivi. Per avviare dal firmware o usare la modalità DSi, indica i dump della tua console in **Configurazione → Impostazioni emulatore** (schede **Modalità DS** e **Modalità DSi**).
 3. **Avvia una ROM** – scegli **File → Apri ROM...** e apri la ROM di un gioco che possiedi.
 
 ## Domande frequenti
 
 **macOS dice che lo sviluppatore non è verificato.**
-Le release non sono firmate. Fai clic destro sull'app e scegli **Apri**, oppure vai in **Impostazioni di Sistema → Privacy e sicurezza** e premi **Apri comunque**.
+Le release non sono firmate. Prova ad aprire l'app una volta, poi vai in **Impostazioni di Sistema → Privacy e sicurezza**, sezione Sicurezza, fai clic su **Apri comunque** e conferma con la password.
 
 **Windows SmartScreen blocca l'avvio.**
-L'eseguibile non è firmato, quindi può comparire un avviso. Clicca **Ulteriori informazioni → Esegui comunque**.
+L'eseguibile non è firmato, quindi può comparire un avviso. Fai clic sul collegamento per le informazioni aggiuntive sotto il messaggio, poi su **Esegui comunque**.
 
 **Su Linux il testo coreano/cinese/giapponese delle notifiche a schermo appare come quadratini.**
-Le notifiche usano un font di sistema: installa un font CJK, per esempio Noto Sans CJK (KR, JP, SC o TC), con il gestore pacchetti della tua distribuzione.
+Le notifiche usano un font di sistema: installa un font CJK, per esempio Noto Sans CJK (`fonts-noto-cjk` su Debian/Ubuntu, `noto-fonts-cjk` su Arch, `google-noto-sans-cjk-fonts` su Fedora), poi riavvia melonDS.
 
 **Servono file BIOS o firmware?**
 Per l'avvio diretto no, FreeBIOS è integrato. Per avviare dal firmware servono i dump di un DS o DS Lite di tua proprietà; il firmware da 128 KB della modalità DS di DSi o 3DS non è avviabile. La modalità DSi richiede i dump di BIOS e NAND di un DSi. L'unica fonte legale è la tua console: questo progetto non rimanda a siti di download di ROM o BIOS.
@@ -115,7 +117,7 @@ Per l'avvio diretto no, FreeBIOS è integrato. Per avviare dal firmware servono 
 Chiudila e riaprila: le finestre già aperte si aggiornano alla riapertura.
 
 **Dove vengono salvate le impostazioni?**
-In `melonDS.toml`, nella stessa cartella dell'eseguibile.
+Su Windows in `melonDS.toml`, accanto a `melonDS.exe`. Su Linux e macOS nella cartella `melonDS` della directory di configurazione dell'utente (per esempio `~/.config/melonDS/`), a meno che accanto all'eseguibile non ci sia una cartella `portable`.
 
 ## Contribuire alle traduzioni
 

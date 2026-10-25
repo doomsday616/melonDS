@@ -85,32 +85,34 @@
 
 | 平台 | 檔案 |
 |---|---|
-| Windows（x86_64，大多數電腦） | `melonDS-1.1-i18n-windows-x86_64.zip` |
-| Windows（ARM64） | `melonDS-1.1-i18n-windows-arm64.zip` |
-| Linux（x86_64） | `melonDS-1.1-i18n-linux-x86_64.AppImage` |
-| Linux（aarch64） | `melonDS-1.1-i18n-linux-aarch64.AppImage` |
-| macOS（Intel 與 Apple 晶片） | `melonDS-1.1-i18n-macos-universal.zip` |
+| Windows（x86_64，大多數電腦） | `melonDS-i18n-1.0.0-windows-x86_64.zip` |
+| Windows（ARM64） | `melonDS-i18n-1.0.0-windows-arm64.zip` |
+| Linux（x86_64） | `melonDS-i18n-1.0.0-linux-x86_64.AppImage` |
+| Linux（aarch64） | `melonDS-i18n-1.0.0-linux-aarch64.AppImage` |
+| macOS（Intel 與 Apple 晶片） | `melonDS-i18n-1.0.0-macos-universal.zip` |
 
 Windows 的 zip 裡只有一個 `melonDS.exe`。它是免安裝的可攜版，不會寫入系統，設定檔就存在執行檔旁邊。
+
+1.0.0 版另外收錄了 10 個上游 melonDS 尚未合併的錯誤修正，逐項說明請見[發行說明](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0)。
 
 ## 快速上手
 
 <p align="center"><img src="../images/zh-TW/quickstart.jpg" alt="三步驟開始遊玩" width="100%"></p>
 
 1. **下載並解壓縮**對應平台的版本（Linux 請先把 AppImage 設成可執行再開啟）。
-2. **BIOS／韌體（選用）**：內建的 FreeBIOS 讓大部分遊戲不需要任何傾印檔就能直接啟動。如果想透過 DS 韌體選單開機，或使用 DSi 模式，請到「**設定 → 模擬器設定**」指定你自己傾印的檔案。
+2. **BIOS／韌體（選用）**：內建的 FreeBIOS 讓大部分遊戲不需要任何傾印檔就能直接啟動。如果想透過 DS 韌體選單開機，或使用 DSi 模式，請到「**設定 → 模擬器設定**」的「**DS 模式**」和「**DSi 模式**」分頁指定你自己傾印的檔案。
 3. **載入遊戲**：用「**檔案 → 開啟 ROM...**」選擇你從自己擁有的卡匣傾印出來的 ROM。
 
 ## 常見問題
 
 **macOS 說這個 App 來自未識別的開發者。**
-這些版本沒有經過簽署。請在 App 上按右鍵選「**打開**」，或到「**系統設定 → 隱私權與安全性**」按「**強制打開**」。
+這些版本沒有經過簽署。請先嘗試打開一次，再到「**系統設定 → 隱私權與安全性**」的「安全性」區段按「**強制打開**」，然後輸入登入密碼確認。
 
 **Windows SmartScreen 跳出警告。**
 原因相同：執行檔沒有簽署。按「**其他資訊**」，再按「**仍要執行**」。
 
 **Linux 上，畫面通知裡的中文、日文、韓文變成方框。**
-OSD 是用系統字型繪製文字的。請安裝 CJK 字型，例如 Noto Sans CJK（Debian／Ubuntu 上的套件是 `fonts-noto-cjk`），然後重新啟動 melonDS。
+OSD 是用系統字型繪製文字的。請安裝 CJK 字型，例如 Noto Sans CJK（Debian／Ubuntu 上是 `fonts-noto-cjk`，Arch 上是 `noto-fonts-cjk`，Fedora 上是 `google-noto-sans-cjk-fonts`），然後重新啟動 melonDS。
 
 **BIOS 和韌體是什麼？要去哪裡取得？**
 它們是真實主機內部的開機程式和設定資料。melonDS 內建 FreeBIOS，所以直接啟動遊戲時並不需要它們。若要透過韌體選單開機，需要從原版 DS 或 DS Lite 傾印的檔案（DSi 或 3DS 在 DS 模式下的 128 KB 韌體無法用來開機）。DSi 模式則需要 DSi 的 BIOS 和 NAND 傾印檔。唯一合法的來源是從你自己擁有的主機傾印，本專案不會提供任何下載網站的連結。
@@ -143,3 +145,5 @@ Windows 上存在 `melonDS.exe` 旁邊的 `melonDS.toml`。Linux 和 macOS 上�
 - 建置說明與完整的上游致謝名單請見 [melonDS 官方儲存庫](https://github.com/melonDS-emu/melonDS)。
 
 melonDS i18n 是自由軟體，與 melonDS 相同，以 [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0) 授權釋出。
+
+melonDS i18n 是非官方專案，與任天堂及 melonDS 團隊皆無關聯。
