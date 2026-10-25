@@ -1,170 +1,146 @@
-<p align="center"><img src="docs/images/banner.jpg" alt="melonDS i18n" width="100%"></p>
-
-<h1 align="center">melonDS i18n</h1>
+<p align="center"><img src="docs/images/en/banner.jpg" alt="melonDS i18n" width="100%"></p>
 
 <p align="center">
-<b>多语言版 melonDS 任天堂 DS 模拟器</b> · The multilingual edition of the melonDS Nintendo DS emulator
+<b>English</b> ·
+<a href="docs/readme/README.zh-CN.md">简体中文</a> ·
+<a href="docs/readme/README.zh-TW.md">繁體中文</a> ·
+<a href="docs/readme/README.ja.md">日本語</a> ·
+<a href="docs/readme/README.de.md">Deutsch</a> ·
+<a href="docs/readme/README.fr.md">Français</a> ·
+<a href="docs/readme/README.ko.md">한국어</a> ·
+<a href="docs/readme/README.it.md">Italiano</a>
 </p>
 
 <p align="center">
-<a href="https://github.com/doomsday616/melonDS-i18n/releases/latest"><img src="https://img.shields.io/github/v/release/doomsday616/melonDS-i18n?label=release&color=5c913b"></a>
-<a href="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-windows.yml"><img src="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-windows.yml/badge.svg"></a>
-<a href="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-ubuntu.yml"><img src="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-ubuntu.yml/badge.svg"></a>
-<a href="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-macos.yml"><img src="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-macos.yml/badge.svg"></a>
-<a href="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-bsd.yml"><img src="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-bsd.yml/badge.svg"></a>
-<a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-%23ff554d.svg"></a>
+<a href="https://github.com/doomsday616/melonDS-i18n/releases/latest"><img src="https://img.shields.io/github/v/release/doomsday616/melonDS-i18n?label=release&color=5c913b" alt="Latest release"></a>
+<a href="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-windows.yml"><img src="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-windows.yml/badge.svg" alt="Windows build"></a>
+<a href="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-ubuntu.yml"><img src="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-ubuntu.yml/badge.svg" alt="Ubuntu build"></a>
+<a href="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-macos.yml"><img src="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-macos.yml/badge.svg" alt="macOS build"></a>
+<a href="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-bsd.yml"><img src="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-bsd.yml/badge.svg" alt="BSD build"></a>
+<a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-%23ff554d.svg" alt="License: GPLv3"></a>
 </p>
 
-<p align="center">
-<a href="#简体中文">简体中文</a> ·
-<a href="#english">English</a> ·
-<a href="#other-languages">繁體中文 · 日本語 · Deutsch · Français · 한국어 · Italiano</a>
-</p>
+# melonDS i18n
 
----
+**melonDS i18n** is an unofficial multilingual fork of [melonDS](https://github.com/melonDS-emu/melonDS), the Nintendo DS emulator. It is based on melonDS 1.1 and the emulator core is identical to upstream — games run exactly the same. What changes is the Qt frontend: it has been turned into a proper Qt Linguist i18n build, so menus, every settings dialog, messages and even the on-screen notifications appear in your language. Eight languages ship today, all fully translated.
 
-## 简体中文
+## Features
 
-**melonDS i18n** 是 [melonDS](https://github.com/melonDS-emu/melonDS) 的非官方多语言分支。模拟核心与上游完全一致，只是把整个界面做成了标准的 Qt 多语言（i18n）架构：菜单、所有设置窗口、提示和错误信息，以及游戏画面上弹出的 OSD 提示（如“已保存即时存档到槽位 1”）都已翻译。
+<p align="center"><img src="docs/images/en/features.jpg" alt="Features: 8 languages, auto-detect, live switching, translated OSD" width="100%"></p>
 
-<p align="center"><img src="docs/images/languages.jpg" alt="Supported languages" width="100%"></p>
+- **8 languages** — Simplified Chinese, Traditional Chinese (Taiwan terms), English, Japanese, German, French, Korean and Italian.
+- **Auto-detect** — the interface follows your system language out of the box.
+- **Live switching** — change language from the **Language** menu; it applies instantly, no restart.
+- **Translated OSD** — on-screen notifications such as "State saved to slot 1" are translated too, rendered with a system font that supports CJK and accented characters.
+- **Qt's own widgets follow along** — standard buttons and file dialogs switch language as well.
 
-### 支持的语言
+## Screenshots
 
-| 语言 | 代码 | 状态 |
+<p align="center"><img src="docs/images/en/screenshot-main.jpg" alt="Main window" width="100%"><br><em>The main window</em></p>
+
+<p align="center"><img src="docs/images/en/screenshot-menu.jpg" alt="Language menu" width="100%"><br><em>The Language menu, with every language listed by its native name</em></p>
+
+<p align="center"><img src="docs/images/en/screenshot-settings.jpg" alt="Settings dialog" width="100%"><br><em>A settings dialog</em></p>
+
+## Supported languages
+
+<p align="center"><img src="docs/images/shared/languages.jpg" alt="Supported languages" width="100%"></p>
+
+| Language | Code | Status |
 |---|---|---|
-| 简体中文 | `zh_CN` | 745 / 745 |
-| 繁體中文（台湾用语） | `zh_TW` | 745 / 745 |
-| English | `en` | 原文 |
-| 日本語 | `ja` | 745 / 745 |
-| Deutsch | `de` | 745 / 745 |
-| Français | `fr` | 745 / 745 |
-| 한국어 | `ko` | 745 / 745 |
-| Italiano | `it` | 745 / 745 |
+| 简体中文 (Simplified Chinese) | `zh_CN` | 745 / 745 |
+| 繁體中文 (Traditional Chinese, Taiwan terms) | `zh_TW` | 745 / 745 |
+| English | `en` | Source language |
+| 日本語 (Japanese) | `ja` | 745 / 745 |
+| Deutsch (German) | `de` | 745 / 745 |
+| Français (French) | `fr` | 745 / 745 |
+| 한국어 (Korean) | `ko` | 745 / 745 |
+| Italiano (Italian) | `it` | 745 / 745 |
 
-### 自动识别与切换
+## Auto-detect and switching
 
-<p align="center"><img src="docs/images/switching.jpg" alt="Auto-detect and live switching" width="100%"></p>
+<p align="center"><img src="docs/images/en/switching.jpg" alt="Auto-detect or pick a language" width="100%"></p>
 
-- **自动识别**：默认跟随电脑的系统语言。繁体系统（台湾、香港、澳门）显示繁體中文，其他中文系统显示简体中文；日、德、法、韩、意按系统语言匹配；不在列表里的语言显示英文。
-- **菜单栏切换**：点菜单栏上的 **语言 / Language**，选择“自动”或任意一种语言。每种语言都用它自己的文字显示，看不懂当前界面也能找到。
-- **设置窗口**：也可以在“设置 → 界面设置 → 语言”中选择，两处保持同步。
-- **立即生效**：切换后菜单和游戏内提示马上变成新语言，无需重启。已经打开的设置窗口关掉重开即可。
-- Qt 自带的标准按钮和文件选择窗口也会跟着切换。
+By default melonDS i18n picks a language from your system UI language:
 
-### 下载
-
-到 [Releases](https://github.com/doomsday616/melonDS-i18n/releases/latest) 下载最新版本：
-
-| 系统 | 文件 |
+| System language | Interface language |
 |---|---|
-| Windows（普通电脑） | `windows-x86_64.zip`，解压后运行 `melonDS.exe` |
-| Windows（ARM 电脑） | `windows-arm64.zip` |
-| Linux | `linux-x86_64.AppImage` / `linux-aarch64.AppImage` |
-| macOS（Intel 与 Apple 芯片通用） | `macos-universal.zip` |
+| Chinese — Traditional script, Taiwan, Hong Kong or Macau (`zh-Hant`, `zh-TW`, `zh-HK`, `zh-MO`) | 繁體中文 |
+| Any other Chinese | 简体中文 |
+| Japanese, German, French, Korean, Italian | the matching language |
+| Anything else | English |
 
-### 贡献翻译
+To choose a language yourself:
 
-翻译文件位于 [`src/frontend/qt_sdl/translations/`](src/frontend/qt_sdl/translations/)，格式是 Qt Linguist 的 `.ts`。修改后用 `lupdate` / `lrelease` 重新生成 `.qm`（命令写在 `src/frontend/qt_sdl/CMakeLists.txt` 的注释里）。翻译问题请在本仓库提交 [Issue](https://github.com/doomsday616/melonDS-i18n/issues)，请勿反馈到上游 melonDS。
+- Open the **Language** menu in the menu bar (between **Config** and **Help**). In a non-English interface it is titled with both names, e.g. **语言 / Language**, so you can always find your way back.
+- Pick **Automatic (system language)** or any language. Languages are listed by their native names: English, 简体中文, 繁體中文, 日本語, Deutsch, Français, 한국어, Italiano.
+- The same choice is also available under **Config → Interface settings → Language**; both places stay in sync.
 
----
+The switch is immediate — menus and on-screen messages change on the spot. Dialogs that were already open pick up the new language once you close and reopen them.
 
-## English
+## Download
 
-**melonDS i18n** is an unofficial fork of [melonDS](https://github.com/melonDS-emu/melonDS). The emulator core is identical to upstream; the Qt frontend has been turned into a proper i18n build. Menus, every settings dialog, messages and the on-screen (OSD) notifications are translated into 8 languages: Simplified Chinese, Traditional Chinese (Taiwan), English, Japanese, German, French, Korean and Italian.
+<p align="center"><img src="docs/images/en/download.jpg" alt="Download for your platform" width="100%"></p>
 
-- **Auto-detect:** the UI follows the system language by default; unsupported languages fall back to English.
-- **Language menu:** pick a language from the **Language** menu in the menu bar (or Config → Interface settings). Each language is listed by its native name.
-- **Live switching:** changes apply immediately, no restart needed. Qt's standard buttons and file dialogs follow as well.
-- **Downloads:** Windows x86_64 / arm64, Linux x86_64 / aarch64 AppImage and macOS universal builds are on the [Releases](https://github.com/doomsday616/melonDS-i18n/releases/latest) page.
-- **Translations** live in `src/frontend/qt_sdl/translations/` as Qt Linguist `.ts` files. Please report translation issues [here](https://github.com/doomsday616/melonDS-i18n/issues), not upstream.
+Grab the latest build from the [Releases page](https://github.com/doomsday616/melonDS-i18n/releases/latest):
 
----
+| Platform | File |
+|---|---|
+| Windows (x86_64, most PCs) | `melonDS-1.1-i18n-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-1.1-i18n-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-1.1-i18n-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-1.1-i18n-linux-aarch64.AppImage` |
+| macOS (Intel and Apple silicon) | `melonDS-1.1-i18n-macos-universal.zip` |
 
-## Other languages
+The Windows zip contains just `melonDS.exe`. It is portable: nothing is installed, and settings are written next to the executable.
 
-- **繁體中文：** melonDS 的非官方多語言分支，介面、設定視窗與遊戲內提示皆已翻譯，預設跟隨系統語言，也可從選單列的「語言」即時切換，無需重新啟動。
-- **日本語：** melonDS の非公式多言語版です。メニュー、設定画面、画面上の通知まで翻訳済み。システム言語を自動検出し、メニューバーの「言語」から再起動なしで切り替えられます。
-- **Deutsch:** Inoffizielle mehrsprachige Version von melonDS. Menüs, Einstellungen und Bildschirmmeldungen sind übersetzt. Die Sprache folgt dem System und lässt sich im Menü „Sprache“ ohne Neustart wechseln.
-- **Français :** version multilingue non officielle de melonDS. Menus, réglages et messages à l'écran sont traduits. La langue suit celle du système et peut être changée sans redémarrage via le menu « Langue ».
-- **한국어:** melonDS의 비공식 다국어 버전입니다. 메뉴, 설정 창, 화면 알림까지 번역되어 있으며, 시스템 언어를 자동으로 따르고 메뉴 막대의 「언어」에서 재시작 없이 바꿀 수 있습니다.
-- **Italiano:** versione multilingue non ufficiale di melonDS. Menu, impostazioni e messaggi a schermo sono tradotti. La lingua segue quella di sistema e si può cambiare senza riavvio dal menu «Lingua».
+## Quick start
 
----
+<p align="center"><img src="docs/images/en/quickstart.jpg" alt="Up and running in 3 steps" width="100%"></p>
 
-<details>
-<summary><b>Original melonDS README</b></summary>
+1. **Download and extract** the build for your platform (on Linux, make the AppImage executable and run it).
+2. **BIOS / firmware (optional).** Thanks to the built-in FreeBIOS, most games boot directly without any dumps. If you want to boot through the DS firmware menu, or use DSi mode, set up your own dumps under **Config → Emu settings**.
+3. **Load a game** with **File → Open ROM...** and pick a ROM you dumped from a cartridge you own.
 
-<p align="center"><img src="https://raw.githubusercontent.com/melonDS-emu/melonDS/master/res/icon/melon_128x128.png"></p>
-<h2 align="center"><b>melonDS</b></h2>
-<p align="center">
-<a href="http://melonds.kuribo64.net/" alt="melonDS website"><img src="https://img.shields.io/badge/website-melonds.kuribo64.net-%2331352e.svg"></a>
-<a href="http://melonds.kuribo64.net/downloads.php" alt="Release: 1.1"><img src="https://img.shields.io/badge/release-1.1-%235c913b.svg"></a>
-<a href="https://www.gnu.org/licenses/gpl-3.0" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-GPL%20v3-%23ff554d.svg"></a>
-<a href="https://kiwiirc.com/client/irc.badnik.net/?nick=IRC-Source_?#melonds" alt="IRC channel: #melonds"><img src="https://img.shields.io/badge/IRC%20chat-%23melonds-%23dd2e44.svg"></a>
-<a href="https://discord.gg/pAMAtExcqV" alt="Discord"><img src="https://img.shields.io/badge/Discord-Kuribo64-7289da?logo=discord&logoColor=white"></a>
-<br>
-<a href="https://github.com/melonDS-emu/melonDS/actions/workflows/build-windows.yml?query=event%3Apush"><img src="https://github.com/melonDS-emu/melonDS/actions/workflows/build-windows.yml/badge.svg" /></a>
-<a href="https://github.com/melonDS-emu/melonDS/actions/workflows/build-ubuntu.yml?query=event%3Apush"><img src="https://github.com/melonDS-emu/melonDS/actions/workflows/build-ubuntu.yml/badge.svg" /></a>
-<a href="https://github.com/melonDS-emu/melonDS/actions/workflows/build-macos.yml?query=event%3Apush"><img src="https://github.com/melonDS-emu/melonDS/actions/workflows/build-macos.yml/badge.svg" /></a>
-<a href="https://github.com/melonDS-emu/melonDS/actions/workflows/build-bsd.yml?query=event%3Apush"><img src="https://github.com/melonDS-emu/melonDS/actions/workflows/build-bsd.yml/badge.svg" /></a>
-</p>
-DS emulator, sorta
+## FAQ
 
-The goal is to do things right and fast, akin to blargSNES (but hopefully better). But also to, you know, have a fun challenge :)
-<hr>
+**macOS says the app is from an unidentified developer.**
+The builds are not signed. Right-click the app and choose **Open**, or go to **System Settings → Privacy & Security** and click **Open Anyway**.
 
-## How to use
+**Windows SmartScreen warns me.**
+Same reason — the executable is unsigned. Click **More info**, then **Run anyway**.
 
-Firmware boot (not direct boot) requires a BIOS/firmware dump from an original DS or DS Lite.
-DS firmwares dumped from a DSi or 3DS aren't bootable and only contain configuration data, thus they are only suitable when booting games directly.
+**On Linux, Chinese/Japanese/Korean on-screen messages show up as boxes.**
+The OSD draws text with a system font. Install a CJK font such as Noto Sans CJK (for example `fonts-noto-cjk` on Debian/Ubuntu) and restart melonDS.
 
-### Possible firmware sizes
+**What are the BIOS and firmware files, and where do I get them?**
+They are the boot code and settings stored inside a real console. melonDS ships FreeBIOS, so they are optional for direct boot. Booting the firmware menu needs dumps from an original DS or DS Lite (the 128 KB DS-mode firmware from a DSi or 3DS is not bootable). DSi mode needs DSi BIOS and NAND dumps. The only legal source is dumping them from a console you own; this project does not link to download sites.
 
- * 128KB: DSi/3DS DS-mode firmware (reduced size due to lacking bootcode)
- * 256KB: regular DS firmware
- * 512KB: iQue DS firmware
+**I switched languages but an open dialog is still in the old language.**
+That is expected. Close the dialog and open it again.
 
-DS BIOS dumps from a DSi or 3DS can be used with no compatibility issues. DSi BIOS dumps (in DSi mode) are not compatible. Or maybe they are. I don't know.
+**Where are my settings stored?**
+On Windows, in `melonDS.toml` next to `melonDS.exe`. On Linux and macOS, in the `melonDS` folder of your user config directory (for example `~/.config/melonDS/`), unless a `portable` folder exists next to the executable.
 
-As for the rest, the interface should be pretty straightforward. If you have a question, don't hesitate to ask, though!
+## Contributing translations
 
-## How to build
-See [BUILD.md](./BUILD.md) for build instructions.
+<p align="center"><img src="docs/images/shared/translation-workflow.jpg" alt="Translation workflow" width="100%"></p>
 
-## TODO LIST
+Translations live in [`src/frontend/qt_sdl/translations/`](src/frontend/qt_sdl/translations/) as Qt Linguist files named `melonDS_<lang>.ts`. The compiled `.qm` files, Qt's own `qtbase_<lang>.qm` and `translations.qrc` are committed next to them and embedded into the executable.
 
- * better DSi emulation
- * better OpenGL rendering
- * netplay
- * the impossible quest of pixel-perfect 3D graphics
- * support for rendering screens to separate windows
- * emulating some fancy addons
- * other non-core shit (debugger, graphics viewers, etc)
+1. If source strings changed, refresh the `.ts` files:
+   `lupdate -no-obsolete -locations none src/frontend/qt_sdl -ts src/frontend/qt_sdl/translations/melonDS_*.ts`
+2. Translate in Qt Linguist (or edit the `.ts` XML directly).
+3. Compile the translations:
+   `lrelease src/frontend/qt_sdl/translations/melonDS_*.ts`
+4. Rebuild melonDS — the `.qm` files are embedded via `translations.qrc`.
 
-### TODO LIST FOR LATER (low priority)
+The exact commands are also kept in a comment in `src/frontend/qt_sdl/CMakeLists.txt`. Please report translation problems in [this repository's issues](https://github.com/doomsday616/melonDS-i18n/issues), not to upstream melonDS.
 
- * big-endian compatibility (Wii, etc)
- * LCD refresh time (used by some games for blending effects)
- * any feature you can eventually ask for that isn't outright stupid
+## Credits and license
 
-## Credits
+- melonDS is made by the melonDS team — Arisotura and contributors. Upstream: [melonDS-emu/melonDS](https://github.com/melonDS-emu/melonDS).
+- melonDS icon by limittox.
+- Build instructions and the full upstream credits are in the [upstream melonDS repository](https://github.com/melonDS-emu/melonDS).
 
- * Martin for GBAtek, a good piece of documentation
- * Cydrak for the extra 3D GPU research
- * limittox for the icon
- * All of you comrades who have been testing melonDS, reporting issues, suggesting shit, etc
-
-## Licenses
-
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)
-
-melonDS is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-### External
-* Images used in the Input Config Dialog - see `src/frontend/qt_sdl/InputConfig/resources/LICENSE.md`
-
-</details>
+melonDS i18n is free software released under the [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0), the same license as melonDS.
