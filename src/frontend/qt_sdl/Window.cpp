@@ -1538,14 +1538,14 @@ void MainWindow::onSaveState()
 
     if (emuThread->saveState(filename))
     {
-        if (slot > 0) emuInstance->osdAddMessage(0, "State saved to slot %d", slot);
-        else          emuInstance->osdAddMessage(0, "State saved to file");
+        if (slot > 0) emuInstance->osdAddMessage(0, QT_TRANSLATE_NOOP("OSD", "State saved to slot %d"), slot);
+        else          emuInstance->osdAddMessage(0, QT_TRANSLATE_NOOP("OSD", "State saved to file"));
 
         actLoadState[slot]->setEnabled(true);
     }
     else
     {
-        emuInstance->osdAddMessage(0xFFA0A0, "State save failed");
+        emuInstance->osdAddMessage(0xFFA0A0, QT_TRANSLATE_NOOP("OSD", "State save failed"));
     }
 }
 
@@ -1573,22 +1573,22 @@ void MainWindow::onLoadState()
 
     if (!Platform::FileExists(filename.toStdString()))
     {
-        if (slot > 0) emuInstance->osdAddMessage(0xFFA0A0, "State slot %d is empty", slot);
-        else          emuInstance->osdAddMessage(0xFFA0A0, "State file does not exist");
+        if (slot > 0) emuInstance->osdAddMessage(0xFFA0A0, QT_TRANSLATE_NOOP("OSD", "State slot %d is empty"), slot);
+        else          emuInstance->osdAddMessage(0xFFA0A0, QT_TRANSLATE_NOOP("OSD", "State file does not exist"));
 
         return;
     }
 
     if (emuThread->loadState(filename))
     {
-        if (slot > 0) emuInstance->osdAddMessage(0, "State loaded from slot %d", slot);
-        else          emuInstance->osdAddMessage(0, "State loaded from file");
+        if (slot > 0) emuInstance->osdAddMessage(0, QT_TRANSLATE_NOOP("OSD", "State loaded from slot %d"), slot);
+        else          emuInstance->osdAddMessage(0, QT_TRANSLATE_NOOP("OSD", "State loaded from file"));
 
         actUndoStateLoad->setEnabled(true);
     }
     else
     {
-        emuInstance->osdAddMessage(0xFFA0A0, "State load failed");
+        emuInstance->osdAddMessage(0xFFA0A0, QT_TRANSLATE_NOOP("OSD", "State load failed"));
     }
 }
 
@@ -1596,7 +1596,7 @@ void MainWindow::onUndoStateLoad()
 {
     emuThread->undoStateLoad();
 
-    emuInstance->osdAddMessage(0, "State load undone");
+    emuInstance->osdAddMessage(0, QT_TRANSLATE_NOOP("OSD", "State load undone"));
 }
 
 void MainWindow::onImportSavefile()

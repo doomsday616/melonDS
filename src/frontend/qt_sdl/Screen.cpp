@@ -23,6 +23,9 @@
 
 #include <QPaintEvent>
 #include <QPainter>
+#include <QGuiApplication>
+#include <QCoreApplication>
+#include <QFontMetrics>
 
 #include <QDateTime>
 
@@ -89,13 +92,15 @@ ScreenPanel::ScreenPanel(QWidget* parent) : QWidget(parent)
 
     splashLogo = QPixmap(":/melon-logo");
 
-    strncpy(splashText[0].text, "File->Open ROM...", 256);
+    strncpy(splashText[0].text, QCoreApplication::translate("OSD", "File->Open ROM...").toUtf8().constData(), 255);
+    splashText[0].text[255] = '\0';
     splashText[0].id = 0x80000000;
     splashText[0].color = 0;
     splashText[0].rendered = false;
     splashText[0].rainbowstart = -1;
 
-    strncpy(splashText[1].text, "to get started", 256);
+    strncpy(splashText[1].text, QCoreApplication::translate("OSD", "to get started").toUtf8().constData(), 255);
+    splashText[1].text[255] = '\0';
     splashText[1].id = 0x80000001;
     splashText[1].color = 0;
     splashText[1].rendered = false;
@@ -413,7 +418,71 @@ QTimer* ScreenPanel::setupMouseTimer()
     return mouseTimer;
 }
 
-int ScreenPanel::osdFindBreakPoint(const char* text, int i)
+// The built-in bitmap font only covers ASCII. Any other code point (e.g. in
+// translated messages) is drawn with a system font into the same 12-pixel
+// glyph cell, then thresholded to solid pixels so it gets the same color,
+// rainbow and outline treatment as the bitmap glyphs.
+static QFont osdFallbackFont()
+{
+    QFont font = QGuiApplication::font();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 13, 0)
+    // Preferred CJK families first; Qt's own font fallback covers the rest.
+    font.setFamilies({"Microsoft YaHei UI", "Microsoft YaHei",
+                      "PingFang SC", "Hiragino Sans GB",
+                      "Noto Sans CJK SC", "Source Han Sans SC",
+                      "WenQuanYi Micro Hei", font.family()});
+#endif
+    font.setPixelSize(12);
+    // crisp, pixel-font-like glyphs (also hinted where the font supports it)
+    font.setStyleStrategy(QFont::NoAntialias);
+    return font;
+}
+
+static QString osdCodePointString(uint ch)
+{
+    if (QChar::requiresSurrogates(ch))
+    {
+        const QChar pair[2] = {QChar(QChar::highSurrogate(ch)), QChar(QChar::lowSurrogate(ch))};
+        return QString(pair, 2);
+    }
+    return QString(QChar(ch));
+}
+
+static int osdFallbackAdvance(const QFontMetrics& fm, uint ch)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+    return fm.horizontalAdvance(osdCodePointString(ch));
+#else
+    return fm.width(osdCodePointString(ch));
+#endif
+}
+
+// Width taken by one character, including spacing.
+static int osdGlyphWidth(const QFontMetrics& fm, uint ch)
+{
+    if (ch == ' ')
+        return 6;
+
+    int glyphsize;
+    if (ch < 0x80)
+    {
+        if (ch < 0x10 || ch > 0x7E) ch = 0x7F;
+
+        glyphsize = ::font[(ch-0x10) << 4];
+        if (!glyphsize) glyphsize = 6;
+        else            glyphsize += 2; // space around the character
+    }
+    else
+    {
+        glyphsize = osdFallbackAdvance(fm, ch);
+        if (glyphsize <= 0) glyphsize = 6;
+        else                glyphsize += 1;
+    }
+
+    return glyphsize;
+}
+
+int ScreenPanel::osdFindBreakPoint(const uint* text, int i)
 {
     // i = character that went out of bounds
 
@@ -426,7 +495,7 @@ int ScreenPanel::osdFindBreakPoint(const char* text, int i)
     return i;
 }
 
-void ScreenPanel::osdLayoutText(const char* text, int* width, int* height, int* breaks)
+void ScreenPanel::osdLayoutText(const uint* text, const QFontMetrics& fm, int* width, int* height, int* breaks)
 {
     int w = 0;
     int h = 14;
@@ -434,27 +503,12 @@ void ScreenPanel::osdLayoutText(const char* text, int* width, int* height, int* 
     int maxw = ((QWidget*)this)->width() - (kOSDMargin*2);
     int lastbreak = -1;
     int numbrk = 0;
-    u16* ptr;
 
     memset(breaks, 0, sizeof(int)*64);
 
     for (int i = 0; text[i] != '\0'; )
 	{
-	    int glyphsize;
-		if (text[i] == ' ')
-		{
-			glyphsize = 6;
-		}
-		else
-        {
-            u32 ch = text[i];
-            if (ch < 0x10 || ch > 0x7E) ch = 0x7F;
-
-            ptr = &::font[(ch-0x10) << 4];
-            glyphsize = ptr[0];
-            if (!glyphsize) glyphsize = 6;
-            else            glyphsize += 2; // space around the character
-        }
+	    int glyphsize = osdGlyphWidth(fm, text[i]);
 
 		w += glyphsize;
 		if (w > maxw)
@@ -507,8 +561,14 @@ void ScreenPanel::osdRenderItem(OSDItem* item)
     int w, h;
     int breaks[64];
 
-    char* text = item->text;
+    // OSD text is UTF-8; work on code points (zero-terminated)
+    auto textbuf = QString::fromUtf8(item->text).toUcs4();
+    textbuf.append(0);
+    const uint* text = textbuf.constData();
     u32 color = item->color;
+
+    const QFont fallbackFont = osdFallbackFont();
+    const QFontMetrics fm(fallbackFont);
 
     bool rainbow = (color == 0);
     u32 rainbowinc;
@@ -523,7 +583,7 @@ void ScreenPanel::osdRenderItem(OSDItem* item)
     color |= 0xFF000000;
     const u32 shadow = 0xE0000000;
 
-    osdLayoutText(text, &w, &h, breaks);
+    osdLayoutText(text, fm, &w, &h, breaks);
 
     item->bitmap = QImage(w, h, QImage::Format_ARGB32_Premultiplied);
     u32* bitmap = (u32*)item->bitmap.bits();
@@ -536,11 +596,52 @@ void ScreenPanel::osdRenderItem(OSDItem* item)
 
     for (int i = 0; text[i] != '\0'; )
 	{
-	    int glyphsize;
 		if (text[i] == ' ')
 		{
 			x += 6;
 		}
+		else if (text[i] >= 0x80)
+        {
+            // non-ASCII: rasterize with the fallback font into the glyph cell
+            int adv = osdFallbackAdvance(fm, text[i]);
+            if (adv <= 0) x += 6;
+            else
+            {
+                if (rainbow)
+                {
+                    color = osdRainbowColor(rainbowinc);
+                    rainbowinc = (rainbowinc + 30) % 600;
+                }
+
+                // the glyph uses the full 14-pixel line (one row above and
+                // below the 12-pixel bitmap glyph cell)
+                QImage glyph(adv, 14, QImage::Format_ARGB32_Premultiplied);
+                glyph.fill(0);
+                {
+                    QPainter gp(&glyph);
+                    gp.setFont(fallbackFont);
+                    gp.setPen(Qt::white);
+                    int baseline = (14 + fm.ascent() - fm.descent()) / 2;
+                    gp.drawText(0, baseline, osdCodePointString(text[i]));
+                }
+
+                for (int cy = 0; cy < 14; cy++)
+                {
+                    int py = y - 1 + cy;
+                    if (py < 0 || py >= h) continue;
+
+                    const u32* line = (const u32*)glyph.constScanLine(cy);
+                    for (int cx = 0; cx < adv; cx++)
+                    {
+                        if ((x+cx) >= w) break;
+                        if ((line[cx] >> 24) >= 0x80)
+                            bitmap[(py * w) + x+cx] = color;
+                    }
+                }
+
+                x += adv + 1;
+            }
+        }
 		else
         {
             u32 ch = text[i];

@@ -177,7 +177,7 @@ void EmuThread::run()
                 int level = emuInstance->nds->GBACartSlot.SetInput(GBACart::Input_SolarSensorDown, true);
                 if (level != -1)
                 {
-                    emuInstance->osdAddMessage(0, "Solar sensor level: %d", level);
+                    emuInstance->osdAddMessage(0, QT_TRANSLATE_NOOP("OSD", "Solar sensor level: %d"), level);
                 }
             }
             if (emuInstance->hotkeyPressed(HK_SolarSensorIncrease))
@@ -185,7 +185,7 @@ void EmuThread::run()
                 int level = emuInstance->nds->GBACartSlot.SetInput(GBACart::Input_SolarSensorUp, true);
                 if (level != -1)
                 {
-                    emuInstance->osdAddMessage(0, "Solar sensor level: %d", level);
+                    emuInstance->osdAddMessage(0, QT_TRANSLATE_NOOP("OSD", "Solar sensor level: %d"), level);
                 }
             }
 
@@ -263,7 +263,7 @@ void EmuThread::run()
             {
                 bool lid = !emuInstance->nds->IsLidClosed();
                 emuInstance->nds->SetLidClosed(lid);
-                emuInstance->osdAddMessage(0, lid ? "Lid closed" : "Lid opened");
+                emuInstance->osdAddMessage(0, lid ? QT_TRANSLATE_NOOP("OSD", "Lid closed") : QT_TRANSLATE_NOOP("OSD", "Lid opened"));
             }
 
             // auto screen layout
@@ -504,7 +504,7 @@ void EmuThread::handleMessages()
             {
                 emuInstance->audioDisable();
                 emit windowEmuPause(true);
-                emuInstance->osdAddMessage(0, "Paused");
+                emuInstance->osdAddMessage(0, QT_TRANSLATE_NOOP("OSD", "Paused"));
             }
             break;
 
@@ -520,7 +520,7 @@ void EmuThread::handleMessages()
             {
                 emuInstance->audioEnable();
                 emit windowEmuPause(false);
-                emuInstance->osdAddMessage(0, "Resumed");
+                emuInstance->osdAddMessage(0, QT_TRANSLATE_NOOP("OSD", "Resumed"));
             }
             break;
 
@@ -547,7 +547,7 @@ void EmuThread::handleMessages()
 
             emuInstance->audioEnable();
             emit windowEmuReset();
-            emuInstance->osdAddMessage(0, "Reset");
+            emuInstance->osdAddMessage(0, QT_TRANSLATE_NOOP("OSD", "Reset"));
             break;
 
         case msg_InitGL:
@@ -901,5 +901,5 @@ void EmuThread::compileShaders()
     }
     while (renderer.NeedsShaderCompile() &&
              (SDL_GetPerformanceCounter() - startTime) * perfCountsSec < 1.0 / 6.0);
-    emuInstance->osdAddMessage(0, "Compiling shader %d/%d", currentShader+1, shadersCount);
+    emuInstance->osdAddMessage(0, QT_TRANSLATE_NOOP("OSD", "Compiling shader %d/%d"), currentShader+1, shadersCount);
 }

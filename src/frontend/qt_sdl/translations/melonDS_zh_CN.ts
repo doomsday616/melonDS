@@ -2263,6 +2263,93 @@ Do you wish to continue?</source>
     </message>
 </context>
 <context>
+    <name>OSD</name>
+    <message>
+        <source>GBA mode not supported</source>
+        <translation>不支持 GBA 模式</translation>
+    </message>
+    <message>
+        <source>Internal error</source>
+        <translation>内部错误</translation>
+    </message>
+    <message>
+        <source>Shutdown</source>
+        <translation>已关机</translation>
+    </message>
+    <message>
+        <source>Solar sensor level: %d</source>
+        <translation>太阳传感器等级：%d</translation>
+    </message>
+    <message>
+        <source>Lid closed</source>
+        <translation>已合上翻盖</translation>
+    </message>
+    <message>
+        <source>Lid opened</source>
+        <translation>已打开翻盖</translation>
+    </message>
+    <message>
+        <source>Paused</source>
+        <translation>已暂停</translation>
+    </message>
+    <message>
+        <source>Resumed</source>
+        <translation>已继续</translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation>已重置</translation>
+    </message>
+    <message>
+        <source>Compiling shader %d/%d</source>
+        <translation>正在编译着色器 %d/%d</translation>
+    </message>
+    <message>
+        <source>File-&gt;Open ROM...</source>
+        <translation>文件 -&gt; 打开 ROM...</translation>
+    </message>
+    <message>
+        <source>to get started</source>
+        <translation>即可开始</translation>
+    </message>
+    <message>
+        <source>State saved to slot %d</source>
+        <translation>已保存即时存档到槽位 %d</translation>
+    </message>
+    <message>
+        <source>State saved to file</source>
+        <translation>已保存即时存档到文件</translation>
+    </message>
+    <message>
+        <source>State save failed</source>
+        <translation>即时存档保存失败</translation>
+    </message>
+    <message>
+        <source>State slot %d is empty</source>
+        <translation>即时存档槽位 %d 为空</translation>
+    </message>
+    <message>
+        <source>State file does not exist</source>
+        <translation>即时存档文件不存在</translation>
+    </message>
+    <message>
+        <source>State loaded from slot %d</source>
+        <translation>已从槽位 %d 读取即时存档</translation>
+    </message>
+    <message>
+        <source>State loaded from file</source>
+        <translation>已从文件读取即时存档</translation>
+    </message>
+    <message>
+        <source>State load failed</source>
+        <translation>即时存档读取失败</translation>
+    </message>
+    <message>
+        <source>State load undone</source>
+        <translation>已撤销读取即时存档</translation>
+    </message>
+</context>
+<context>
     <name>PathSettingsDialog</name>
     <message>
         <source>Path settings - melonDS</source>

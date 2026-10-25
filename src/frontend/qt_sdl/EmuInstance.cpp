@@ -29,6 +29,7 @@
 #include <fstream>
 
 #include <QDateTime>
+#include <QCoreApplication>
 
 #include <zstd.h>
 #ifdef ARCHIVE_SUPPORT_ENABLED
@@ -329,10 +330,15 @@ void EmuInstance::osdAddMessage(unsigned int color, const char* fmt, ...)
     if (fmt == nullptr)
         return;
 
+    // Call sites mark their format strings with QT_TRANSLATE_NOOP("OSD", ...),
+    // so the (printf-style) format is translated here before formatting.
+    // The result is UTF-8; the OSD renderer handles non-ASCII text.
+    QByteArray tfmt = QCoreApplication::translate("OSD", fmt).toUtf8();
+
     char msg[256];
     va_list args;
     va_start(args, fmt);
-    vsnprintf(msg, 256, fmt, args);
+    vsnprintf(msg, 256, tfmt.constData(), args);
     va_end(args);
 
     for (int i = 0; i < kMaxWindows; i++)
@@ -358,14 +364,14 @@ void EmuInstance::emuStop(StopReason reason)
     switch (reason)
     {
         case StopReason::GBAModeNotSupported:
-            osdAddMessage(0xFFA0A0, "GBA mode not supported");
+            osdAddMessage(0xFFA0A0, QT_TRANSLATE_NOOP("OSD", "GBA mode not supported"));
             break;
         case StopReason::BadExceptionRegion:
-            osdAddMessage(0xFFA0A0, "Internal error");
+            osdAddMessage(0xFFA0A0, QT_TRANSLATE_NOOP("OSD", "Internal error"));
             break;
         case StopReason::PowerOff:
         case StopReason::External:
-            osdAddMessage(0xFFC040, "Shutdown");
+            osdAddMessage(0xFFC040, QT_TRANSLATE_NOOP("OSD", "Shutdown"));
         default:
             break;
     }

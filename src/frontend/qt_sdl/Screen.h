@@ -29,6 +29,7 @@
 #include <QScreen>
 #include <QCloseEvent>
 #include <QTimer>
+#include <QFontMetrics>
 
 #include "glad/glad.h"
 #include "ScreenLayout.h"
@@ -142,8 +143,8 @@ protected:
 
     void showCursor();
 
-    int osdFindBreakPoint(const char* text, int i);
-    void osdLayoutText(const char* text, int* width, int* height, int* breaks);
+    int osdFindBreakPoint(const uint* text, int i);
+    void osdLayoutText(const uint* text, const QFontMetrics& fm, int* width, int* height, int* breaks);
     unsigned int osdRainbowColor(int inc);
 
     virtual void osdRenderItem(OSDItem* item);
