@@ -219,6 +219,7 @@ MainWindow::MainWindow(int id, EmuInstance* inst, QWidget* parent) :
     focused(true),
     wasMaximized(false),
     sizingBeforeEven(screenSizing_EmphTop),
+    menuBarHidden(false),
     confirmPending(false)
 {
 
@@ -2400,8 +2401,6 @@ void MainWindow::toggleFullscreen()
         }
         wasMaximized = isMaximized();
         showFullScreen();
-        if (hasMenu)
-            menuBar()->setFixedHeight(0); // Don't use hide() as menubar actions stop working
     }
     else
     {
@@ -2409,17 +2408,38 @@ void MainWindow::toggleFullscreen()
             showMaximized();
         else
             showNormal();
-        if (hasMenu)
-        {
-            int menuBarHeight = menuBar()->sizeHint().height();
-            menuBar()->setFixedHeight(menuBarHeight);
-        }
     }
+
+    // fullscreen always hides the menu bar; leaving it restores the
+    // hotkey-chosen state
+    updateMenuBarVisibility();
+}
+
+void MainWindow::updateMenuBarVisibility()
+{
+    if (!hasMenu) return;
+
+    // Don't use hide() as menubar actions stop working
+    if (menuBarHidden || isFullScreen())
+        menuBar()->setFixedHeight(0);
+    else
+        menuBar()->setFixedHeight(menuBar()->sizeHint().height());
 }
 
 void MainWindow::onFullscreenToggled()
 {
     toggleFullscreen();
+}
+
+void MainWindow::onMenuBarToggled()
+{
+    if (!hasMenu) return;
+
+    menuBarHidden = !menuBarHidden;
+    updateMenuBarVisibility();
+
+    if (menuBarHidden && !isFullScreen())
+        osdAddMessage(0, QCoreApplication::translate("OSD", "Menu bar hidden, press the hotkey again to show it").toUtf8().constData());
 }
 
 void MainWindow::onScreenLayoutToggled()

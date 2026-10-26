@@ -199,6 +199,7 @@ private slots:
     void onUpdateVideoSettings(bool glchange);
 
     void onFullscreenToggled();
+    void onMenuBarToggled();
     void onScreenEmphasisToggled();
     void onScreenLayoutToggled();
     void onScreenEvenToggled();
@@ -232,6 +233,11 @@ private:
 
     // sizing mode to restore when the even-sizing hotkey is pressed again
     int sizingBeforeEven;
+
+    // Hidden with the menu bar hotkey. Deliberately not saved: the hotkey is
+    // the only way back, so every launch starts with the menu bar visible.
+    bool menuBarHidden;
+    void updateMenuBarVisibility();
 
     bool confirmPending;
     bool confirmEmuAction(const QString& question);

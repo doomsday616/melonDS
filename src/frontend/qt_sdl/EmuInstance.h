@@ -65,6 +65,7 @@ enum
     HK_SwapScreenLayouts,
     HK_ScreenEvenToggle,
     HK_ReloadMostRecentROM,
+    HK_MenuBarToggle,
     HK_MAX
 };
 

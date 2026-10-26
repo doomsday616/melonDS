@@ -81,6 +81,7 @@ void EmuThread::attachWindow(MainWindow* window)
     connect(this, SIGNAL(windowEmuReset()), window, SLOT(onEmuReset()));
     connect(this, SIGNAL(autoScreenSizingChange(int)), window->panel, SLOT(onAutoScreenSizingChanged(int)));
     connect(this, SIGNAL(windowFullscreenToggle()), window, SLOT(onFullscreenToggled()));
+    connect(this, SIGNAL(windowMenuBarToggle()), window, SLOT(onMenuBarToggled()));
     connect(this, SIGNAL(screenEmphasisToggle()), window, SLOT(onScreenEmphasisToggled()));
     connect(this, SIGNAL(screenLayoutToggle()), window, SLOT(onScreenLayoutToggled()));
     connect(this, SIGNAL(screenEvenToggle()), window, SLOT(onScreenEvenToggled()));
@@ -109,6 +110,7 @@ void EmuThread::detachWindow(MainWindow* window)
     disconnect(this, SIGNAL(windowEmuReset()), window, SLOT(onEmuReset()));
     disconnect(this, SIGNAL(autoScreenSizingChange(int)), window->panel, SLOT(onAutoScreenSizingChanged(int)));
     disconnect(this, SIGNAL(windowFullscreenToggle()), window, SLOT(onFullscreenToggled()));
+    disconnect(this, SIGNAL(windowMenuBarToggle()), window, SLOT(onMenuBarToggled()));
     disconnect(this, SIGNAL(screenEmphasisToggle()), window, SLOT(onScreenEmphasisToggled()));
     disconnect(this, SIGNAL(screenLayoutToggle()), window, SLOT(onScreenLayoutToggled()));
     disconnect(this, SIGNAL(screenEvenToggle()), window, SLOT(onScreenEvenToggled()));
@@ -210,6 +212,9 @@ void EmuThread::run()
         if (emuInstance->hotkeyPressed(HK_ScreenEvenToggle)) emit screenEvenToggle();
 
         if (emuInstance->hotkeyPressed(HK_TakeScreenshot)) emuScreenshot();
+
+        // the menu bar belongs to the GUI thread; only signal it from here
+        if (emuInstance->hotkeyPressed(HK_MenuBarToggle)) emit windowMenuBarToggle();
 
         if (emuStatus == emuStatus_Running || emuStatus == emuStatus_FrameStep)
         {
