@@ -879,6 +879,16 @@ Accès tenté :
         <translation>Dump de firmware problématique</translation>
     </message>
     <message>
+        <source>You are using an old version (v1-v4) of FlashMe firmware dump.
+Firmware boot will stop working if you run any game that alters WFC settings.
+
+Note that the issue is not from melonDS, it would also happen on an actual DS.</source>
+        <translation>Vous utilisez un dump de firmware avec une ancienne version de FlashMe (v1-v4).
+Le démarrage du firmware ne fonctionnera plus si vous lancez un jeu qui modifie les paramètres WFC.
+
+Ce problème ne vient pas de melonDS, il se produirait aussi sur une vraie DS.</translation>
+    </message>
+    <message>
         <source>You are using an old hacked firmware dump.
 Firmware boot will stop working if you run any game that alters WFC settings.
 
@@ -1460,6 +1470,18 @@ Veuillez vérifier les droits d&apos;écriture du fichier/dossier.</translation>
         <source>Toggle audio mute</source>
         <translation>Basculer la coupure du son</translation>
     </message>
+    <message>
+        <source>Quick save state (slot 1)</source>
+        <translation>Sauvegarde d&apos;état rapide (emplacement 1)</translation>
+    </message>
+    <message>
+        <source>Quick load state (slot 1)</source>
+        <translation>Chargement d&apos;état rapide (emplacement 1)</translation>
+    </message>
+    <message>
+        <source>Take screenshot</source>
+        <translation>Prendre une capture d&apos;écran</translation>
+    </message>
 </context>
 <context>
     <name>InterfaceSettingsDialog</name>
@@ -1498,6 +1520,10 @@ Veuillez vérifier les droits d&apos;écriture du fichier/dossier.</translation>
     <message>
         <source>Mute audio while fast forwarding</source>
         <translation>Couper le son pendant l&apos;avance rapide</translation>
+    </message>
+    <message>
+        <source>Ask for confirmation before resetting or stopping emulation</source>
+        <translation>Demander confirmation avant de réinitialiser ou d&apos;arrêter l&apos;émulation</translation>
     </message>
     <message>
         <source>Framerate </source>
@@ -2197,6 +2223,14 @@ Veuillez vérifier les droits d&apos;écriture du fichier/dossier.</translation>
         <translation>Impossible d&apos;importer la sauvegarde indiquée.</translation>
     </message>
     <message>
+        <source>Are you sure you want to reset the emulation?</source>
+        <translation>Voulez-vous vraiment réinitialiser l&apos;émulation ?</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to stop the emulation?</source>
+        <translation>Voulez-vous vraiment arrêter l&apos;émulation ?</translation>
+    </message>
+    <message>
         <source>Multiple emulator instances are currently open.
 If you host a LAN game now, all secondary instances will be closed.
 
@@ -2277,6 +2311,10 @@ Voulez-vous continuer ?</translation>
         <translation>Arrêt</translation>
     </message>
     <message>
+        <source>Failed to apply emulation settings, check BIOS/firmware paths</source>
+        <translation>Impossible d&apos;appliquer les paramètres d&apos;émulation, vérifiez les chemins BIOS/firmware</translation>
+    </message>
+    <message>
         <source>Solar sensor level: %d</source>
         <translation>Niveau du capteur solaire : %d</translation>
     </message>
@@ -2299,6 +2337,18 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Reset</source>
         <translation>Réinitialisé</translation>
+    </message>
+    <message>
+        <source>Failed to take screenshot</source>
+        <translation>Échec de la capture d&apos;écran</translation>
+    </message>
+    <message>
+        <source>Screenshot saved: %s</source>
+        <translation>Capture d&apos;écran enregistrée : %s</translation>
+    </message>
+    <message>
+        <source>Failed to save screenshot: %s</source>
+        <translation>Échec de l&apos;enregistrement de la capture d&apos;écran : %s</translation>
     </message>
     <message>
         <source>Compiling shader %d/%d</source>
@@ -2368,6 +2418,10 @@ Voulez-vous continuer ?</translation>
         <translation>Chemin des sauvegardes d&apos;état :</translation>
     </message>
     <message>
+        <source>Screenshots path:</source>
+        <translation>Chemin des captures d&apos;écran :</translation>
+    </message>
+    <message>
         <source>Save files path:</source>
         <translation>Chemin des sauvegardes :</translation>
     </message>
@@ -2406,6 +2460,10 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>Select cheat files path...</source>
         <translation>Sélectionner le chemin des fichiers de triche...</translation>
+    </message>
+    <message>
+        <source>Select screenshots path...</source>
+        <translation>Sélectionner le chemin des captures d&apos;écran...</translation>
     </message>
 </context>
 <context>

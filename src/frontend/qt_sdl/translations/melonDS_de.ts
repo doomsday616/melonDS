@@ -879,6 +879,16 @@ Versuchter Zugriff auf:
         <translation>Problematischer Firmware-Dump</translation>
     </message>
     <message>
+        <source>You are using an old version (v1-v4) of FlashMe firmware dump.
+Firmware boot will stop working if you run any game that alters WFC settings.
+
+Note that the issue is not from melonDS, it would also happen on an actual DS.</source>
+        <translation>Sie verwenden einen Firmware-Dump mit einer alten FlashMe-Version (v1-v4).
+Der Firmware-Start funktioniert nicht mehr, sobald Sie ein Spiel ausführen, das die WFC-Einstellungen ändert.
+
+Das Problem liegt nicht an melonDS, es würde auch auf einem echten DS auftreten.</translation>
+    </message>
+    <message>
         <source>You are using an old hacked firmware dump.
 Firmware boot will stop working if you run any game that alters WFC settings.
 
@@ -1460,6 +1470,18 @@ Bitte prüfen Sie die Schreibrechte für Datei/Ordner.</translation>
         <source>Toggle audio mute</source>
         <translation>Stummschaltung umschalten</translation>
     </message>
+    <message>
+        <source>Quick save state (slot 1)</source>
+        <translation>Schnell-Speicherstand speichern (Slot 1)</translation>
+    </message>
+    <message>
+        <source>Quick load state (slot 1)</source>
+        <translation>Schnell-Speicherstand laden (Slot 1)</translation>
+    </message>
+    <message>
+        <source>Take screenshot</source>
+        <translation>Screenshot aufnehmen</translation>
+    </message>
 </context>
 <context>
     <name>InterfaceSettingsDialog</name>
@@ -1498,6 +1520,10 @@ Bitte prüfen Sie die Schreibrechte für Datei/Ordner.</translation>
     <message>
         <source>Mute audio while fast forwarding</source>
         <translation>Ton beim Vorspulen stummschalten</translation>
+    </message>
+    <message>
+        <source>Ask for confirmation before resetting or stopping emulation</source>
+        <translation>Vor dem Zurücksetzen oder Stoppen der Emulation nachfragen</translation>
     </message>
     <message>
         <source>Framerate </source>
@@ -2197,6 +2223,14 @@ Bitte prüfen Sie die Schreibrechte für Datei/Ordner.</translation>
         <translation>Die angegebene Spielstand-Datei konnte nicht importiert werden.</translation>
     </message>
     <message>
+        <source>Are you sure you want to reset the emulation?</source>
+        <translation>Möchten Sie die Emulation wirklich zurücksetzen?</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to stop the emulation?</source>
+        <translation>Möchten Sie die Emulation wirklich stoppen?</translation>
+    </message>
+    <message>
         <source>Multiple emulator instances are currently open.
 If you host a LAN game now, all secondary instances will be closed.
 
@@ -2277,6 +2311,10 @@ Möchten Sie fortfahren?</translation>
         <translation>Ausgeschaltet</translation>
     </message>
     <message>
+        <source>Failed to apply emulation settings, check BIOS/firmware paths</source>
+        <translation>Emulationseinstellungen konnten nicht übernommen werden, BIOS-/Firmware-Pfade prüfen</translation>
+    </message>
+    <message>
         <source>Solar sensor level: %d</source>
         <translation>Sonnensensor-Stufe: %d</translation>
     </message>
@@ -2299,6 +2337,18 @@ Möchten Sie fortfahren?</translation>
     <message>
         <source>Reset</source>
         <translation>Zurückgesetzt</translation>
+    </message>
+    <message>
+        <source>Failed to take screenshot</source>
+        <translation>Screenshot konnte nicht aufgenommen werden</translation>
+    </message>
+    <message>
+        <source>Screenshot saved: %s</source>
+        <translation>Screenshot gespeichert: %s</translation>
+    </message>
+    <message>
+        <source>Failed to save screenshot: %s</source>
+        <translation>Screenshot konnte nicht gespeichert werden: %s</translation>
     </message>
     <message>
         <source>Compiling shader %d/%d</source>
@@ -2368,6 +2418,10 @@ Möchten Sie fortfahren?</translation>
         <translation>Pfad für Speicherstände:</translation>
     </message>
     <message>
+        <source>Screenshots path:</source>
+        <translation>Pfad für Screenshots:</translation>
+    </message>
+    <message>
         <source>Save files path:</source>
         <translation>Pfad für Spielstand-Dateien:</translation>
     </message>
@@ -2406,6 +2460,10 @@ Möchten Sie fortfahren?</translation>
     <message>
         <source>Select cheat files path...</source>
         <translation>Pfad für Cheat-Dateien auswählen...</translation>
+    </message>
+    <message>
+        <source>Select screenshots path...</source>
+        <translation>Pfad für Screenshots auswählen...</translation>
     </message>
 </context>
 <context>

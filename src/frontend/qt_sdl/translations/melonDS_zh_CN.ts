@@ -879,6 +879,16 @@ Attempted to Access:
         <translation>有问题的固件转储</translation>
     </message>
     <message>
+        <source>You are using an old version (v1-v4) of FlashMe firmware dump.
+Firmware boot will stop working if you run any game that alters WFC settings.
+
+Note that the issue is not from melonDS, it would also happen on an actual DS.</source>
+        <translation>您正在使用旧版（v1-v4）FlashMe 固件转储。
+运行任何会修改 WFC 设置的游戏后，固件将无法启动。
+
+注意：此问题并非 melonDS 导致，在 DS 实机上同样会发生。</translation>
+    </message>
+    <message>
         <source>You are using an old hacked firmware dump.
 Firmware boot will stop working if you run any game that alters WFC settings.
 
@@ -1460,6 +1470,18 @@ Please check file/folder write permissions.</source>
         <source>Toggle audio mute</source>
         <translation>切换静音</translation>
     </message>
+    <message>
+        <source>Quick save state (slot 1)</source>
+        <translation>快速保存即时存档（槽位 1）</translation>
+    </message>
+    <message>
+        <source>Quick load state (slot 1)</source>
+        <translation>快速读取即时存档（槽位 1）</translation>
+    </message>
+    <message>
+        <source>Take screenshot</source>
+        <translation>截图</translation>
+    </message>
 </context>
 <context>
     <name>InterfaceSettingsDialog</name>
@@ -1498,6 +1520,10 @@ Please check file/folder write permissions.</source>
     <message>
         <source>Mute audio while fast forwarding</source>
         <translation>快进时静音</translation>
+    </message>
+    <message>
+        <source>Ask for confirmation before resetting or stopping emulation</source>
+        <translation>重置或停止模拟前询问确认</translation>
     </message>
     <message>
         <source>Framerate </source>
@@ -2197,6 +2223,14 @@ Please check file/folder write permissions.</source>
         <translation>无法导入指定的存档文件。</translation>
     </message>
     <message>
+        <source>Are you sure you want to reset the emulation?</source>
+        <translation>确定要重置模拟吗？</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to stop the emulation?</source>
+        <translation>确定要停止模拟吗？</translation>
+    </message>
+    <message>
         <source>Multiple emulator instances are currently open.
 If you host a LAN game now, all secondary instances will be closed.
 
@@ -2277,6 +2311,10 @@ Do you wish to continue?</source>
         <translation>已关机</translation>
     </message>
     <message>
+        <source>Failed to apply emulation settings, check BIOS/firmware paths</source>
+        <translation>无法应用模拟设置，请检查 BIOS/固件路径</translation>
+    </message>
+    <message>
         <source>Solar sensor level: %d</source>
         <translation>太阳传感器等级：%d</translation>
     </message>
@@ -2299,6 +2337,18 @@ Do you wish to continue?</source>
     <message>
         <source>Reset</source>
         <translation>已重置</translation>
+    </message>
+    <message>
+        <source>Failed to take screenshot</source>
+        <translation>截图失败</translation>
+    </message>
+    <message>
+        <source>Screenshot saved: %s</source>
+        <translation>截图已保存：%s</translation>
+    </message>
+    <message>
+        <source>Failed to save screenshot: %s</source>
+        <translation>截图保存失败：%s</translation>
     </message>
     <message>
         <source>Compiling shader %d/%d</source>
@@ -2368,6 +2418,10 @@ Do you wish to continue?</source>
         <translation>即时存档路径：</translation>
     </message>
     <message>
+        <source>Screenshots path:</source>
+        <translation>截图路径：</translation>
+    </message>
+    <message>
         <source>Save files path:</source>
         <translation>存档文件路径：</translation>
     </message>
@@ -2406,6 +2460,10 @@ Do you wish to continue?</source>
     <message>
         <source>Select cheat files path...</source>
         <translation>选择金手指文件路径...</translation>
+    </message>
+    <message>
+        <source>Select screenshots path...</source>
+        <translation>选择截图路径...</translation>
     </message>
 </context>
 <context>

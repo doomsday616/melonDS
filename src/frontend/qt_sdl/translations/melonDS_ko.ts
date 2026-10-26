@@ -879,6 +879,16 @@ Attempted to Access:
         <translation>문제가 있는 펌웨어 덤프</translation>
     </message>
     <message>
+        <source>You are using an old version (v1-v4) of FlashMe firmware dump.
+Firmware boot will stop working if you run any game that alters WFC settings.
+
+Note that the issue is not from melonDS, it would also happen on an actual DS.</source>
+        <translation>오래된 버전(v1-v4)의 FlashMe 펌웨어 덤프를 사용하고 있습니다.
+WFC 설정을 변경하는 게임을 실행하면 펌웨어 부팅이 더 이상 되지 않습니다.
+
+이 문제는 melonDS 때문이 아니며, 실제 DS에서도 똑같이 발생합니다.</translation>
+    </message>
+    <message>
         <source>You are using an old hacked firmware dump.
 Firmware boot will stop working if you run any game that alters WFC settings.
 
@@ -1460,6 +1470,18 @@ Please check file/folder write permissions.</source>
         <source>Toggle audio mute</source>
         <translation>음소거 전환</translation>
     </message>
+    <message>
+        <source>Quick save state (slot 1)</source>
+        <translation>빠른 상태 저장(슬롯 1)</translation>
+    </message>
+    <message>
+        <source>Quick load state (slot 1)</source>
+        <translation>빠른 상태 불러오기(슬롯 1)</translation>
+    </message>
+    <message>
+        <source>Take screenshot</source>
+        <translation>스크린샷 찍기</translation>
+    </message>
 </context>
 <context>
     <name>InterfaceSettingsDialog</name>
@@ -1498,6 +1520,10 @@ Please check file/folder write permissions.</source>
     <message>
         <source>Mute audio while fast forwarding</source>
         <translation>빨리 감기 중 음소거</translation>
+    </message>
+    <message>
+        <source>Ask for confirmation before resetting or stopping emulation</source>
+        <translation>리셋 또는 정지 전에 확인 묻기</translation>
     </message>
     <message>
         <source>Framerate </source>
@@ -2197,6 +2223,14 @@ Please check file/folder write permissions.</source>
         <translation>지정한 세이브 파일을 가져올 수 없습니다.</translation>
     </message>
     <message>
+        <source>Are you sure you want to reset the emulation?</source>
+        <translation>에뮬레이션을 리셋할까요?</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to stop the emulation?</source>
+        <translation>에뮬레이션을 정지할까요?</translation>
+    </message>
+    <message>
         <source>Multiple emulator instances are currently open.
 If you host a LAN game now, all secondary instances will be closed.
 
@@ -2277,6 +2311,10 @@ Do you wish to continue?</source>
         <translation>전원 꺼짐</translation>
     </message>
     <message>
+        <source>Failed to apply emulation settings, check BIOS/firmware paths</source>
+        <translation>에뮬레이션 설정을 적용하지 못했습니다. BIOS/펌웨어 경로를 확인하세요</translation>
+    </message>
+    <message>
         <source>Solar sensor level: %d</source>
         <translation>태양 센서 레벨: %d</translation>
     </message>
@@ -2299,6 +2337,18 @@ Do you wish to continue?</source>
     <message>
         <source>Reset</source>
         <translation>리셋됨</translation>
+    </message>
+    <message>
+        <source>Failed to take screenshot</source>
+        <translation>스크린샷을 찍지 못했습니다</translation>
+    </message>
+    <message>
+        <source>Screenshot saved: %s</source>
+        <translation>스크린샷 저장됨: %s</translation>
+    </message>
+    <message>
+        <source>Failed to save screenshot: %s</source>
+        <translation>스크린샷 저장 실패: %s</translation>
     </message>
     <message>
         <source>Compiling shader %d/%d</source>
@@ -2368,6 +2418,10 @@ Do you wish to continue?</source>
         <translation>상태 저장 경로:</translation>
     </message>
     <message>
+        <source>Screenshots path:</source>
+        <translation>스크린샷 경로:</translation>
+    </message>
+    <message>
         <source>Save files path:</source>
         <translation>세이브 파일 경로:</translation>
     </message>
@@ -2406,6 +2460,10 @@ Do you wish to continue?</source>
     <message>
         <source>Select cheat files path...</source>
         <translation>치트 파일 경로 선택...</translation>
+    </message>
+    <message>
+        <source>Select screenshots path...</source>
+        <translation>스크린샷 경로 선택...</translation>
     </message>
 </context>
 <context>

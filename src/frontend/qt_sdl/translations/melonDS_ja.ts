@@ -879,6 +879,16 @@ Attempted to Access:
         <translation>問題のあるファームウェアダンプ</translation>
     </message>
     <message>
+        <source>You are using an old version (v1-v4) of FlashMe firmware dump.
+Firmware boot will stop working if you run any game that alters WFC settings.
+
+Note that the issue is not from melonDS, it would also happen on an actual DS.</source>
+        <translation>古いバージョン（v1-v4）の FlashMe ファームウェアダンプを使用しています。
+WFC 設定を変更するゲームを起動すると、ファームウェアが起動しなくなります。
+
+この問題は melonDS が原因ではなく、DS 実機でも同様に発生します。</translation>
+    </message>
+    <message>
         <source>You are using an old hacked firmware dump.
 Firmware boot will stop working if you run any game that alters WFC settings.
 
@@ -1460,6 +1470,18 @@ Please check file/folder write permissions.</source>
         <source>Toggle audio mute</source>
         <translation>ミュートの切り替え</translation>
     </message>
+    <message>
+        <source>Quick save state (slot 1)</source>
+        <translation>クイックステートセーブ（スロット 1）</translation>
+    </message>
+    <message>
+        <source>Quick load state (slot 1)</source>
+        <translation>クイックステートロード（スロット 1）</translation>
+    </message>
+    <message>
+        <source>Take screenshot</source>
+        <translation>スクリーンショットを撮る</translation>
+    </message>
 </context>
 <context>
     <name>InterfaceSettingsDialog</name>
@@ -1498,6 +1520,10 @@ Please check file/folder write permissions.</source>
     <message>
         <source>Mute audio while fast forwarding</source>
         <translation>早送り中はミュート</translation>
+    </message>
+    <message>
+        <source>Ask for confirmation before resetting or stopping emulation</source>
+        <translation>リセット・停止の前に確認する</translation>
     </message>
     <message>
         <source>Framerate </source>
@@ -2197,6 +2223,14 @@ Please check file/folder write permissions.</source>
         <translation>指定したセーブファイルをインポートできませんでした。</translation>
     </message>
     <message>
+        <source>Are you sure you want to reset the emulation?</source>
+        <translation>エミュレーションをリセットしますか？</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to stop the emulation?</source>
+        <translation>エミュレーションを停止しますか？</translation>
+    </message>
+    <message>
         <source>Multiple emulator instances are currently open.
 If you host a LAN game now, all secondary instances will be closed.
 
@@ -2277,6 +2311,10 @@ Do you wish to continue?</source>
         <translation>電源オフ</translation>
     </message>
     <message>
+        <source>Failed to apply emulation settings, check BIOS/firmware paths</source>
+        <translation>エミュレーション設定を適用できませんでした。BIOS/ファームウェアのパスを確認してください</translation>
+    </message>
+    <message>
         <source>Solar sensor level: %d</source>
         <translation>太陽センサーのレベル：%d</translation>
     </message>
@@ -2299,6 +2337,18 @@ Do you wish to continue?</source>
     <message>
         <source>Reset</source>
         <translation>リセット</translation>
+    </message>
+    <message>
+        <source>Failed to take screenshot</source>
+        <translation>スクリーンショットの撮影に失敗しました</translation>
+    </message>
+    <message>
+        <source>Screenshot saved: %s</source>
+        <translation>スクリーンショットを保存しました：%s</translation>
+    </message>
+    <message>
+        <source>Failed to save screenshot: %s</source>
+        <translation>スクリーンショットの保存に失敗しました：%s</translation>
     </message>
     <message>
         <source>Compiling shader %d/%d</source>
@@ -2368,6 +2418,10 @@ Do you wish to continue?</source>
         <translation>ステートセーブのパス：</translation>
     </message>
     <message>
+        <source>Screenshots path:</source>
+        <translation>スクリーンショットのパス：</translation>
+    </message>
+    <message>
         <source>Save files path:</source>
         <translation>セーブファイルのパス：</translation>
     </message>
@@ -2406,6 +2460,10 @@ Do you wish to continue?</source>
     <message>
         <source>Select cheat files path...</source>
         <translation>チートファイルのパスを選択...</translation>
+    </message>
+    <message>
+        <source>Select screenshots path...</source>
+        <translation>スクリーンショットのパスを選択...</translation>
     </message>
 </context>
 <context>
