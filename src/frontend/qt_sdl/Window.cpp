@@ -2323,6 +2323,11 @@ void MainWindow::toggleFullscreen()
 {
     if (!isFullScreen())
     {
+        if (QApplication::activeModalWidget() || QApplication::activePopupWidget())
+        {
+            // Block entering fullscreen while a dialog/popup is active
+            return;
+        }
         wasMaximized = isMaximized();
         showFullScreen();
         if (hasMenu)
