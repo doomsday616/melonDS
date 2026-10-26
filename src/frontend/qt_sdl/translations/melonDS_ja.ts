@@ -4,12 +4,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About melonDS</source>
-        <translation>melonDS について</translation>
+        <source>About melonDS Community</source>
+        <translation>melonDS Community について</translation>
     </message>
     <message>
-        <source>melonDS</source>
-        <translation>melonDS</translation>
+        <source>melonDS Community</source>
+        <translation>melonDS Community</translation>
     </message>
     <message>
         <source>[VERSION INFO PLACEHOLDER]</source>
@@ -24,8 +24,8 @@
         <translation>[EMBEDDED BUILD INFO PLACEHOLDER]</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Licensed under the GNU General Public License v3 or any newer version.&lt;/p&gt;&lt;p&gt;melonDS is intended only for use with software that you own.&lt;/p&gt;&lt;p&gt;The Nintendo DS and Nintendo DSi systems are the property of Nintendo.&lt;br /&gt;melonDS and the melonDS team are not affiliated with or endorsed by Nintendo.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;GNU General Public License バージョン 3 またはそれ以降のバージョンの下でライセンスされています。&lt;/p&gt;&lt;p&gt;melonDS は、ご自身が所有するソフトウェアでのみ使用してください。&lt;/p&gt;&lt;p&gt;ニンテンドーDS およびニンテンドーDSi は任天堂の財産です。&lt;br /&gt;melonDS および melonDS チームは任天堂とは一切関係がなく、任天堂の承認を受けたものではありません。&lt;/p&gt;&lt;p&gt;日本語訳は非公式のものです。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Licensed under the GNU General Public License v3 or any newer version.&lt;/p&gt;&lt;p&gt;melonDS is intended only for use with software that you own.&lt;/p&gt;&lt;p&gt;The Nintendo DS and Nintendo DSi systems are the property of Nintendo.&lt;br /&gt;melonDS and the melonDS team are not affiliated with or endorsed by Nintendo.&lt;/p&gt;&lt;p&gt;melonDS Community is an unofficial community edition and is not affiliated with the melonDS team.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;GNU General Public License バージョン 3 またはそれ以降のバージョンの下でライセンスされています。&lt;/p&gt;&lt;p&gt;melonDS は、ご自身が所有するソフトウェアでのみ使用してください。&lt;/p&gt;&lt;p&gt;ニンテンドーDS およびニンテンドーDSi は任天堂の財産です。&lt;br /&gt;melonDS および melonDS チームは任天堂とは一切関係がなく、任天堂の承認を受けたものではありません。&lt;/p&gt;&lt;p&gt;melonDS Community は非公式のコミュニティ版であり、melonDS チームとは関係ありません。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Visit the &amp;website</source>
@@ -42,6 +42,10 @@
     <message>
         <source>Version %1</source>
         <translation>バージョン %1</translation>
+    </message>
+    <message>
+        <source>Based on melonDS %1</source>
+        <translation>melonDS %1 ベース</translation>
     </message>
     <message>
         <source>Branch: %1

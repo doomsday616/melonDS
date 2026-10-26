@@ -85,11 +85,11 @@ Scarica il file per la tua piattaforma dalla [pagina dell'ultima release](https:
 
 | Piattaforma | File |
 | --- | --- |
-| Windows (x86_64) | `melonDS-community-1.2.1-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-community-1.2.1-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-community-1.2.1-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-community-1.2.1-linux-aarch64.AppImage` |
-| macOS (Universal) | `melonDS-community-1.2.1-macos-universal.zip` |
+| Windows (x86_64) | `melonDS-community-1.2.2-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-community-1.2.2-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-community-1.2.2-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-community-1.2.2-linux-aarch64.AppImage` |
+| macOS (Universal) | `melonDS-community-1.2.2-macos-universal.zip` |
 
 L'archivio per Windows contiene solo `melonDS.exe` ed è portatile: non serve installare nulla e le impostazioni vengono salvate in `melonDS.toml` nella stessa cartella.
 

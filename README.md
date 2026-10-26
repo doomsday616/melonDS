@@ -90,11 +90,11 @@ Grab the latest build from the [Releases page](https://github.com/doomsday616/me
 
 | Platform | File |
 |---|---|
-| Windows (x86_64, most PCs) | `melonDS-community-1.2.1-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-community-1.2.1-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-community-1.2.1-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-community-1.2.1-linux-aarch64.AppImage` |
-| macOS (Intel and Apple silicon) | `melonDS-community-1.2.1-macos-universal.zip` |
+| Windows (x86_64, most PCs) | `melonDS-community-1.2.2-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-community-1.2.2-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-community-1.2.2-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-community-1.2.2-linux-aarch64.AppImage` |
+| macOS (Intel and Apple silicon) | `melonDS-community-1.2.2-macos-universal.zip` |
 
 The Windows zip contains just `melonDS.exe`. It is portable: nothing is installed, and settings are written next to the executable.
 

@@ -4,12 +4,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About melonDS</source>
-        <translation>melonDS 정보</translation>
+        <source>About melonDS Community</source>
+        <translation>melonDS Community 정보</translation>
     </message>
     <message>
-        <source>melonDS</source>
-        <translation>melonDS</translation>
+        <source>melonDS Community</source>
+        <translation>melonDS Community</translation>
     </message>
     <message>
         <source>[VERSION INFO PLACEHOLDER]</source>
@@ -24,8 +24,8 @@
         <translation>[EMBEDDED BUILD INFO PLACEHOLDER]</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Licensed under the GNU General Public License v3 or any newer version.&lt;/p&gt;&lt;p&gt;melonDS is intended only for use with software that you own.&lt;/p&gt;&lt;p&gt;The Nintendo DS and Nintendo DSi systems are the property of Nintendo.&lt;br /&gt;melonDS and the melonDS team are not affiliated with or endorsed by Nintendo.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;GNU General Public License 버전 3 또는 그 이후 버전에 따라 배포됩니다.&lt;/p&gt;&lt;p&gt;melonDS는 본인이 소유한 소프트웨어에만 사용해야 합니다.&lt;/p&gt;&lt;p&gt;닌텐도 DS 및 닌텐도 DSi는 닌텐도의 자산입니다.&lt;br /&gt;melonDS 및 melonDS 팀은 닌텐도와 관련이 없으며 닌텐도의 승인을 받지 않았습니다.&lt;/p&gt;&lt;p&gt;한국어 번역은 비공식 번역입니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Licensed under the GNU General Public License v3 or any newer version.&lt;/p&gt;&lt;p&gt;melonDS is intended only for use with software that you own.&lt;/p&gt;&lt;p&gt;The Nintendo DS and Nintendo DSi systems are the property of Nintendo.&lt;br /&gt;melonDS and the melonDS team are not affiliated with or endorsed by Nintendo.&lt;/p&gt;&lt;p&gt;melonDS Community is an unofficial community edition and is not affiliated with the melonDS team.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;GNU General Public License 버전 3 또는 그 이후 버전에 따라 배포됩니다.&lt;/p&gt;&lt;p&gt;melonDS는 본인이 소유한 소프트웨어에만 사용해야 합니다.&lt;/p&gt;&lt;p&gt;닌텐도 DS 및 닌텐도 DSi는 닌텐도의 자산입니다.&lt;br /&gt;melonDS 및 melonDS 팀은 닌텐도와 관련이 없으며 닌텐도의 승인을 받지 않았습니다.&lt;/p&gt;&lt;p&gt;melonDS Community는 비공식 커뮤니티 에디션이며 melonDS 팀과 관련이 없습니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Visit the &amp;website</source>
@@ -42,6 +42,10 @@
     <message>
         <source>Version %1</source>
         <translation>버전 %1</translation>
+    </message>
+    <message>
+        <source>Based on melonDS %1</source>
+        <translation>melonDS %1 기반</translation>
     </message>
     <message>
         <source>Branch: %1

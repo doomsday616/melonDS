@@ -4,12 +4,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About melonDS</source>
-        <translation>Über melonDS</translation>
+        <source>About melonDS Community</source>
+        <translation>Über melonDS Community</translation>
     </message>
     <message>
-        <source>melonDS</source>
-        <translation>melonDS</translation>
+        <source>melonDS Community</source>
+        <translation>melonDS Community</translation>
     </message>
     <message>
         <source>[VERSION INFO PLACEHOLDER]</source>
@@ -24,8 +24,8 @@
         <translation>[EMBEDDED BUILD INFO PLACEHOLDER]</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Licensed under the GNU General Public License v3 or any newer version.&lt;/p&gt;&lt;p&gt;melonDS is intended only for use with software that you own.&lt;/p&gt;&lt;p&gt;The Nintendo DS and Nintendo DSi systems are the property of Nintendo.&lt;br /&gt;melonDS and the melonDS team are not affiliated with or endorsed by Nintendo.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lizenziert unter der GNU General Public License v3 oder einer neueren Version.&lt;/p&gt;&lt;p&gt;melonDS ist nur für die Verwendung mit Software gedacht, die Sie besitzen.&lt;/p&gt;&lt;p&gt;Nintendo DS und Nintendo DSi sind Eigentum von Nintendo.&lt;br /&gt;melonDS und das melonDS-Team stehen in keiner Verbindung zu Nintendo und werden nicht von Nintendo unterstützt.&lt;/p&gt;&lt;p&gt;Die deutsche Übersetzung ist inoffiziell.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Licensed under the GNU General Public License v3 or any newer version.&lt;/p&gt;&lt;p&gt;melonDS is intended only for use with software that you own.&lt;/p&gt;&lt;p&gt;The Nintendo DS and Nintendo DSi systems are the property of Nintendo.&lt;br /&gt;melonDS and the melonDS team are not affiliated with or endorsed by Nintendo.&lt;/p&gt;&lt;p&gt;melonDS Community is an unofficial community edition and is not affiliated with the melonDS team.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lizenziert unter der GNU General Public License v3 oder einer neueren Version.&lt;/p&gt;&lt;p&gt;melonDS ist nur für die Verwendung mit Software gedacht, die Sie besitzen.&lt;/p&gt;&lt;p&gt;Nintendo DS und Nintendo DSi sind Eigentum von Nintendo.&lt;br /&gt;melonDS und das melonDS-Team stehen in keiner Verbindung zu Nintendo und werden nicht von Nintendo unterstützt.&lt;/p&gt;&lt;p&gt;melonDS Community ist eine inoffizielle Community-Ausgabe und steht in keiner Verbindung zum melonDS-Team.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Visit the &amp;website</source>
@@ -42,6 +42,10 @@
     <message>
         <source>Version %1</source>
         <translation>Version %1</translation>
+    </message>
+    <message>
+        <source>Based on melonDS %1</source>
+        <translation>Basiert auf melonDS %1</translation>
     </message>
     <message>
         <source>Branch: %1

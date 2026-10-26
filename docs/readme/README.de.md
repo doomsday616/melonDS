@@ -90,11 +90,11 @@ Alle Pakete gibt es unter [Releases → latest](https://github.com/doomsday616/m
 
 | Plattform | Datei |
 |---|---|
-| Windows (x86_64) | `melonDS-community-1.2.1-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-community-1.2.1-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-community-1.2.1-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-community-1.2.1-linux-aarch64.AppImage` |
-| macOS (Universal, Intel + Apple Silicon) | `melonDS-community-1.2.1-macos-universal.zip` |
+| Windows (x86_64) | `melonDS-community-1.2.2-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-community-1.2.2-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-community-1.2.2-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-community-1.2.2-linux-aarch64.AppImage` |
+| macOS (Universal, Intel + Apple Silicon) | `melonDS-community-1.2.2-macos-universal.zip` |
 
 Das Windows-Archiv enthält nur `melonDS.exe` und ist portabel: Es wird nichts installiert, die Einstellungen landen in `melonDS.toml` im selben Ordner.
 

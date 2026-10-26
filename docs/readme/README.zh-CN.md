@@ -90,11 +90,11 @@
 
 | 平台 | 文件 |
 |---|---|
-| Windows（x86_64，绝大多数电脑） | `melonDS-community-1.2.1-windows-x86_64.zip` |
-| Windows（ARM64） | `melonDS-community-1.2.1-windows-arm64.zip` |
-| Linux（x86_64） | `melonDS-community-1.2.1-linux-x86_64.AppImage` |
-| Linux（aarch64） | `melonDS-community-1.2.1-linux-aarch64.AppImage` |
-| macOS（Intel 与 Apple 芯片通用） | `melonDS-community-1.2.1-macos-universal.zip` |
+| Windows（x86_64，绝大多数电脑） | `melonDS-community-1.2.2-windows-x86_64.zip` |
+| Windows（ARM64） | `melonDS-community-1.2.2-windows-arm64.zip` |
+| Linux（x86_64） | `melonDS-community-1.2.2-linux-x86_64.AppImage` |
+| Linux（aarch64） | `melonDS-community-1.2.2-linux-aarch64.AppImage` |
+| macOS（Intel 与 Apple 芯片通用） | `melonDS-community-1.2.2-macos-universal.zip` |
 
 Windows 压缩包里只有一个 `melonDS.exe`，属于绿色版：不用安装，设置文件就写在 exe 旁边。
 

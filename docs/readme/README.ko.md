@@ -85,11 +85,11 @@
 
 | 플랫폼 | 파일 |
 | --- | --- |
-| Windows (x86_64) | `melonDS-community-1.2.1-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-community-1.2.1-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-community-1.2.1-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-community-1.2.1-linux-aarch64.AppImage` |
-| macOS (Universal) | `melonDS-community-1.2.1-macos-universal.zip` |
+| Windows (x86_64) | `melonDS-community-1.2.2-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-community-1.2.2-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-community-1.2.2-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-community-1.2.2-linux-aarch64.AppImage` |
+| macOS (Universal) | `melonDS-community-1.2.2-macos-universal.zip` |
 
 Windows용 압축 파일에는 `melonDS.exe` 하나만 들어 있습니다. 설치가 필요 없는 포터블 방식이라 설정은 같은 폴더의 `melonDS.toml`에 저장됩니다.
 

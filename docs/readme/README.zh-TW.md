@@ -89,11 +89,11 @@
 
 | 平台 | 檔案 |
 |---|---|
-| Windows（x86_64，大多數電腦） | `melonDS-community-1.2.1-windows-x86_64.zip` |
-| Windows（ARM64） | `melonDS-community-1.2.1-windows-arm64.zip` |
-| Linux（x86_64） | `melonDS-community-1.2.1-linux-x86_64.AppImage` |
-| Linux（aarch64） | `melonDS-community-1.2.1-linux-aarch64.AppImage` |
-| macOS（Intel 與 Apple 晶片） | `melonDS-community-1.2.1-macos-universal.zip` |
+| Windows（x86_64，大多數電腦） | `melonDS-community-1.2.2-windows-x86_64.zip` |
+| Windows（ARM64） | `melonDS-community-1.2.2-windows-arm64.zip` |
+| Linux（x86_64） | `melonDS-community-1.2.2-linux-x86_64.AppImage` |
+| Linux（aarch64） | `melonDS-community-1.2.2-linux-aarch64.AppImage` |
+| macOS（Intel 與 Apple 晶片） | `melonDS-community-1.2.2-macos-universal.zip` |
 
 Windows 的 zip 裡只有一個 `melonDS.exe`。它是免安裝的可攜版，不會寫入系統，設定檔就存在執行檔旁邊。
 

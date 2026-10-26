@@ -4,12 +4,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About melonDS</source>
-        <translation>關於 melonDS</translation>
+        <source>About melonDS Community</source>
+        <translation>關於 melonDS Community</translation>
     </message>
     <message>
-        <source>melonDS</source>
-        <translation>melonDS</translation>
+        <source>melonDS Community</source>
+        <translation>melonDS Community</translation>
     </message>
     <message>
         <source>[VERSION INFO PLACEHOLDER]</source>
@@ -24,8 +24,8 @@
         <translation>[EMBEDDED BUILD INFO PLACEHOLDER]</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Licensed under the GNU General Public License v3 or any newer version.&lt;/p&gt;&lt;p&gt;melonDS is intended only for use with software that you own.&lt;/p&gt;&lt;p&gt;The Nintendo DS and Nintendo DSi systems are the property of Nintendo.&lt;br /&gt;melonDS and the melonDS team are not affiliated with or endorsed by Nintendo.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;依據 GNU 通用公共授權條款第 3 版或任何更新版本授權。&lt;/p&gt;&lt;p&gt;melonDS 僅供用於您合法擁有的軟體。&lt;/p&gt;&lt;p&gt;Nintendo DS 與 Nintendo DSi 系統為任天堂所有。&lt;br /&gt;melonDS 及 melonDS 團隊與任天堂無關，亦未獲其認可。&lt;/p&gt;&lt;p&gt;繁體中文翻譯為非官方版本。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Licensed under the GNU General Public License v3 or any newer version.&lt;/p&gt;&lt;p&gt;melonDS is intended only for use with software that you own.&lt;/p&gt;&lt;p&gt;The Nintendo DS and Nintendo DSi systems are the property of Nintendo.&lt;br /&gt;melonDS and the melonDS team are not affiliated with or endorsed by Nintendo.&lt;/p&gt;&lt;p&gt;melonDS Community is an unofficial community edition and is not affiliated with the melonDS team.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;依據 GNU 通用公共授權條款第 3 版或任何更新版本授權。&lt;/p&gt;&lt;p&gt;melonDS 僅供用於您合法擁有的軟體。&lt;/p&gt;&lt;p&gt;Nintendo DS 與 Nintendo DSi 系統為任天堂所有。&lt;br /&gt;melonDS 及 melonDS 團隊與任天堂無關，亦未獲其認可。&lt;/p&gt;&lt;p&gt;melonDS Community 是非官方社群版，與 melonDS 團隊無關。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Visit the &amp;website</source>
@@ -42,6 +42,10 @@
     <message>
         <source>Version %1</source>
         <translation>版本 %1</translation>
+    </message>
+    <message>
+        <source>Based on melonDS %1</source>
+        <translation>基於 melonDS %1</translation>
     </message>
     <message>
         <source>Branch: %1

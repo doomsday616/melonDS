@@ -30,7 +30,13 @@ AboutDialog::AboutDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->lblVersionInfo->setText(tr("Version %1").arg(QString(MELONDS_VERSION)));
+    // Community release version, with the upstream core version in small print
+    ui->lblVersionInfo->setTextFormat(Qt::RichText);
+    ui->lblVersionInfo->setText(
+        tr("Version %1").arg(QString(MELONDS_COMMUNITY_VERSION)).toHtmlEscaped()
+        + "<br><span style=\"color: gray; font-size: small;\">"
+        + tr("Based on melonDS %1").arg(QString(MELONDS_VERSION)).toHtmlEscaped()
+        + "</span>");
 #ifdef MELONDS_EMBED_BUILD_INFO
     ui->lblBuildInfo->setText(
         tr("Branch: %1\nCommit: %2\nBuilt by: %3")
@@ -54,5 +60,5 @@ void AboutDialog::openWebsite()
 
 void AboutDialog::openGitHub()
 {
-    QDesktopServices::openUrl(QUrl("https://github.com/melonDS-emu/melonDS"));;
+    QDesktopServices::openUrl(QUrl(MELONDS_COMMUNITY_URL));
 }
