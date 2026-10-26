@@ -1816,6 +1816,38 @@ void MainWindow::requestReset()
     emuThread->emuReset();
 }
 
+void MainWindow::requestReloadROM()
+{
+    if (recentFileList.isEmpty())
+    {
+        emuInstance->osdAddMessage(0xFFA0A0, QT_TRANSLATE_NOOP("OSD", "No recent ROM to reload"));
+        return;
+    }
+
+    // reloading throws away the running game, same as a reset
+    if (emuThread->emuIsActive() &&
+        !confirmEmuAction(tr("Are you sure you want to reload the ROM?")))
+        return;
+
+    if (!verifySetup())
+        return;
+
+    const QString filename = recentFileList.first();
+    const QStringList file = splitArchivePath(filename, true);
+    if (file.isEmpty())
+        return;
+
+    QString errorstr;
+    if (!emuThread->bootROM(file, errorstr))
+    {
+        QMessageBox::critical(this, "melonDS", errorstr);
+        return;
+    }
+
+    updateCartInserted(false);
+    emuInstance->osdAddMessage(0, QT_TRANSLATE_NOOP("OSD", "ROM reloaded"));
+}
+
 void MainWindow::onReset()
 {
     if (!emuThread->emuIsActive()) return;

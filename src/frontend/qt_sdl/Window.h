@@ -60,6 +60,9 @@ public:
     // Reset from the menu or hotkey; asks first when ConfirmResetStop is set.
     void requestReset();
 
+    // Reboot the first Recent ROMs entry, re-read from disk (hotkey).
+    void requestReloadROM();
+
     void saveEnabled(bool enabled);
 
     void toggleFullscreen();

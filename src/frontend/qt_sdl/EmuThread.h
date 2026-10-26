@@ -151,6 +151,7 @@ signals:
     void windowEmuPause(bool pause);
     void windowEmuReset();
     void windowResetRequest();
+    void windowReloadROMRequest();
 
     void windowLimitFPSChange();
 

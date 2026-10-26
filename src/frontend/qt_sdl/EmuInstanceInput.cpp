@@ -94,7 +94,8 @@ const char* EmuInstance::hotkeyNames[HK_MAX] =
     "HK_QuickLoadState",
     "HK_TakeScreenshot",
     "HK_SwapScreenLayouts",
-    "HK_ScreenEvenToggle"
+    "HK_ScreenEvenToggle",
+    "HK_ReloadMostRecentROM"
 };
 
 std::shared_ptr<SDL_mutex> EmuInstance::joyMutexGlobal = nullptr;

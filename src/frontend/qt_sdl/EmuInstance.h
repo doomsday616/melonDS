@@ -64,6 +64,7 @@ enum
     HK_TakeScreenshot,
     HK_SwapScreenLayouts,
     HK_ScreenEvenToggle,
+    HK_ReloadMostRecentROM,
     HK_MAX
 };
 

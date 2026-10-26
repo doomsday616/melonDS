@@ -75,7 +75,8 @@ static constexpr std::initializer_list<int> hk_general =
     HK_QuickLoadState,
     HK_TakeScreenshot,
     HK_SwapScreenLayouts,
-    HK_ScreenEvenToggle
+    HK_ScreenEvenToggle,
+    HK_ReloadMostRecentROM
 };
 
 static constexpr std::initializer_list<const char*> hk_general_labels =
@@ -101,7 +102,8 @@ static constexpr std::initializer_list<const char*> hk_general_labels =
     QT_TRANSLATE_NOOP("InputConfigDialog", "Quick load state (slot 1)"),
     QT_TRANSLATE_NOOP("InputConfigDialog", "Take screenshot"),
     QT_TRANSLATE_NOOP("InputConfigDialog", "Cycle screen layout"),
-    QT_TRANSLATE_NOOP("InputConfigDialog", "Toggle even screen sizing")
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Toggle even screen sizing"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Reload most recent ROM")
 };
 
 static_assert(hk_general.size() == hk_general_labels.size());

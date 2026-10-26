@@ -87,7 +87,10 @@ void EmuThread::attachWindow(MainWindow* window)
 
     // only one window may ask, or every open window would show a box
     if (window->getWindowID() == 0)
+    {
         connect(this, &EmuThread::windowResetRequest, window, &MainWindow::requestReset);
+        connect(this, &EmuThread::windowReloadROMRequest, window, &MainWindow::requestReloadROM);
+    }
 
     if (window->winHasMenu())
     {
@@ -110,6 +113,7 @@ void EmuThread::detachWindow(MainWindow* window)
     disconnect(this, SIGNAL(screenLayoutToggle()), window, SLOT(onScreenLayoutToggled()));
     disconnect(this, SIGNAL(screenEvenToggle()), window, SLOT(onScreenEvenToggled()));
     disconnect(this, &EmuThread::windowResetRequest, window, &MainWindow::requestReset);
+    disconnect(this, &EmuThread::windowReloadROMRequest, window, &MainWindow::requestReloadROM);
 
     if (window->winHasMenu())
     {
@@ -184,6 +188,8 @@ void EmuThread::run()
             else
                 emuReset();
         }
+        // booting a ROM goes through the GUI thread, like File > Open
+        if (emuInstance->hotkeyPressed(HK_ReloadMostRecentROM)) emit windowReloadROMRequest();
         if (emuInstance->hotkeyPressed(HK_FrameStep)) emuFrameStep();
 
         // Quick save/load run here, on the emulation thread that owns the
