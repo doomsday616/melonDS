@@ -204,11 +204,25 @@ void EmuSettingsDialog::verifyFirmware()
 
     if (!memcmp(chk1, chk2, 0x180))
     {
-        QMessageBox::warning((QWidget*)this->parent(),
-                      tr("Problematic firmware dump"),
-                      tr("You are using an old hacked firmware dump.\n"
-                      "Firmware boot will stop working if you run any game that alters WFC settings.\n\n"
-                      "Note that the issue is not from melonDS, it would also happen on an actual DS."));
+        // Old FlashMe (v1-v4) keeps its secondary header at 0x3FC80, inside the
+        // WFC area, and marks byte 0x17C of the primary header with 0x01.
+        // FlashMe v5+ moved that header to 0x3F680 and is not matched here.
+        if (chk1[0x17C] == 0x01)
+        {
+            QMessageBox::warning((QWidget*)this->parent(),
+                          tr("Problematic firmware dump"),
+                          tr("You are using an old version (v1-v4) of FlashMe firmware dump.\n"
+                          "Firmware boot will stop working if you run any game that alters WFC settings.\n\n"
+                          "Note that the issue is not from melonDS, it would also happen on an actual DS."));
+        }
+        else
+        {
+            QMessageBox::warning((QWidget*)this->parent(),
+                          tr("Problematic firmware dump"),
+                          tr("You are using an old hacked firmware dump.\n"
+                          "Firmware boot will stop working if you run any game that alters WFC settings.\n\n"
+                          "Note that the issue is not from melonDS, it would also happen on an actual DS."));
+        }
     }
 }
 
