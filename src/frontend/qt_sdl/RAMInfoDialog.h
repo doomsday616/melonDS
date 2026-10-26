@@ -67,9 +67,15 @@ struct ramInfo_RowData
         Value = GetMainRAMValue(nds, Address, byteType);
     }
 
-    void SetValue(melonDS::NDS& nds, const melonDS::s32& value)
+    void SetValue(melonDS::NDS& nds, const melonDS::s32& value, const ramInfo_ByteType& byteType)
     {
-        nds.MainRAM[Address&nds.MainRAMMask] = (melonDS::u32)value;
+        melonDS::u8* ptr = nds.MainRAM + (Address&nds.MainRAMMask);
+        switch (byteType)
+        {
+        case ramInfo_OneByte: *(melonDS::s8*)ptr = (melonDS::s8)value; break;
+        case ramInfo_TwoBytes: *(melonDS::s16*)ptr = (melonDS::s16)value; break;
+        case ramInfo_FourBytes: *(melonDS::s32*)ptr = value; break;
+        }
         Value = value;
     }
 };
@@ -153,7 +159,7 @@ private:
 
     ramInfoSTh_SearchMode SearchMode;
     melonDS::s32 SearchValue;
-    ramInfo_ByteType SearchByteType = ramInfo_OneByte;
+    ramInfo_ByteType SearchByteType = ramInfo_FourBytes;
     std::vector<ramInfo_RowData>* RowDataVector = nullptr;
 
     void ClearTableContents();

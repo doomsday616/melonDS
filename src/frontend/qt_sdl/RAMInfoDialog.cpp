@@ -86,7 +86,18 @@ void RAMInfoDialog::OnSearchFinished()
 
 void RAMInfoDialog::ShowRowsInTable()
 {
-    const u32& scrollValue = ui->ramTable->verticalScrollBar()->sliderPosition();
+    // The search thread owns the result vector while it is running.
+    if (SearchThread->isRunning())
+        return;
+
+    // Programmatic refreshes must not reach on_ramTable_itemChanged,
+    // otherwise they are treated as user edits and written into main RAM.
+    const QSignalBlocker blocker(ui->ramTable);
+
+    // Use the first visible row rather than the slider position: with per-pixel
+    // scrolling (the macOS default) the slider value is in pixels, not rows.
+    const int firstRow = ui->ramTable->rowAt(0);
+    const u32 scrollValue = firstRow < 0 ? 0 : (u32)firstRow;
     std::vector<ramInfo_RowData>* RowDataVector = SearchThread->GetResults();
 
     for (u32 row = scrollValue; row < std::min<u32>(scrollValue+25, RowDataVector->size()); row++)
@@ -97,7 +108,7 @@ void RAMInfoDialog::ShowRowsInTable()
         if (ui->ramTable->item(row, ramInfo_Address) == nullptr)
         {
             // A new row
-            QTableWidgetItem* addressItem = new QTableWidgetItem(QString("%1").arg(rowData.Address, 8, 16));
+            QTableWidgetItem* addressItem = new QTableWidgetItem(QString("%1").arg(rowData.Address, 8, 16, QChar('0')));
             QTableWidgetItem* valueItem = new QTableWidgetItem(QString("%1").arg(rowData.Value));
             QTableWidgetItem* previousItem = new QTableWidgetItem(QString("%1").arg(rowData.Previous));
 
@@ -112,7 +123,7 @@ void RAMInfoDialog::ShowRowsInTable()
         else
         {
             // A row that exists
-            ui->ramTable->item(row, ramInfo_Address)->setText(QString("%1").arg(rowData.Address, 8, 16));
+            ui->ramTable->item(row, ramInfo_Address)->setText(QString("%1").arg(rowData.Address, 8, 16, QChar('0')));
             ui->ramTable->item(row, ramInfo_Value)->setText(QString("%1").arg(rowData.Value));
             ui->ramTable->item(row, ramInfo_Previous)->setText(QString("%1").arg(rowData.Previous));
             if (rowData.Value != rowData.Previous) 
@@ -183,11 +194,20 @@ void RAMInfoDialog::on_radiobtn4bytes_clicked()
 
 void RAMInfoDialog::on_ramTable_itemChanged(QTableWidgetItem *item)
 {
-    ramInfo_RowData& rowData = SearchThread->GetResults()->at(item->row());
-    s32 itemValue = item->text().toInt();
+    // Only the Value column is user-editable.
+    if (item->column() != ramInfo_Value || SearchThread->isRunning())
+        return;
 
-    if (rowData.Value != itemValue)
-        rowData.SetValue(*emuInstance->getNDS(), itemValue);
+    std::vector<ramInfo_RowData>* results = SearchThread->GetResults();
+    if (item->row() < 0 || (size_t)item->row() >= results->size())
+        return;
+
+    ramInfo_RowData& rowData = results->at(item->row());
+    bool ok = false;
+    s32 itemValue = item->text().toInt(&ok);
+
+    if (ok && rowData.Value != itemValue)
+        rowData.SetValue(*emuInstance->getNDS(), itemValue, SearchThread->GetSearchByteType());
 }
 
 /**
@@ -225,9 +245,9 @@ void RAMSearchThread::Start(const ramInfoSTh_SearchMode& searchMode)
 void RAMSearchThread::Stop()
 {
     SearchRunning = false;
-    RowDataVector->clear();
     quit();
     wait();
+    RowDataVector->clear();
 }
 
 void RAMSearchThread::run()
@@ -242,6 +262,8 @@ void RAMSearchThread::run()
     if (SearchMode == ramInfoSTh_SearchAll || RowDataVector->size() == 0)
     {
         // First search mode
+        // Start from an empty list, otherwise a new full search appends to the old results.
+        RowDataVector->clear();
         for (u32 addr = 0x02000000; SearchRunning && addr < 0x02000000+MainRAMMaxSize; addr += SearchByteType)
         {
             const s32& value = GetMainRAMValue(*Dialog->emuInstance->getNDS(), addr, SearchByteType);
