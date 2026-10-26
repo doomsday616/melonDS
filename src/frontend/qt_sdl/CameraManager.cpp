@@ -25,6 +25,17 @@ using namespace melonDS;
 
 const char* kCamConfigPath[] = {"DSi.Camera0", "DSi.Camera1"};
 
+// QPermission exists since Qt 6.5. The checks are nested on purpose:
+// QT_CONFIG(x) expands to a division by QT_FEATURE_x, which is not defined
+// on older Qt versions.
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+#if QT_CONFIG(permissions)
+#define MELONDS_CAMERA_PERMISSION
+#include <QCoreApplication>
+#include <QPermission>
+#endif
+#endif
+
 #if QT_VERSION >= 0x060000
 
 CameraFrameDumper::CameraFrameDumper(QObject* parent) : QVideoSink(parent)
@@ -355,8 +366,31 @@ bool CameraManager::isStarted()
 
 void CameraManager::camStart()
 {
-    if (camDevice)
-        camDevice->start();
+    if (!camDevice)
+        return;
+
+#ifdef MELONDS_CAMERA_PERMISSION
+    // Since Qt 6.5, Qt Multimedia no longer requests camera access implicitly
+    // (macOS shows no prompt and delivers no frames unless we ask).
+    QCameraPermission cameraPermission;
+    switch (qApp->checkPermission(cameraPermission))
+    {
+    case Qt::PermissionStatus::Undetermined:
+        // camStart() is re-run once the user answers the prompt
+        qApp->requestPermission(cameraPermission, this, &CameraManager::camStart);
+        return;
+    case Qt::PermissionStatus::Denied:
+        return;
+    case Qt::PermissionStatus::Granted:
+        break;
+    }
+
+    // the camera may have been stopped while the prompt was open
+    if (startNum == 0)
+        return;
+#endif
+
+    camDevice->start();
 }
 
 void CameraManager::camStop()

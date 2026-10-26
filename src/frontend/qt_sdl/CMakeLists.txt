@@ -291,3 +291,9 @@ if (ENABLE_OGLRENDERER)
     target_compile_definitions(melonDS PUBLIC MELONDS_GL_HEADER=${MELONDS_GL_HEADER})
     target_compile_definitions(core PUBLIC MELONDS_GL_HEADER=${MELONDS_GL_HEADER})
 endif()
+
+# Qt 6 only: lets Qt's finalizers link the Apple permission plugins that
+# QPermission (CameraManager) needs. The command does not exist in Qt 5.
+if (USE_QT6 AND COMMAND qt_finalize_target)
+    qt_finalize_target(melonDS)
+endif()
