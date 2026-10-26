@@ -69,6 +69,11 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>txtPlayerName</tabstop>
+  <tabstop>txtIPAddress</tabstop>
+  <tabstop>txtPort</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

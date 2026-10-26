@@ -202,6 +202,7 @@
   <tabstop>chkSyncDSiVolume</tabstop>
   <tabstop>rbMicNone</tabstop>
   <tabstop>rbMicExternal</tabstop>
+  <tabstop>cbMic</tabstop>
   <tabstop>rbMicNoise</tabstop>
   <tabstop>rbMicWav</tabstop>
   <tabstop>txtMicWavPath</tabstop>

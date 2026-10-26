@@ -124,6 +124,12 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>chkChangeTime</tabstop>
+  <tabstop>txtNewCustomTime</tabstop>
+  <tabstop>chkResetTime</tabstop>
+  <tabstop>chkSyncTime</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

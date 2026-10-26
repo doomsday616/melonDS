@@ -299,6 +299,24 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>cbxUITheme</tabstop>
+  <tabstop>cbxLanguage</tabstop>
+  <tabstop>cbMouseHide</tabstop>
+  <tabstop>spinMouseHideSeconds</tabstop>
+  <tabstop>cbPauseLostFocus</tabstop>
+  <tabstop>cbMuteFastForward</tabstop>
+  <tabstop>spinTargetFPS</tabstop>
+  <tabstop>pbAccurate</tabstop>
+  <tabstop>pbClean</tabstop>
+  <tabstop>spinFFW</tabstop>
+  <tabstop>pb2x</tabstop>
+  <tabstop>pb3x</tabstop>
+  <tabstop>pbMAX</tabstop>
+  <tabstop>spinSlow</tabstop>
+  <tabstop>pbHalf</tabstop>
+  <tabstop>pbQuarter</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

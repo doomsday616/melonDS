@@ -701,12 +701,16 @@
   <tabstop>btnBIOS7Browse</tabstop>
   <tabstop>txtFirmwarePath</tabstop>
   <tabstop>btnFirmwareBrowse</tabstop>
+  <tabstop>chkDSiExternalBIOS</tabstop>
   <tabstop>txtDSiBIOS9Path</tabstop>
   <tabstop>btnDSiBIOS9Browse</tabstop>
   <tabstop>txtDSiBIOS7Path</tabstop>
   <tabstop>btnDSiBIOS7Browse</tabstop>
   <tabstop>txtDSiFirmwarePath</tabstop>
   <tabstop>btnDSiFirmwareBrowse</tabstop>
+  <tabstop>txtDSiNANDPath</tabstop>
+  <tabstop>btnDSiNANDBrowse</tabstop>
+  <tabstop>cbDSPHLE</tabstop>
   <tabstop>cbDSiSDEnable</tabstop>
   <tabstop>txtDSiSDPath</tabstop>
   <tabstop>btnDSiSDBrowse</tabstop>
@@ -728,6 +732,11 @@
   <tabstop>cbDLDIFolder</tabstop>
   <tabstop>txtDLDIFolder</tabstop>
   <tabstop>btnDLDIFolderBrowse</tabstop>
+  <tabstop>cbGdbEnabled</tabstop>
+  <tabstop>intGdbPortA9</tabstop>
+  <tabstop>cbGdbBOSA9</tabstop>
+  <tabstop>intGdbPortA7</tabstop>
+  <tabstop>cbGdbBOSA7</tabstop>
  </tabstops>
  <resources/>
  <connections>

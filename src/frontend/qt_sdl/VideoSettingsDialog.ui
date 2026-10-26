@@ -208,12 +208,14 @@
  <tabstops>
   <tabstop>rb3DSoftware</tabstop>
   <tabstop>rb3DOpenGL</tabstop>
+  <tabstop>rb3DCompute</tabstop>
   <tabstop>cbGLDisplay</tabstop>
   <tabstop>cbVSync</tabstop>
   <tabstop>sbVSyncInterval</tabstop>
   <tabstop>cbSoftwareThreaded</tabstop>
   <tabstop>cbxGLResolution</tabstop>
   <tabstop>cbBetterPolygons</tabstop>
+  <tabstop>cbxComputeHiResCoords</tabstop>
  </tabstops>
  <resources/>
  <connections>
