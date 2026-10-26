@@ -1,4 +1,4 @@
-<p align="center"><img src="../images/ko/banner.jpg" alt="melonDS i18n" width="100%"></p>
+<p align="center"><img src="../images/ko/banner.jpg" alt="melonDS Community" width="100%"></p>
 
 <p align="center">
 <a href="../../README.md">English</a> ·
@@ -12,21 +12,23 @@
 </p>
 
 <p align="center">
-<a href="https://github.com/doomsday616/melonDS-i18n/releases/latest"><img src="https://img.shields.io/github/v/release/doomsday616/melonDS-i18n?label=release&color=5c913b" alt="Release"></a>
-<a href="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-windows.yml"><img src="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-windows.yml/badge.svg" alt="Windows"></a>
-<a href="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-ubuntu.yml"><img src="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-ubuntu.yml/badge.svg" alt="Linux"></a>
-<a href="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-macos.yml"><img src="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-macos.yml/badge.svg" alt="macOS"></a>
-<a href="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-bsd.yml"><img src="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-bsd.yml/badge.svg" alt="BSD"></a>
+<a href="https://github.com/doomsday616/melonDS-community/releases/latest"><img src="https://img.shields.io/github/v/release/doomsday616/melonDS-community?label=release&color=5c913b" alt="Release"></a>
+<a href="https://github.com/doomsday616/melonDS-community/actions/workflows/build-windows.yml"><img src="https://github.com/doomsday616/melonDS-community/actions/workflows/build-windows.yml/badge.svg" alt="Windows"></a>
+<a href="https://github.com/doomsday616/melonDS-community/actions/workflows/build-ubuntu.yml"><img src="https://github.com/doomsday616/melonDS-community/actions/workflows/build-ubuntu.yml/badge.svg" alt="Linux"></a>
+<a href="https://github.com/doomsday616/melonDS-community/actions/workflows/build-macos.yml"><img src="https://github.com/doomsday616/melonDS-community/actions/workflows/build-macos.yml/badge.svg" alt="macOS"></a>
+<a href="https://github.com/doomsday616/melonDS-community/actions/workflows/build-bsd.yml"><img src="https://github.com/doomsday616/melonDS-community/actions/workflows/build-bsd.yml/badge.svg" alt="BSD"></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-%23ff554d.svg" alt="GPLv3"></a>
 </p>
 
-# melonDS i18n
+# melonDS Community
 
-**melonDS i18n**은 닌텐도 DS 에뮬레이터 [melonDS](https://github.com/melonDS-emu/melonDS) 1.1을 기반으로 한 비공식 다국어 포크입니다. 에뮬레이션 코어는 원본과 완전히 동일하며, 바뀐 부분은 Qt 프런트엔드뿐입니다. 프런트엔드를 Qt Linguist 방식의 제대로 된 다국어 구조로 다시 정리해서, 메뉴와 모든 설정 창, 메시지, 그리고 게임 화면 위에 뜨는 알림까지 한국어로 표시됩니다.
+원본 melonDS는 지금도 관리되고 있지만, 새 버전 출시와 PR 병합이 느려서 커뮤니티가 제출한 많은 수정 사항과 기능이 오랫동안 병합되지 않은 채 남아 있습니다. **melonDS Community**는 비공식 커뮤니티 에디션으로, 8개 언어를 지원하는 UI와 함께 검토를 거친 고품질 원본 PR을 병합해 두었습니다. melonDS 팀 및 닌텐도와는 아무런 관련이 없습니다.
+
+**melonDS Community**은 닌텐도 DS 에뮬레이터 [melonDS](https://github.com/melonDS-emu/melonDS) 1.1을 기반으로 한 비공식 다국어 포크입니다. 에뮬레이션 코어는 원본과 완전히 동일하며, 바뀐 부분은 Qt 프런트엔드뿐입니다. 프런트엔드를 Qt Linguist 방식의 제대로 된 다국어 구조로 다시 정리해서, 메뉴와 모든 설정 창, 메시지, 그리고 게임 화면 위에 뜨는 알림까지 한국어로 표시됩니다.
 
 ## 주요 기능
 
-<p align="center"><img src="../images/ko/features.jpg" alt="melonDS i18n 주요 기능" width="100%"></p>
+<p align="center"><img src="../images/ko/features.jpg" alt="melonDS Community 주요 기능" width="100%"></p>
 
 - **8개 언어 완전 번역** – 언어마다 인터페이스 문자열 775개를 모두 번역했습니다.
 - **시스템 언어 자동 감지** – 처음 실행하면 운영체제의 표시 언어를 따라갑니다.
@@ -79,19 +81,19 @@
 
 <p align="center"><img src="../images/ko/download.jpg" alt="다운로드" width="100%"></p>
 
-[최신 릴리스 페이지](https://github.com/doomsday616/melonDS-i18n/releases/latest)에서 내 플랫폼에 맞는 파일을 받으세요.
+[최신 릴리스 페이지](https://github.com/doomsday616/melonDS-community/releases/latest)에서 내 플랫폼에 맞는 파일을 받으세요.
 
 | 플랫폼 | 파일 |
 | --- | --- |
-| Windows (x86_64) | `melonDS-i18n-1.2.0-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-i18n-1.2.0-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-i18n-1.2.0-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-i18n-1.2.0-linux-aarch64.AppImage` |
-| macOS (Universal) | `melonDS-i18n-1.2.0-macos-universal.zip` |
+| Windows (x86_64) | `melonDS-community-1.2.1-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-community-1.2.1-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-community-1.2.1-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-community-1.2.1-linux-aarch64.AppImage` |
+| macOS (Universal) | `melonDS-community-1.2.1-macos-universal.zip` |
 
 Windows용 압축 파일에는 `melonDS.exe` 하나만 들어 있습니다. 설치가 필요 없는 포터블 방식이라 설정은 같은 폴더의 `melonDS.toml`에 저장됩니다.
 
-1.2.0 버전에는 원본 melonDS에 아직 병합되지 않은 풀 리퀘스트를 바탕으로 한 수정과 기능이 모두 38개 들어 있습니다(이전 버전의 22개와 이번에 추가된 16개). 이번 항목은 [v1.2.0 릴리스 노트](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.2.0), 이전 항목은 [v1.1.0](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.1.0) 및 [v1.0.0](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0) 릴리스 노트에서 볼 수 있습니다.
+1.2.0 버전에는 원본 melonDS에 아직 병합되지 않은 풀 리퀘스트를 바탕으로 한 수정과 기능이 모두 38개 들어 있습니다(이전 버전의 22개와 이번에 추가된 16개). 이번 항목은 [v1.2.0 릴리스 노트](https://github.com/doomsday616/melonDS-community/releases/tag/v1.2.0), 이전 항목은 [v1.1.0](https://github.com/doomsday616/melonDS-community/releases/tag/v1.1.0) 및 [v1.0.0](https://github.com/doomsday616/melonDS-community/releases/tag/v1.0.0) 릴리스 노트에서 볼 수 있습니다.
 
 ## 빠른 시작
 
@@ -135,7 +137,7 @@ Windows에서는 `melonDS.exe`와 같은 폴더의 `melonDS.toml`에 저장됩�
    lrelease src/frontend/qt_sdl/translations/melonDS_*.ts
    ```
 4. 새 언어를 추가할 때는 `qtbase_<언어>.qm`과 `translations.qrc` 항목도 함께 넣어 주세요.
-5. 풀 리퀘스트를 보내 주세요. 오역이나 문제 제보는 [이 포크의 이슈](https://github.com/doomsday616/melonDS-i18n/issues)로 부탁드립니다. 업스트림 melonDS에는 올리지 말아 주세요.
+5. 풀 리퀘스트를 보내 주세요. 오역이나 문제 제보는 [이 포크의 이슈](https://github.com/doomsday616/melonDS-community/issues)로 부탁드립니다. 업스트림 melonDS에는 올리지 말아 주세요.
 
 ## 크레딧 및 라이선스
 

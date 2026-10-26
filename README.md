@@ -1,4 +1,4 @@
-<p align="center"><img src="docs/images/en/banner.jpg" alt="melonDS i18n" width="100%"></p>
+<p align="center"><img src="docs/images/en/banner.jpg" alt="melonDS Community" width="100%"></p>
 
 <p align="center">
 <b>English</b> ·
@@ -12,17 +12,19 @@
 </p>
 
 <p align="center">
-<a href="https://github.com/doomsday616/melonDS-i18n/releases/latest"><img src="https://img.shields.io/github/v/release/doomsday616/melonDS-i18n?label=release&color=5c913b" alt="Latest release"></a>
-<a href="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-windows.yml"><img src="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-windows.yml/badge.svg" alt="Windows build"></a>
-<a href="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-ubuntu.yml"><img src="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-ubuntu.yml/badge.svg" alt="Ubuntu build"></a>
-<a href="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-macos.yml"><img src="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-macos.yml/badge.svg" alt="macOS build"></a>
-<a href="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-bsd.yml"><img src="https://github.com/doomsday616/melonDS-i18n/actions/workflows/build-bsd.yml/badge.svg" alt="BSD build"></a>
+<a href="https://github.com/doomsday616/melonDS-community/releases/latest"><img src="https://img.shields.io/github/v/release/doomsday616/melonDS-community?label=release&color=5c913b" alt="Latest release"></a>
+<a href="https://github.com/doomsday616/melonDS-community/actions/workflows/build-windows.yml"><img src="https://github.com/doomsday616/melonDS-community/actions/workflows/build-windows.yml/badge.svg" alt="Windows build"></a>
+<a href="https://github.com/doomsday616/melonDS-community/actions/workflows/build-ubuntu.yml"><img src="https://github.com/doomsday616/melonDS-community/actions/workflows/build-ubuntu.yml/badge.svg" alt="Ubuntu build"></a>
+<a href="https://github.com/doomsday616/melonDS-community/actions/workflows/build-macos.yml"><img src="https://github.com/doomsday616/melonDS-community/actions/workflows/build-macos.yml/badge.svg" alt="macOS build"></a>
+<a href="https://github.com/doomsday616/melonDS-community/actions/workflows/build-bsd.yml"><img src="https://github.com/doomsday616/melonDS-community/actions/workflows/build-bsd.yml/badge.svg" alt="BSD build"></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPL%20v3-%23ff554d.svg" alt="License: GPLv3"></a>
 </p>
 
-# melonDS i18n
+# melonDS Community
 
-**melonDS i18n** is an unofficial multilingual fork of [melonDS](https://github.com/melonDS-emu/melonDS), the Nintendo DS emulator. It is based on melonDS 1.1 and the emulator core is identical to upstream — games run exactly the same. What changes is the Qt frontend: it has been turned into a proper Qt Linguist i18n build, so menus, every settings dialog, messages and even the on-screen notifications appear in your language. Eight languages ship today, all fully translated.
+Upstream melonDS is still maintained, but releases and pull request merges are slow, and many community-submitted fixes and features have stayed unmerged for a long time. **melonDS Community** is an unofficial community edition: a UI in 8 languages, plus reviewed, high-quality upstream pull requests merged in. It is not affiliated with the melonDS team or Nintendo.
+
+**melonDS Community** is an unofficial multilingual fork of [melonDS](https://github.com/melonDS-emu/melonDS), the Nintendo DS emulator. It is based on melonDS 1.1 and the emulator core is identical to upstream — games run exactly the same. What changes is the Qt frontend: it has been turned into a proper Qt Linguist i18n build, so menus, every settings dialog, messages and even the on-screen notifications appear in your language. Eight languages ship today, all fully translated.
 
 ## Features
 
@@ -63,7 +65,7 @@
 
 <p align="center"><img src="docs/images/en/switching.jpg" alt="Auto-detect or pick a language" width="100%"></p>
 
-By default melonDS i18n picks a language from your system UI language:
+By default melonDS Community picks a language from your system UI language:
 
 | System language | Interface language |
 |---|---|
@@ -84,19 +86,19 @@ The switch is immediate — menus and on-screen messages change on the spot. Dia
 
 <p align="center"><img src="docs/images/en/download.jpg" alt="Download for your platform" width="100%"></p>
 
-Grab the latest build from the [Releases page](https://github.com/doomsday616/melonDS-i18n/releases/latest):
+Grab the latest build from the [Releases page](https://github.com/doomsday616/melonDS-community/releases/latest):
 
 | Platform | File |
 |---|---|
-| Windows (x86_64, most PCs) | `melonDS-i18n-1.2.0-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-i18n-1.2.0-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-i18n-1.2.0-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-i18n-1.2.0-linux-aarch64.AppImage` |
-| macOS (Intel and Apple silicon) | `melonDS-i18n-1.2.0-macos-universal.zip` |
+| Windows (x86_64, most PCs) | `melonDS-community-1.2.1-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-community-1.2.1-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-community-1.2.1-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-community-1.2.1-linux-aarch64.AppImage` |
+| macOS (Intel and Apple silicon) | `melonDS-community-1.2.1-macos-universal.zip` |
 
 The Windows zip contains just `melonDS.exe`. It is portable: nothing is installed, and settings are written next to the executable.
 
-Version 1.2.0 includes 38 fixes and features based on upstream pull requests that have not been merged into melonDS yet: the 22 from earlier versions plus 16 new ones. The [v1.2.0 release notes](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.2.0) list each new one; the [v1.1.0](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.1.0) and [v1.0.0](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0) release notes list the earlier ones.
+Version 1.2.0 includes 38 fixes and features based on upstream pull requests that have not been merged into melonDS yet: the 22 from earlier versions plus 16 new ones. The [v1.2.0 release notes](https://github.com/doomsday616/melonDS-community/releases/tag/v1.2.0) list each new one; the [v1.1.0](https://github.com/doomsday616/melonDS-community/releases/tag/v1.1.0) and [v1.0.0](https://github.com/doomsday616/melonDS-community/releases/tag/v1.0.0) release notes list the earlier ones.
 
 ## Quick start
 
@@ -139,7 +141,7 @@ Translations live in [`src/frontend/qt_sdl/translations/`](src/frontend/qt_sdl/t
    `lrelease src/frontend/qt_sdl/translations/melonDS_*.ts`
 4. Rebuild melonDS — the `.qm` files are embedded via `translations.qrc`.
 
-The exact commands are also kept in a comment in `src/frontend/qt_sdl/CMakeLists.txt`. Please report translation problems in [this repository's issues](https://github.com/doomsday616/melonDS-i18n/issues), not to upstream melonDS.
+The exact commands are also kept in a comment in `src/frontend/qt_sdl/CMakeLists.txt`. Please report translation problems in [this repository's issues](https://github.com/doomsday616/melonDS-community/issues), not to upstream melonDS.
 
 ## Credits and license
 
@@ -148,6 +150,6 @@ The exact commands are also kept in a comment in `src/frontend/qt_sdl/CMakeLists
 - The controller drawings in the input configuration dialog are modified from illustrations by [Dimensions.com](https://www.dimensions.com), used with permission (see [LICENSE.md](src/frontend/qt_sdl/InputConfig/resources/LICENSE.md)).
 - Build instructions and the full upstream credits are in the [upstream melonDS repository](https://github.com/melonDS-emu/melonDS).
 
-melonDS i18n is free software released under the [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0), the same license as melonDS.
+melonDS Community is free software released under the [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0), the same license as melonDS.
 
-melonDS i18n is an unofficial project and is not affiliated with Nintendo or the melonDS team.
+melonDS Community is an unofficial project and is not affiliated with Nintendo or the melonDS team.
