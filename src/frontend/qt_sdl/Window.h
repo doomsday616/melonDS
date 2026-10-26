@@ -95,6 +95,8 @@ public:
     void retranslateMenus();
     // Check the entry of the language menu matching the current setting.
     void updateLanguageMenu();
+    // Check the screen gap entry matching the current setting (preset or Custom).
+    void updateScreenGapMenu();
 
 protected:
     void changeEvent(QEvent* event) override;
@@ -295,6 +297,7 @@ public:
     QAction* actScreenRotation[screenRot_MAX];
     QActionGroup* grpScreenGap;
     QAction* actScreenGap[6];
+    QAction* actScreenGapCustom;
     QActionGroup* grpScreenLayout;
     QAction* actScreenLayout[screenLayout_MAX];
     QAction* actScreenSwap;

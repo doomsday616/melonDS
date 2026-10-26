@@ -489,6 +489,12 @@ MainWindow::MainWindow(int id, EmuInstance* inst, QWidget* parent) :
                     actScreenGap[i]->setCheckable(true);
                 }
 
+                submenu->addSeparator();
+
+                actScreenGapCustom = submenu->addAction(tr("Custom..."));
+                actScreenGapCustom->setActionGroup(grpScreenGap);
+                actScreenGapCustom->setCheckable(true);
+
                 connect(grpScreenGap, &QActionGroup::triggered, this, &MainWindow::onChangeScreenGap);
             }
             {
@@ -765,15 +771,7 @@ MainWindow::MainWindow(int id, EmuInstance* inst, QWidget* parent) :
 
         actScreenRotation[windowCfg.GetInt("ScreenRotation")]->setChecked(true);
 
-        int screenGap = windowCfg.GetInt("ScreenGap");
-        for (int i = 0; i < 6; i++)
-        {
-            if (actScreenGap[i]->data().toInt() == screenGap)
-            {
-                actScreenGap[i]->setChecked(true);
-                break;
-            }
-        }
+        updateScreenGapMenu();
 
         actScreenLayout[windowCfg.GetInt("ScreenLayout")]->setChecked(true);
         actScreenSizing[windowCfg.GetInt("ScreenSizing")]->setChecked(true);
@@ -2185,10 +2183,44 @@ void MainWindow::onChangeScreenRotation(QAction* act)
     emit screenLayoutChange();
 }
 
+void MainWindow::updateScreenGapMenu()
+{
+    int screenGap = windowCfg.GetInt("ScreenGap");
+    for (int i = 0; i < 6; i++)
+    {
+        if (actScreenGap[i]->data().toInt() == screenGap)
+        {
+            actScreenGap[i]->setChecked(true);
+            return;
+        }
+    }
+
+    // not one of the presets: the value was set through "Custom..."
+    actScreenGapCustom->setChecked(true);
+}
+
 void MainWindow::onChangeScreenGap(QAction* act)
 {
-    int gap = act->data().toInt();
+    int gap;
+    if (act == actScreenGapCustom)
+    {
+        bool ok = false;
+        gap = QInputDialog::getInt(this, tr("Screen gap"),
+                                   tr("Gap between the screens (0-128 px):"),
+                                   std::clamp(windowCfg.GetInt("ScreenGap"), 0, 128),
+                                   0, 128, 1, &ok);
+        if (!ok)
+        {
+            // cancelled: put the check mark back on the active setting
+            updateScreenGapMenu();
+            return;
+        }
+    }
+    else
+        gap = act->data().toInt();
+
     windowCfg.SetInt("ScreenGap", gap);
+    updateScreenGapMenu();
 
     emit screenLayoutChange();
 }
