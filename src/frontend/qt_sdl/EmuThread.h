@@ -160,6 +160,7 @@ signals:
 
     void swapScreensToggle();
     void screenEmphasisToggle();
+    void screenLayoutToggle();
 
     void syncVolumeLevel();
 

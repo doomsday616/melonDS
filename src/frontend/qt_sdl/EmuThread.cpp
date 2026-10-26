@@ -82,6 +82,7 @@ void EmuThread::attachWindow(MainWindow* window)
     connect(this, SIGNAL(autoScreenSizingChange(int)), window->panel, SLOT(onAutoScreenSizingChanged(int)));
     connect(this, SIGNAL(windowFullscreenToggle()), window, SLOT(onFullscreenToggled()));
     connect(this, SIGNAL(screenEmphasisToggle()), window, SLOT(onScreenEmphasisToggled()));
+    connect(this, SIGNAL(screenLayoutToggle()), window, SLOT(onScreenLayoutToggled()));
 
     // only one window may ask, or every open window would show a box
     if (window->getWindowID() == 0)
@@ -105,6 +106,7 @@ void EmuThread::detachWindow(MainWindow* window)
     disconnect(this, SIGNAL(autoScreenSizingChange(int)), window->panel, SLOT(onAutoScreenSizingChanged(int)));
     disconnect(this, SIGNAL(windowFullscreenToggle()), window, SLOT(onFullscreenToggled()));
     disconnect(this, SIGNAL(screenEmphasisToggle()), window, SLOT(onScreenEmphasisToggled()));
+    disconnect(this, SIGNAL(screenLayoutToggle()), window, SLOT(onScreenLayoutToggled()));
     disconnect(this, &EmuThread::windowResetRequest, window, &MainWindow::requestReset);
 
     if (window->winHasMenu())
@@ -196,6 +198,7 @@ void EmuThread::run()
 
         if (emuInstance->hotkeyPressed(HK_SwapScreens)) emit swapScreensToggle();
         if (emuInstance->hotkeyPressed(HK_SwapScreenEmphasis)) emit screenEmphasisToggle();
+        if (emuInstance->hotkeyPressed(HK_SwapScreenLayouts)) emit screenLayoutToggle();
 
         if (emuInstance->hotkeyPressed(HK_TakeScreenshot)) emuScreenshot();
 
