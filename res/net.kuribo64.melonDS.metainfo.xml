@@ -2,8 +2,8 @@
 <component type="desktop-application">
   <id>net.kuribo64.melonDS</id>
   <launchable type="desktop-id">net.kuribo64.melonDS.desktop</launchable>
-  <name>melonDS</name>
-  <summary>Nintendo DS and DSi emulator</summary>
+  <name>melonDS Community</name>
+  <summary>Nintendo DS and DSi emulator, unofficial community edition</summary>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
   <developer id="net.kuribo64">
@@ -27,7 +27,7 @@
       <li>...and even more is planned!</li>
     </ul>
     <p>
-      This is melonDS i18n, an unofficial build of melonDS with the user interface translated into Simplified Chinese, Traditional Chinese, English, Japanese, German, French, Korean and Italian, plus a set of bug fixes taken from upstream. Please report problems with this build to its own issue tracker, not to the upstream melonDS project.
+      This is melonDS Community, an unofficial community edition of melonDS. Upstream melonDS is still maintained, but releases and pull request merges are slow, and many community-submitted fixes and features have stayed unmerged for a long time. This edition offers a user interface in 8 languages (Simplified Chinese, Traditional Chinese, English, Japanese, German, French, Korean and Italian), plus reviewed, high-quality upstream pull requests merged in. It is not affiliated with the melonDS team or Nintendo. Please report problems with this build to its own issue tracker, not to the upstream melonDS project.
     </p>
   </description>
   <categories>
@@ -42,10 +42,10 @@
     <keyword>NDS</keyword>
     <keyword>rom</keyword>
   </keywords>
-  <url type="homepage">https://github.com/doomsday616/melonDS-i18n</url>
-  <url type="bugtracker">https://github.com/doomsday616/melonDS-i18n/issues</url>
+  <url type="homepage">https://github.com/doomsday616/melonDS-community</url>
+  <url type="bugtracker">https://github.com/doomsday616/melonDS-community/issues</url>
   <url type="help">https://melonds.kuribo64.net/faq.php</url>
-  <url type="vcs-browser">https://github.com/doomsday616/melonDS-i18n</url>
+  <url type="vcs-browser">https://github.com/doomsday616/melonDS-community</url>
   <url type="donation">https://melonds.kuribo64.net/donate.php</url>
   <screenshots>
     <screenshot type="default">
