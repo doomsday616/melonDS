@@ -163,6 +163,7 @@ public:
     void setJoystick(int id);
     int getJoystickID() { return joystickID; }
     SDL_Joystick* getJoystick() { return joystick; }
+    bool autoJoystickMapping;
     std::shared_ptr<SDL_mutex> getJoyMutex() { return joyMutex; }
 
     void touchScreen(int x, int y);

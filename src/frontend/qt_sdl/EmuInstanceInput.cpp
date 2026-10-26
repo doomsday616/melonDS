@@ -43,6 +43,24 @@ const char* EmuInstance::buttonNames[12] =
     "Y"
 };
 
+static const SDL_GameControllerButton sdlButtons[12] =
+{
+    // SDL uses A/B for south/east, X/Y for west/north, opposite of the DS
+    // so we swap the buttons so they map to where they are on the DS positionally
+    SDL_CONTROLLER_BUTTON_B,
+    SDL_CONTROLLER_BUTTON_A,
+    SDL_CONTROLLER_BUTTON_BACK,
+    SDL_CONTROLLER_BUTTON_START,
+    SDL_CONTROLLER_BUTTON_DPAD_RIGHT,
+    SDL_CONTROLLER_BUTTON_DPAD_LEFT,
+    SDL_CONTROLLER_BUTTON_DPAD_UP,
+    SDL_CONTROLLER_BUTTON_DPAD_DOWN,
+    SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
+    SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
+    SDL_CONTROLLER_BUTTON_Y,
+    SDL_CONTROLLER_BUTTON_X
+};
+
 const char* EmuInstance::hotkeyNames[HK_MAX] =
 {
     "HK_Lid",
@@ -133,6 +151,8 @@ void EmuInstance::inputLoadConfig()
         hkKeyMapping[i] = keycfg.GetInt(hotkeyNames[i]);
         hkJoyMapping[i] = joycfg.GetInt(hotkeyNames[i]);
     }
+
+    autoJoystickMapping = joycfg.GetBool("AutoMap");
 
     setJoystick(localCfg.GetInt("JoystickID"));
     SDL_UnlockMutex(joyMutex.get());
@@ -229,20 +249,13 @@ void EmuInstance::setJoystick(int id)
 
 void EmuInstance::openJoystick()
 {
-    if (controller) SDL_GameControllerClose(controller);
-
-    if (joystick) SDL_JoystickClose(joystick);
+    // closeJoystick() also clears the controller pointer, so a newly selected
+    // device without a GameController mapping never sees a stale handle
+    closeJoystick();
 
     int num = SDL_NumJoysticks();
     if (num < 1)
-    {
-        controller = nullptr;
-        joystick = nullptr;
-        hasRumble = false;
-        hasAccelerometer = false;
-        hasGyroscope = false;
         return;
-    }
 
     if (joystickID >= num)
         joystickID = 0;
@@ -428,10 +441,7 @@ void EmuInstance::inputProcess()
     if (joystick)
     {
         if (!SDL_JoystickGetAttached(joystick))
-        {
-            SDL_JoystickClose(joystick);
-            joystick = nullptr;
-        }
+            closeJoystick();
     }
     if (!joystick && (SDL_NumJoysticks() > 0))
     {
@@ -439,7 +449,13 @@ void EmuInstance::inputProcess()
     }
 
     joyInputMask = 0xFFF;
-    if (joystick)
+    if (autoJoystickMapping && controller)
+    {
+        for (int i = 0; i < 12; i++)
+            if (SDL_GameControllerGetButton(controller, sdlButtons[i]))
+                joyInputMask &= ~(1 << i);
+    }
+    else if (joystick)
     {
         for (int i = 0; i < 12; i++)
             if (joystickButtonDown(joyMapping[i]))
