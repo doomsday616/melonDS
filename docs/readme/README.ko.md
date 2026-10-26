@@ -28,11 +28,12 @@
 
 <p align="center"><img src="../images/ko/features.jpg" alt="melonDS i18n 주요 기능" width="100%"></p>
 
-- **8개 언어 완전 번역** – 언어마다 인터페이스 문자열 745개를 모두 번역했습니다.
+- **8개 언어 완전 번역** – 언어마다 인터페이스 문자열 758개를 모두 번역했습니다.
 - **시스템 언어 자동 감지** – 처음 실행하면 운영체제의 표시 언어를 따라갑니다.
 - **즉시 전환** – 에뮬레이터를 다시 시작하지 않고 바로 언어를 바꿀 수 있습니다.
 - **화면 알림(OSD) 번역** – 예를 들어 "슬롯 1에 상태 저장됨" 같은 알림도 게임 화면에 한국어로 나옵니다.
 - **Qt 기본 요소도 번역** – 표준 버튼과 파일 선택 창도 선택한 언어를 따릅니다(`qtbase_*.qm` 내장).
+- **1.1.0 새 기능** – 빠른 상태 저장/불러오기(슬롯 1)와 스크린샷 찍기를 단축키로 지정할 수 있습니다(스크린샷 폴더는 "경로 설정"에서 지정). "인터페이스 설정"에서 리셋/정지 전에 확인을 묻도록 할 수 있고, 세이브 파일 가져오기에서 `.srm` 파일도 고를 수 있습니다.
 
 ## 스크린샷
 
@@ -48,13 +49,13 @@
 | 언어 | 코드 | 번역 현황 |
 | --- | --- | --- |
 | English | `en` | 원문 |
-| 简体中文 (중국어 간체) | `zh_CN` | 745/745 |
-| 繁體中文 (중국어 번체, 대만 용어) | `zh_TW` | 745/745 |
-| 日本語 (일본어) | `ja` | 745/745 |
-| Deutsch (독일어) | `de` | 745/745 |
-| Français (프랑스어) | `fr` | 745/745 |
-| 한국어 | `ko` | 745/745 |
-| Italiano (이탈리아어) | `it` | 745/745 |
+| 简体中文 (중국어 간체) | `zh_CN` | 758/758 |
+| 繁體中文 (중국어 번체, 대만 용어) | `zh_TW` | 758/758 |
+| 日本語 (일본어) | `ja` | 758/758 |
+| Deutsch (독일어) | `de` | 758/758 |
+| Français (프랑스어) | `fr` | 758/758 |
+| 한국어 | `ko` | 758/758 |
+| Italiano (이탈리아어) | `it` | 758/758 |
 
 <p align="center"><img src="../images/shared/languages.jpg" alt="지원 언어" width="100%"></p>
 
@@ -81,15 +82,15 @@
 
 | 플랫폼 | 파일 |
 | --- | --- |
-| Windows (x86_64) | `melonDS-i18n-1.0.0-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-i18n-1.0.0-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-i18n-1.0.0-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-i18n-1.0.0-linux-aarch64.AppImage` |
-| macOS (Universal) | `melonDS-i18n-1.0.0-macos-universal.zip` |
+| Windows (x86_64) | `melonDS-i18n-1.1.0-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-i18n-1.1.0-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-i18n-1.1.0-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-i18n-1.1.0-linux-aarch64.AppImage` |
+| macOS (Universal) | `melonDS-i18n-1.1.0-macos-universal.zip` |
 
 Windows용 압축 파일에는 `melonDS.exe` 하나만 들어 있습니다. 설치가 필요 없는 포터블 방식이라 설정은 같은 폴더의 `melonDS.toml`에 저장됩니다.
 
-1.0.0 버전에는 원본 melonDS에 아직 병합되지 않은 버그 수정 10개도 들어 있습니다. 각 수정 내용은 [릴리스 노트](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0)에서 볼 수 있습니다.
+1.1.0 버전에는 원본 melonDS에 아직 병합되지 않은 풀 리퀘스트를 바탕으로 한 수정과 기능이 모두 22개 들어 있습니다(1.0.0의 10개와 이번에 추가된 12개). 이번 항목은 [v1.1.0 릴리스 노트](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.1.0), 이전 항목은 [v1.0.0 릴리스 노트](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0)에서 볼 수 있습니다.
 
 ## 빠른 시작
 

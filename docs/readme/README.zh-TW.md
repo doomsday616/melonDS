@@ -28,10 +28,11 @@
 
 <p align="center"><img src="../images/zh-TW/features.jpg" alt="特色：8 種語言、自動偵測、即時切換、OSD 提示翻譯" width="100%"></p>
 
-- **8 種語言**：簡體中文、繁體中文（台灣用語）、英文、日文、德文、法文、韓文、義大利文，每種語言 745 條字串全部翻譯。
+- **8 種語言**：簡體中文、繁體中文（台灣用語）、英文、日文、德文、法文、韓文、義大利文，每種語言 758 條字串全部翻譯。
 - **自動偵測**：第一次啟動就依照系統的介面語言選好語言。
 - **即時切換**：在選單裡換語言立刻生效，不必重新啟動。
 - **OSD 也在地化**：像「已將即時存檔儲存至欄位 1」這類畫面上的通知也有翻譯；Qt 內建的標準按鈕與檔案對話框也會跟著切換。
+- **1.1.0 新增**：可自訂的快速儲存/載入即時存檔（欄位 1）快速鍵與擷取畫面快速鍵（可在「路徑設定」指定擷取畫面資料夾）；「介面設定」可開啟重設/停止前確認；匯入存檔時可直接選擇 `.srm` 檔。
 
 ## 螢幕截圖
 
@@ -47,14 +48,14 @@
 
 | 語言 | 代碼 | 狀態 |
 |---|---|---|
-| 简体中文（簡體中文） | `zh_CN` | 745 / 745 |
-| 繁體中文（台灣用語） | `zh_TW` | 745 / 745 |
+| 简体中文（簡體中文） | `zh_CN` | 758 / 758 |
+| 繁體中文（台灣用語） | `zh_TW` | 758 / 758 |
 | English（英文） | `en` | 原文 |
-| 日本語（日文） | `ja` | 745 / 745 |
-| Deutsch（德文） | `de` | 745 / 745 |
-| Français（法文） | `fr` | 745 / 745 |
-| 한국어（韓文） | `ko` | 745 / 745 |
-| Italiano（義大利文） | `it` | 745 / 745 |
+| 日本語（日文） | `ja` | 758 / 758 |
+| Deutsch（德文） | `de` | 758 / 758 |
+| Français（法文） | `fr` | 758 / 758 |
+| 한국어（韓文） | `ko` | 758 / 758 |
+| Italiano（義大利文） | `it` | 758 / 758 |
 
 ## 自動偵測與切換語言
 
@@ -85,15 +86,15 @@
 
 | 平台 | 檔案 |
 |---|---|
-| Windows（x86_64，大多數電腦） | `melonDS-i18n-1.0.0-windows-x86_64.zip` |
-| Windows（ARM64） | `melonDS-i18n-1.0.0-windows-arm64.zip` |
-| Linux（x86_64） | `melonDS-i18n-1.0.0-linux-x86_64.AppImage` |
-| Linux（aarch64） | `melonDS-i18n-1.0.0-linux-aarch64.AppImage` |
-| macOS（Intel 與 Apple 晶片） | `melonDS-i18n-1.0.0-macos-universal.zip` |
+| Windows（x86_64，大多數電腦） | `melonDS-i18n-1.1.0-windows-x86_64.zip` |
+| Windows（ARM64） | `melonDS-i18n-1.1.0-windows-arm64.zip` |
+| Linux（x86_64） | `melonDS-i18n-1.1.0-linux-x86_64.AppImage` |
+| Linux（aarch64） | `melonDS-i18n-1.1.0-linux-aarch64.AppImage` |
+| macOS（Intel 與 Apple 晶片） | `melonDS-i18n-1.1.0-macos-universal.zip` |
 
 Windows 的 zip 裡只有一個 `melonDS.exe`。它是免安裝的可攜版，不會寫入系統，設定檔就存在執行檔旁邊。
 
-1.0.0 版另外收錄了 10 個上游 melonDS 尚未合併的錯誤修正，逐項說明請見[發行說明](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0)。
+1.1.0 版共收錄 22 項以上游 melonDS 尚未合併之 PR 為基礎的修正與功能：1.0.0 的 10 項，加上本版新增的 12 項。新增項目請見 [v1.1.0 發行說明](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.1.0)，先前的請見 [v1.0.0 發行說明](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0)。
 
 ## 快速上手
 

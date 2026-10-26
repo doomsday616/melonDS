@@ -33,6 +33,7 @@
 - **Live switching** — change language from the **Language** menu; it applies instantly, no restart.
 - **Translated OSD** — on-screen notifications such as "State saved to slot 1" are translated too, rendered with a system font that supports CJK and accented characters.
 - **Qt's own widgets follow along** — standard buttons and file dialogs switch language as well.
+- **New in 1.1.0** — bindable hotkeys for quick save/load (slot 1) and for taking a screenshot (with a screenshots folder in Path settings), an optional confirmation before Reset/Stop (Interface settings), and `.srm` saves in the import dialog.
 
 ## Screenshots
 
@@ -48,14 +49,14 @@
 
 | Language | Code | Status |
 |---|---|---|
-| 简体中文 (Simplified Chinese) | `zh_CN` | 745 / 745 |
-| 繁體中文 (Traditional Chinese, Taiwan terms) | `zh_TW` | 745 / 745 |
+| 简体中文 (Simplified Chinese) | `zh_CN` | 758 / 758 |
+| 繁體中文 (Traditional Chinese, Taiwan terms) | `zh_TW` | 758 / 758 |
 | English | `en` | Source language |
-| 日本語 (Japanese) | `ja` | 745 / 745 |
-| Deutsch (German) | `de` | 745 / 745 |
-| Français (French) | `fr` | 745 / 745 |
-| 한국어 (Korean) | `ko` | 745 / 745 |
-| Italiano (Italian) | `it` | 745 / 745 |
+| 日本語 (Japanese) | `ja` | 758 / 758 |
+| Deutsch (German) | `de` | 758 / 758 |
+| Français (French) | `fr` | 758 / 758 |
+| 한국어 (Korean) | `ko` | 758 / 758 |
+| Italiano (Italian) | `it` | 758 / 758 |
 
 ## Auto-detect and switching
 
@@ -86,15 +87,15 @@ Grab the latest build from the [Releases page](https://github.com/doomsday616/me
 
 | Platform | File |
 |---|---|
-| Windows (x86_64, most PCs) | `melonDS-i18n-1.0.0-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-i18n-1.0.0-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-i18n-1.0.0-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-i18n-1.0.0-linux-aarch64.AppImage` |
-| macOS (Intel and Apple silicon) | `melonDS-i18n-1.0.0-macos-universal.zip` |
+| Windows (x86_64, most PCs) | `melonDS-i18n-1.1.0-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-i18n-1.1.0-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-i18n-1.1.0-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-i18n-1.1.0-linux-aarch64.AppImage` |
+| macOS (Intel and Apple silicon) | `melonDS-i18n-1.1.0-macos-universal.zip` |
 
 The Windows zip contains just `melonDS.exe`. It is portable: nothing is installed, and settings are written next to the executable.
 
-Version 1.0.0 also includes 10 bug fixes taken from upstream pull requests that have not been merged into melonDS yet. The [release notes](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0) list each one.
+Version 1.1.0 includes 22 fixes and features based on upstream pull requests that have not been merged into melonDS yet: the 10 from 1.0.0 plus 12 new ones. The [v1.1.0 release notes](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.1.0) list each new one; the [v1.0.0 release notes](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0) list the earlier ones.
 
 ## Quick start
 

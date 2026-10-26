@@ -28,11 +28,12 @@
 
 <p align="center"><img src="../images/it/features.jpg" alt="Caratteristiche di melonDS i18n" width="100%"></p>
 
-- **8 lingue, traduzione completa** – ogni lingua copre tutte le 745 stringhe dell'interfaccia.
+- **8 lingue, traduzione completa** – ogni lingua copre tutte le 758 stringhe dell'interfaccia.
 - **Rilevamento automatico** – al primo avvio viene usata la lingua del sistema operativo.
 - **Cambio immediato** – cambi lingua senza riavviare l'emulatore.
 - **Notifiche a schermo (OSD) tradotte** – per esempio «Stato salvato nello slot 1» direttamente sopra il gioco.
 - **Anche gli elementi standard di Qt** – pulsanti comuni e finestre di selezione file seguono la lingua scelta (`qtbase_*.qm` incluso).
+- **Novità della 1.1.0** – tasti rapidi assegnabili per salvataggio/caricamento rapido di stato (slot 1) e per catturare una schermata (cartella scelta nelle impostazioni percorsi), conferma facoltativa prima di Reset/Arresta (impostazioni interfaccia) e file `.srm` accettati nell'importazione dei salvataggi.
 
 ## Screenshot
 
@@ -48,13 +49,13 @@
 | Lingua | Codice | Traduzione |
 | --- | --- | --- |
 | English (inglese) | `en` | testo originale |
-| 简体中文 (cinese semplificato) | `zh_CN` | 745/745 |
-| 繁體中文 (cinese tradizionale, terminologia di Taiwan) | `zh_TW` | 745/745 |
-| 日本語 (giapponese) | `ja` | 745/745 |
-| Deutsch (tedesco) | `de` | 745/745 |
-| Français (francese) | `fr` | 745/745 |
-| 한국어 (coreano) | `ko` | 745/745 |
-| Italiano | `it` | 745/745 |
+| 简体中文 (cinese semplificato) | `zh_CN` | 758/758 |
+| 繁體中文 (cinese tradizionale, terminologia di Taiwan) | `zh_TW` | 758/758 |
+| 日本語 (giapponese) | `ja` | 758/758 |
+| Deutsch (tedesco) | `de` | 758/758 |
+| Français (francese) | `fr` | 758/758 |
+| 한국어 (coreano) | `ko` | 758/758 |
+| Italiano | `it` | 758/758 |
 
 <p align="center"><img src="../images/shared/languages.jpg" alt="Lingue supportate" width="100%"></p>
 
@@ -81,15 +82,15 @@ Scarica il file per la tua piattaforma dalla [pagina dell'ultima release](https:
 
 | Piattaforma | File |
 | --- | --- |
-| Windows (x86_64) | `melonDS-i18n-1.0.0-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-i18n-1.0.0-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-i18n-1.0.0-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-i18n-1.0.0-linux-aarch64.AppImage` |
-| macOS (Universal) | `melonDS-i18n-1.0.0-macos-universal.zip` |
+| Windows (x86_64) | `melonDS-i18n-1.1.0-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-i18n-1.1.0-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-i18n-1.1.0-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-i18n-1.1.0-linux-aarch64.AppImage` |
+| macOS (Universal) | `melonDS-i18n-1.1.0-macos-universal.zip` |
 
 L'archivio per Windows contiene solo `melonDS.exe` ed è portatile: non serve installare nulla e le impostazioni vengono salvate in `melonDS.toml` nella stessa cartella.
 
-La versione 1.0.0 include anche 10 correzioni di bug prese da pull request non ancora integrate in melonDS. Le [note di rilascio](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0) le descrivono una per una.
+La versione 1.1.0 include in tutto 22 correzioni e funzioni basate su pull request non ancora integrate in melonDS: le 10 della 1.0.0 più 12 nuove. Le [note di rilascio v1.1.0](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.1.0) descrivono le nuove, le [note di rilascio v1.0.0](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0) le precedenti.
 
 ## Guida rapida
 
