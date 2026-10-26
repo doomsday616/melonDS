@@ -1229,40 +1229,10 @@ void EmuInstance::syncRTC()
 
 bool EmuInstance::updateConsole() noexcept
 {
-    // update the console type
-    consoleType = globalCfg.GetInt("Emu.ConsoleType");
-
-    // Let's get the cart we want to use;
-    // if we want to keep the cart, we'll eject it from the existing console first.
-    std::unique_ptr<NDSCart::CartCommon> nextndscart;
-    if (!changeCart)
-    { // If we want to keep the existing cart (if any)...
-        nextndscart = nds ? nds->EjectCart() : nullptr;
-    }
-    else
-    {
-        nextndscart = std::move(nextCart);
-        changeCart = false;
-    }
-
-    if (auto* cartsd = dynamic_cast<NDSCart::CartSD*>(nextndscart.get()))
-    {
-        // LoadDLDISDCard will return nullopt if the SD card is disabled;
-        // SetSDCard will accept nullopt, which means no SD card
-        cartsd->SetSDCard(getSDCardArgs("DLDI"));
-    }
-
-    std::unique_ptr<GBACart::CartCommon> nextgbacart;
-    if (!changeGBACart)
-    {
-        nextgbacart = nds ? nds->EjectGBACart() : nullptr;
-    }
-    else
-    {
-        nextgbacart = std::move(nextGBACart);
-        changeGBACart = false;
-    }
-
+    // Load everything the new console needs before touching the current one.
+    // If anything fails, the current console, its console type and its carts
+    // stay untouched, so callers can keep running it.
+    int newConsoleType = globalCfg.GetInt("Emu.ConsoleType");
 
     auto arm9bios = loadARM9BIOS();
     if (!arm9bios)
@@ -1272,7 +1242,7 @@ bool EmuInstance::updateConsole() noexcept
     if (!arm7bios)
         return false;
 
-    auto firmware = loadFirmware(consoleType);
+    auto firmware = loadFirmware(newConsoleType);
     if (!firmware)
         return false;
 
@@ -1315,7 +1285,7 @@ bool EmuInstance::updateConsole() noexcept
     NDSArgs* args = &ndsargs;
 
     std::optional<DSiArgs> dsiargs = std::nullopt;
-    if (consoleType == 1)
+    if (newConsoleType == 1)
     {
         auto arm7ibios = loadDSiARM7BIOS();
         if (!arm7ibios)
@@ -1339,6 +1309,40 @@ bool EmuInstance::updateConsole() noexcept
 
         dsiargs = std::move(_dsiargs);
         args = &(*dsiargs);
+    }
+
+    // everything loaded, commit the console type
+    consoleType = newConsoleType;
+
+    // Let's get the cart we want to use;
+    // if we want to keep the cart, we'll eject it from the existing console first.
+    std::unique_ptr<NDSCart::CartCommon> nextndscart;
+    if (!changeCart)
+    { // If we want to keep the existing cart (if any)...
+        nextndscart = nds ? nds->EjectCart() : nullptr;
+    }
+    else
+    {
+        nextndscart = std::move(nextCart);
+        changeCart = false;
+    }
+
+    if (auto* cartsd = dynamic_cast<NDSCart::CartSD*>(nextndscart.get()))
+    {
+        // LoadDLDISDCard will return nullopt if the SD card is disabled;
+        // SetSDCard will accept nullopt, which means no SD card
+        cartsd->SetSDCard(getSDCardArgs("DLDI"));
+    }
+
+    std::unique_ptr<GBACart::CartCommon> nextgbacart;
+    if (!changeGBACart)
+    {
+        nextgbacart = nds ? nds->EjectGBACart() : nullptr;
+    }
+    else
+    {
+        nextgbacart = std::move(nextGBACart);
+        changeGBACart = false;
     }
 
     renderLock.lock();
@@ -1400,7 +1404,13 @@ bool EmuInstance::updateConsole() noexcept
 
 void EmuInstance::reset()
 {
-    updateConsole();
+    if (!updateConsole())
+    {
+        // The new settings could not be loaded (missing BIOS/firmware);
+        // updateConsole() left the current console as it was, keep using it.
+        osdAddMessage(0xFFA0A0, QT_TRANSLATE_NOOP("OSD", "Failed to apply emulation settings, check BIOS/firmware paths"));
+        if (!nds) return;
+    }
 
     if (consoleType == 1) ejectGBACart();
 
