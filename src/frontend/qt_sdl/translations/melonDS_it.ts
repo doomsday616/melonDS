@@ -1359,6 +1359,22 @@ Controlla i permessi di scrittura di file/cartella.</translation>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Seleziona il joystick da usare per i comandi, se ne è collegato uno.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically map joystick buttons to their closest equivalents on the DS for controllers that are known to SDL&apos;s game controller database.&lt;/p&gt;&lt;p&gt;The joystick mappings page will be disabled when automatic mapping is in effect.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Mappa automaticamente i pulsanti del joystick sui pulsanti DS più vicini per i controller presenti nel database dei game controller di SDL.&lt;/p&gt;&lt;p&gt;La pagina della mappatura joystick viene disattivata mentre la mappatura automatica è attiva.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Automatically map joystick buttons</source>
+        <translation>Mappa automaticamente i pulsanti del joystick</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Store the joystick mappings below only for controllers of the same model as the selected joystick. Other controllers keep using the default mapping.&lt;/p&gt;&lt;p&gt;When enabled, this mapping is used for this model instead of automatic mapping. Disabling it removes the separate mapping when OK is pressed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Salva la mappatura joystick qui sotto solo per i controller dello stesso modello del joystick selezionato. Gli altri controller continuano a usare la mappatura predefinita.&lt;/p&gt;&lt;p&gt;Se attiva, questa mappatura viene usata per questo modello al posto di quella automatica. Disattivandola, la mappatura separata viene rimossa alla pressione di OK.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Use a separate mapping for this controller model</source>
+        <translation>Usa una mappatura separata per questo modello di controller</translation>
+    </message>
+    <message>
         <source>Configuring mappings for instance X</source>
         <translation>Mappatura dell&apos;istanza X</translation>
     </message>
@@ -1482,6 +1498,22 @@ Controlla i permessi di scrittura di file/cartella.</translation>
         <source>Take screenshot</source>
         <translation>Cattura schermata</translation>
     </message>
+    <message>
+        <source>Cycle screen layout</source>
+        <translation>Cambia ciclicamente la disposizione schermi</translation>
+    </message>
+    <message>
+        <source>Toggle even screen sizing</source>
+        <translation>Attiva/disattiva dimensionamento uniforme</translation>
+    </message>
+    <message>
+        <source>Reload most recent ROM</source>
+        <translation>Ricarica la ROM più recente</translation>
+    </message>
+    <message>
+        <source>Toggle menu bar</source>
+        <translation>Mostra/nascondi barra dei menu</translation>
+    </message>
 </context>
 <context>
     <name>InterfaceSettingsDialog</name>
@@ -1516,10 +1548,6 @@ Controlla i permessi di scrittura di file/cartella.</translation>
     <message>
         <source>Pause emulation when window is not in focus</source>
         <translation>Metti in pausa l&apos;emulazione quando la finestra non è attiva</translation>
-    </message>
-    <message>
-        <source>Mute audio while fast forwarding</source>
-        <translation>Disattiva l&apos;audio durante l&apos;avanti veloce</translation>
     </message>
     <message>
         <source>Ask for confirmation before resetting or stopping emulation</source>
@@ -1572,6 +1600,22 @@ Controlla i permessi di scrittura di file/cartella.</translation>
     <message>
         <source>MAX</source>
         <translation>MAX</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scales the audio volume while fast-forward is active (hotkey held or toggled). 100% leaves the volume alone, 0% mutes, and above 100% is louder than normal play.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Regola il volume mentre l&apos;avanti veloce è attivo (tasto rapido tenuto premuto o attivato). 100% lascia il volume invariato, 0% disattiva l&apos;audio, oltre 100% è più forte del normale.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Fast-Forward volume</source>
+        <translation>Volume in avanti veloce</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scales the audio volume while slow-mo is active (hotkey held or toggled). 100% leaves the volume alone, 0% mutes, and above 100% is louder than normal play.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Regola il volume mentre il rallentatore è attivo (tasto rapido tenuto premuto o attivato). 100% lascia il volume invariato, 0% disattiva l&apos;audio, oltre 100% è più forte del normale.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Slow-Mo volume</source>
+        <translation>Volume al rallentatore</translation>
     </message>
     <message>
         <source>System default</source>
@@ -1979,6 +2023,10 @@ Controlla i permessi di scrittura di file/cartella.</translation>
         <translation>Spazio tra gli schermi</translation>
     </message>
     <message>
+        <source>Custom...</source>
+        <translation>Personalizzato...</translation>
+    </message>
+    <message>
         <source>Screen layout</source>
         <translation>Disposizione schermi</translation>
     </message>
@@ -2227,6 +2275,10 @@ Controlla i permessi di scrittura di file/cartella.</translation>
         <translation>Vuoi davvero resettare l&apos;emulazione?</translation>
     </message>
     <message>
+        <source>Are you sure you want to reload the ROM?</source>
+        <translation>Vuoi davvero ricaricare la ROM?</translation>
+    </message>
+    <message>
         <source>Are you sure you want to stop the emulation?</source>
         <translation>Vuoi davvero arrestare l&apos;emulazione?</translation>
     </message>
@@ -2249,6 +2301,10 @@ Do you wish to continue?</source>
 Se partecipi ora a una partita in LAN, tutte le istanze secondarie verranno chiuse.
 
 Vuoi continuare?</translation>
+    </message>
+    <message>
+        <source>Gap between the screens (0-128 px):</source>
+        <translation>Spazio tra gli schermi (0-128 px):</translation>
     </message>
 </context>
 <context>
@@ -2369,6 +2425,18 @@ Vuoi continuare?</translation>
     <message>
         <source>State saved to file</source>
         <translation>Stato salvato su file</translation>
+    </message>
+    <message>
+        <source>No recent ROM to reload</source>
+        <translation>Nessuna ROM recente da ricaricare</translation>
+    </message>
+    <message>
+        <source>ROM reloaded</source>
+        <translation>ROM ricaricata</translation>
+    </message>
+    <message>
+        <source>Menu bar hidden, press the hotkey again to show it</source>
+        <translation>Barra dei menu nascosta, premi di nuovo il tasto rapido per mostrarla</translation>
     </message>
     <message>
         <source>State save failed</source>

@@ -1359,6 +1359,22 @@ Please check file/folder write permissions.</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;조이스틱이 연결되어 있으면 입력에 사용할 조이스틱을 선택합니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically map joystick buttons to their closest equivalents on the DS for controllers that are known to SDL&apos;s game controller database.&lt;/p&gt;&lt;p&gt;The joystick mappings page will be disabled when automatic mapping is in effect.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;SDL 게임 컨트롤러 데이터베이스에 등록된 컨트롤러는 조이스틱 버튼을 DS에서 가장 가까운 버튼에 자동으로 매핑합니다.&lt;/p&gt;&lt;p&gt;자동 매핑이 적용되는 동안 조이스틱 매핑 페이지는 비활성화됩니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Automatically map joystick buttons</source>
+        <translation>조이스틱 버튼 자동 매핑</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Store the joystick mappings below only for controllers of the same model as the selected joystick. Other controllers keep using the default mapping.&lt;/p&gt;&lt;p&gt;When enabled, this mapping is used for this model instead of automatic mapping. Disabling it removes the separate mapping when OK is pressed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;아래 조이스틱 매핑을 선택한 조이스틱과 같은 모델의 컨트롤러에만 저장합니다. 다른 컨트롤러는 계속 기본 매핑을 사용합니다.&lt;/p&gt;&lt;p&gt;활성화하면 이 모델에는 자동 매핑 대신 이 매핑이 사용됩니다. 비활성화하면 확인을 누를 때 이 별도 매핑이 삭제됩니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Use a separate mapping for this controller model</source>
+        <translation>이 컨트롤러 모델에 별도 매핑 사용</translation>
+    </message>
+    <message>
         <source>Configuring mappings for instance X</source>
         <translation>인스턴스 X 매핑 설정 중</translation>
     </message>
@@ -1482,6 +1498,22 @@ Please check file/folder write permissions.</source>
         <source>Take screenshot</source>
         <translation>스크린샷 찍기</translation>
     </message>
+    <message>
+        <source>Cycle screen layout</source>
+        <translation>화면 배치 순환</translation>
+    </message>
+    <message>
+        <source>Toggle even screen sizing</source>
+        <translation>균등 화면 크기 전환</translation>
+    </message>
+    <message>
+        <source>Reload most recent ROM</source>
+        <translation>최근 ROM 다시 불러오기</translation>
+    </message>
+    <message>
+        <source>Toggle menu bar</source>
+        <translation>메뉴 표시줄 전환</translation>
+    </message>
 </context>
 <context>
     <name>InterfaceSettingsDialog</name>
@@ -1516,10 +1548,6 @@ Please check file/folder write permissions.</source>
     <message>
         <source>Pause emulation when window is not in focus</source>
         <translation>창이 포커스를 잃으면 에뮬레이션 일시 정지</translation>
-    </message>
-    <message>
-        <source>Mute audio while fast forwarding</source>
-        <translation>빨리 감기 중 음소거</translation>
     </message>
     <message>
         <source>Ask for confirmation before resetting or stopping emulation</source>
@@ -1572,6 +1600,22 @@ Please check file/folder write permissions.</source>
     <message>
         <source>MAX</source>
         <translation>최대</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scales the audio volume while fast-forward is active (hotkey held or toggled). 100% leaves the volume alone, 0% mutes, and above 100% is louder than normal play.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;빨리 감기가 켜져 있는 동안(단축키를 누르고 있거나 전환한 경우) 음량을 조절합니다. 100% 는 원래 음량, 0% 는 음소거이며 100% 를 넘으면 평소보다 커집니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Fast-Forward volume</source>
+        <translation>빨리 감기 음량</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scales the audio volume while slow-mo is active (hotkey held or toggled). 100% leaves the volume alone, 0% mutes, and above 100% is louder than normal play.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;슬로 모션이 켜져 있는 동안(단축키를 누르고 있거나 전환한 경우) 음량을 조절합니다. 100% 는 원래 음량, 0% 는 음소거이며 100% 를 넘으면 평소보다 커집니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Slow-Mo volume</source>
+        <translation>슬로 모션 음량</translation>
     </message>
     <message>
         <source>System default</source>
@@ -1979,6 +2023,10 @@ Please check file/folder write permissions.</source>
         <translation>화면 간격</translation>
     </message>
     <message>
+        <source>Custom...</source>
+        <translation>사용자 지정...</translation>
+    </message>
+    <message>
         <source>Screen layout</source>
         <translation>화면 배치</translation>
     </message>
@@ -2227,6 +2275,10 @@ Please check file/folder write permissions.</source>
         <translation>에뮬레이션을 리셋할까요?</translation>
     </message>
     <message>
+        <source>Are you sure you want to reload the ROM?</source>
+        <translation>ROM을 다시 불러올까요?</translation>
+    </message>
+    <message>
         <source>Are you sure you want to stop the emulation?</source>
         <translation>에뮬레이션을 정지할까요?</translation>
     </message>
@@ -2249,6 +2301,10 @@ Do you wish to continue?</source>
 지금 LAN 게임에 참가하면 보조 인스턴스가 모두 닫힙니다.
 
 계속할까요?</translation>
+    </message>
+    <message>
+        <source>Gap between the screens (0-128 px):</source>
+        <translation>화면 간격(0-128 px):</translation>
     </message>
 </context>
 <context>
@@ -2369,6 +2425,18 @@ Do you wish to continue?</source>
     <message>
         <source>State saved to file</source>
         <translation>파일에 상태 저장됨</translation>
+    </message>
+    <message>
+        <source>No recent ROM to reload</source>
+        <translation>다시 불러올 최근 ROM이 없음</translation>
+    </message>
+    <message>
+        <source>ROM reloaded</source>
+        <translation>ROM을 다시 불러왔습니다</translation>
+    </message>
+    <message>
+        <source>Menu bar hidden, press the hotkey again to show it</source>
+        <translation>메뉴 표시줄이 숨겨졌습니다. 단축키를 다시 누르면 표시됩니다</translation>
     </message>
     <message>
         <source>State save failed</source>

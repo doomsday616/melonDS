@@ -1359,6 +1359,22 @@ Please check file/folder write permissions.</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;如有手柄连接，选择用于手柄输入的设备。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically map joystick buttons to their closest equivalents on the DS for controllers that are known to SDL&apos;s game controller database.&lt;/p&gt;&lt;p&gt;The joystick mappings page will be disabled when automatic mapping is in effect.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;对于 SDL 游戏控制器数据库中已知的手柄，自动将手柄按键映射到 DS 上最接近的对应按键。&lt;/p&gt;&lt;p&gt;自动映射生效时，手柄映射页面将被禁用。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Automatically map joystick buttons</source>
+        <translation>自动映射手柄按键</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Store the joystick mappings below only for controllers of the same model as the selected joystick. Other controllers keep using the default mapping.&lt;/p&gt;&lt;p&gt;When enabled, this mapping is used for this model instead of automatic mapping. Disabling it removes the separate mapping when OK is pressed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;下方的手柄映射仅保存给与所选手柄同型号的控制器，其他手柄继续使用默认映射。&lt;/p&gt;&lt;p&gt;启用后，此型号将使用这套映射而不是自动映射。取消勾选后，按下“确定”时会删除这套单独的映射。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Use a separate mapping for this controller model</source>
+        <translation>为此手柄型号使用单独的映射</translation>
+    </message>
+    <message>
         <source>Configuring mappings for instance X</source>
         <translation>正在配置实例 X 的按键映射</translation>
     </message>
@@ -1482,6 +1498,22 @@ Please check file/folder write permissions.</source>
         <source>Take screenshot</source>
         <translation>截图</translation>
     </message>
+    <message>
+        <source>Cycle screen layout</source>
+        <translation>循环切换屏幕布局</translation>
+    </message>
+    <message>
+        <source>Toggle even screen sizing</source>
+        <translation>切换均等屏幕尺寸</translation>
+    </message>
+    <message>
+        <source>Reload most recent ROM</source>
+        <translation>重新加载最近的 ROM</translation>
+    </message>
+    <message>
+        <source>Toggle menu bar</source>
+        <translation>切换菜单栏</translation>
+    </message>
 </context>
 <context>
     <name>InterfaceSettingsDialog</name>
@@ -1516,10 +1548,6 @@ Please check file/folder write permissions.</source>
     <message>
         <source>Pause emulation when window is not in focus</source>
         <translation>窗口失去焦点时暂停模拟</translation>
-    </message>
-    <message>
-        <source>Mute audio while fast forwarding</source>
-        <translation>快进时静音</translation>
     </message>
     <message>
         <source>Ask for confirmation before resetting or stopping emulation</source>
@@ -1572,6 +1600,22 @@ Please check file/folder write permissions.</source>
     <message>
         <source>MAX</source>
         <translation>最大</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scales the audio volume while fast-forward is active (hotkey held or toggled). 100% leaves the volume alone, 0% mutes, and above 100% is louder than normal play.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;快进生效时（按住或切换快进热键）调整音量。100% 保持原音量，0% 为静音，高于 100% 则比正常游戏时更响。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Fast-Forward volume</source>
+        <translation>快进音量</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scales the audio volume while slow-mo is active (hotkey held or toggled). 100% leaves the volume alone, 0% mutes, and above 100% is louder than normal play.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;慢动作生效时（按住或切换慢动作热键）调整音量。100% 保持原音量，0% 为静音，高于 100% 则比正常游戏时更响。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Slow-Mo volume</source>
+        <translation>慢动作音量</translation>
     </message>
     <message>
         <source>System default</source>
@@ -1979,6 +2023,10 @@ Please check file/folder write permissions.</source>
         <translation>屏幕间距</translation>
     </message>
     <message>
+        <source>Custom...</source>
+        <translation>自定义...</translation>
+    </message>
+    <message>
         <source>Screen layout</source>
         <translation>屏幕布局</translation>
     </message>
@@ -2227,6 +2275,10 @@ Please check file/folder write permissions.</source>
         <translation>确定要重置模拟吗？</translation>
     </message>
     <message>
+        <source>Are you sure you want to reload the ROM?</source>
+        <translation>确定要重新加载 ROM 吗？</translation>
+    </message>
+    <message>
         <source>Are you sure you want to stop the emulation?</source>
         <translation>确定要停止模拟吗？</translation>
     </message>
@@ -2249,6 +2301,10 @@ Do you wish to continue?</source>
 如果现在加入局域网游戏，所有附属实例都将被关闭。
 
 是否继续？</translation>
+    </message>
+    <message>
+        <source>Gap between the screens (0-128 px):</source>
+        <translation>上下屏间距（0-128 像素）：</translation>
     </message>
 </context>
 <context>
@@ -2369,6 +2425,18 @@ Do you wish to continue?</source>
     <message>
         <source>State saved to file</source>
         <translation>已保存即时存档到文件</translation>
+    </message>
+    <message>
+        <source>No recent ROM to reload</source>
+        <translation>没有可重新加载的最近 ROM</translation>
+    </message>
+    <message>
+        <source>ROM reloaded</source>
+        <translation>已重新加载 ROM</translation>
+    </message>
+    <message>
+        <source>Menu bar hidden, press the hotkey again to show it</source>
+        <translation>菜单栏已隐藏，再次按下热键即可显示</translation>
     </message>
     <message>
         <source>State save failed</source>

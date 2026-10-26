@@ -1359,6 +1359,22 @@ Veuillez vérifier les droits d&apos;écriture du fichier/dossier.</translation>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sélectionne la manette utilisée pour les commandes, si une manette est branchée.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically map joystick buttons to their closest equivalents on the DS for controllers that are known to SDL&apos;s game controller database.&lt;/p&gt;&lt;p&gt;The joystick mappings page will be disabled when automatic mapping is in effect.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Assigne automatiquement les boutons de la manette aux boutons DS les plus proches pour les manettes connues de la base de données de manettes de SDL.&lt;/p&gt;&lt;p&gt;La page des assignations manette est désactivée tant que l&apos;assignation automatique est active.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Automatically map joystick buttons</source>
+        <translation>Assigner automatiquement les boutons de la manette</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Store the joystick mappings below only for controllers of the same model as the selected joystick. Other controllers keep using the default mapping.&lt;/p&gt;&lt;p&gt;When enabled, this mapping is used for this model instead of automatic mapping. Disabling it removes the separate mapping when OK is pressed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enregistre les assignations manette ci-dessous uniquement pour les manettes du même modèle que la manette sélectionnée. Les autres manettes continuent d&apos;utiliser les assignations par défaut.&lt;/p&gt;&lt;p&gt;Si cette option est activée, ces assignations sont utilisées pour ce modèle à la place de l&apos;assignation automatique. La désactiver supprime ces assignations séparées lorsque vous cliquez sur OK.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Use a separate mapping for this controller model</source>
+        <translation>Assignations séparées pour ce modèle de manette</translation>
+    </message>
+    <message>
         <source>Configuring mappings for instance X</source>
         <translation>Assignations de l&apos;instance X</translation>
     </message>
@@ -1482,6 +1498,22 @@ Veuillez vérifier les droits d&apos;écriture du fichier/dossier.</translation>
         <source>Take screenshot</source>
         <translation>Prendre une capture d&apos;écran</translation>
     </message>
+    <message>
+        <source>Cycle screen layout</source>
+        <translation>Faire défiler la disposition des écrans</translation>
+    </message>
+    <message>
+        <source>Toggle even screen sizing</source>
+        <translation>Basculer le dimensionnement égal des écrans</translation>
+    </message>
+    <message>
+        <source>Reload most recent ROM</source>
+        <translation>Recharger la ROM la plus récente</translation>
+    </message>
+    <message>
+        <source>Toggle menu bar</source>
+        <translation>Basculer la barre de menus</translation>
+    </message>
 </context>
 <context>
     <name>InterfaceSettingsDialog</name>
@@ -1516,10 +1548,6 @@ Veuillez vérifier les droits d&apos;écriture du fichier/dossier.</translation>
     <message>
         <source>Pause emulation when window is not in focus</source>
         <translation>Mettre l&apos;émulation en pause quand la fenêtre n&apos;a pas le focus</translation>
-    </message>
-    <message>
-        <source>Mute audio while fast forwarding</source>
-        <translation>Couper le son pendant l&apos;avance rapide</translation>
     </message>
     <message>
         <source>Ask for confirmation before resetting or stopping emulation</source>
@@ -1572,6 +1600,22 @@ Veuillez vérifier les droits d&apos;écriture du fichier/dossier.</translation>
     <message>
         <source>MAX</source>
         <translation>MAX</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scales the audio volume while fast-forward is active (hotkey held or toggled). 100% leaves the volume alone, 0% mutes, and above 100% is louder than normal play.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ajuste le volume pendant l&apos;avance rapide (raccourci maintenu ou basculé). 100% conserve le volume, 0% coupe le son, au-delà de 100% le son est plus fort que la normale.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Fast-Forward volume</source>
+        <translation>Volume en avance rapide</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scales the audio volume while slow-mo is active (hotkey held or toggled). 100% leaves the volume alone, 0% mutes, and above 100% is louder than normal play.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ajuste le volume pendant le ralenti (raccourci maintenu ou basculé). 100% conserve le volume, 0% coupe le son, au-delà de 100% le son est plus fort que la normale.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Slow-Mo volume</source>
+        <translation>Volume au ralenti</translation>
     </message>
     <message>
         <source>System default</source>
@@ -1979,6 +2023,10 @@ Veuillez vérifier les droits d&apos;écriture du fichier/dossier.</translation>
         <translation>Espace entre les écrans</translation>
     </message>
     <message>
+        <source>Custom...</source>
+        <translation>Personnalisé...</translation>
+    </message>
+    <message>
         <source>Screen layout</source>
         <translation>Disposition des écrans</translation>
     </message>
@@ -2227,6 +2275,10 @@ Veuillez vérifier les droits d&apos;écriture du fichier/dossier.</translation>
         <translation>Voulez-vous vraiment réinitialiser l&apos;émulation ?</translation>
     </message>
     <message>
+        <source>Are you sure you want to reload the ROM?</source>
+        <translation>Voulez-vous vraiment recharger la ROM ?</translation>
+    </message>
+    <message>
         <source>Are you sure you want to stop the emulation?</source>
         <translation>Voulez-vous vraiment arrêter l&apos;émulation ?</translation>
     </message>
@@ -2249,6 +2301,10 @@ Do you wish to continue?</source>
 Si vous rejoignez une partie en réseau local maintenant, toutes les instances secondaires seront fermées.
 
 Voulez-vous continuer ?</translation>
+    </message>
+    <message>
+        <source>Gap between the screens (0-128 px):</source>
+        <translation>Espace entre les écrans (0-128 px) :</translation>
     </message>
 </context>
 <context>
@@ -2369,6 +2425,18 @@ Voulez-vous continuer ?</translation>
     <message>
         <source>State saved to file</source>
         <translation>État sauvegardé dans un fichier</translation>
+    </message>
+    <message>
+        <source>No recent ROM to reload</source>
+        <translation>Aucune ROM récente à recharger</translation>
+    </message>
+    <message>
+        <source>ROM reloaded</source>
+        <translation>ROM rechargée</translation>
+    </message>
+    <message>
+        <source>Menu bar hidden, press the hotkey again to show it</source>
+        <translation>Barre de menus masquée, appuyez à nouveau sur le raccourci pour l&apos;afficher</translation>
     </message>
     <message>
         <source>State save failed</source>

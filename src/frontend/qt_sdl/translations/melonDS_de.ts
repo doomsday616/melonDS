@@ -1359,6 +1359,22 @@ Bitte prüfen Sie die Schreibrechte für Datei/Ordner.</translation>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wählt den Controller für die Eingabe aus, falls einer angeschlossen ist.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically map joystick buttons to their closest equivalents on the DS for controllers that are known to SDL&apos;s game controller database.&lt;/p&gt;&lt;p&gt;The joystick mappings page will be disabled when automatic mapping is in effect.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ordnet bei Controllern, die in der Gamecontroller-Datenbank von SDL bekannt sind, die Tasten automatisch den am besten passenden DS-Tasten zu.&lt;/p&gt;&lt;p&gt;Solange die automatische Belegung aktiv ist, ist die Seite für die Controller-Belegung deaktiviert.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Automatically map joystick buttons</source>
+        <translation>Controller-Tasten automatisch belegen</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Store the joystick mappings below only for controllers of the same model as the selected joystick. Other controllers keep using the default mapping.&lt;/p&gt;&lt;p&gt;When enabled, this mapping is used for this model instead of automatic mapping. Disabling it removes the separate mapping when OK is pressed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Speichert die folgende Controller-Belegung nur für Controller desselben Modells wie der ausgewählte Controller. Andere Controller verwenden weiterhin die Standardbelegung.&lt;/p&gt;&lt;p&gt;Wenn aktiviert, wird für dieses Modell diese Belegung statt der automatischen Belegung verwendet. Beim Deaktivieren wird die separate Belegung entfernt, sobald OK gedrückt wird.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Use a separate mapping for this controller model</source>
+        <translation>Eigene Belegung für dieses Controller-Modell</translation>
+    </message>
+    <message>
         <source>Configuring mappings for instance X</source>
         <translation>Belegung für Instanz X</translation>
     </message>
@@ -1482,6 +1498,22 @@ Bitte prüfen Sie die Schreibrechte für Datei/Ordner.</translation>
         <source>Take screenshot</source>
         <translation>Screenshot aufnehmen</translation>
     </message>
+    <message>
+        <source>Cycle screen layout</source>
+        <translation>Bildschirmanordnung durchschalten</translation>
+    </message>
+    <message>
+        <source>Toggle even screen sizing</source>
+        <translation>Gleiche Bildschirmgrößen umschalten</translation>
+    </message>
+    <message>
+        <source>Reload most recent ROM</source>
+        <translation>Zuletzt geöffnetes ROM neu laden</translation>
+    </message>
+    <message>
+        <source>Toggle menu bar</source>
+        <translation>Menüleiste umschalten</translation>
+    </message>
 </context>
 <context>
     <name>InterfaceSettingsDialog</name>
@@ -1516,10 +1548,6 @@ Bitte prüfen Sie die Schreibrechte für Datei/Ordner.</translation>
     <message>
         <source>Pause emulation when window is not in focus</source>
         <translation>Emulation pausieren, wenn das Fenster nicht im Fokus ist</translation>
-    </message>
-    <message>
-        <source>Mute audio while fast forwarding</source>
-        <translation>Ton beim Vorspulen stummschalten</translation>
     </message>
     <message>
         <source>Ask for confirmation before resetting or stopping emulation</source>
@@ -1572,6 +1600,22 @@ Bitte prüfen Sie die Schreibrechte für Datei/Ordner.</translation>
     <message>
         <source>MAX</source>
         <translation>MAX</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scales the audio volume while fast-forward is active (hotkey held or toggled). 100% leaves the volume alone, 0% mutes, and above 100% is louder than normal play.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Passt die Lautstärke an, solange Vorspulen aktiv ist (Tastenkürzel gehalten oder umgeschaltet). 100% lässt die Lautstärke unverändert, 0% schaltet stumm, über 100% ist lauter als normal.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Fast-Forward volume</source>
+        <translation>Lautstärke beim Vorspulen</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scales the audio volume while slow-mo is active (hotkey held or toggled). 100% leaves the volume alone, 0% mutes, and above 100% is louder than normal play.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Passt die Lautstärke an, solange Zeitlupe aktiv ist (Tastenkürzel gehalten oder umgeschaltet). 100% lässt die Lautstärke unverändert, 0% schaltet stumm, über 100% ist lauter als normal.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Slow-Mo volume</source>
+        <translation>Lautstärke in Zeitlupe</translation>
     </message>
     <message>
         <source>System default</source>
@@ -1979,6 +2023,10 @@ Bitte prüfen Sie die Schreibrechte für Datei/Ordner.</translation>
         <translation>Bildschirmabstand</translation>
     </message>
     <message>
+        <source>Custom...</source>
+        <translation>Benutzerdefiniert...</translation>
+    </message>
+    <message>
         <source>Screen layout</source>
         <translation>Bildschirmanordnung</translation>
     </message>
@@ -2227,6 +2275,10 @@ Bitte prüfen Sie die Schreibrechte für Datei/Ordner.</translation>
         <translation>Möchten Sie die Emulation wirklich zurücksetzen?</translation>
     </message>
     <message>
+        <source>Are you sure you want to reload the ROM?</source>
+        <translation>Möchten Sie das ROM wirklich neu laden?</translation>
+    </message>
+    <message>
         <source>Are you sure you want to stop the emulation?</source>
         <translation>Möchten Sie die Emulation wirklich stoppen?</translation>
     </message>
@@ -2249,6 +2301,10 @@ Do you wish to continue?</source>
 Wenn Sie jetzt einem LAN-Spiel beitreten, werden alle weiteren Instanzen geschlossen.
 
 Möchten Sie fortfahren?</translation>
+    </message>
+    <message>
+        <source>Gap between the screens (0-128 px):</source>
+        <translation>Abstand zwischen den Bildschirmen (0-128 px):</translation>
     </message>
 </context>
 <context>
@@ -2369,6 +2425,18 @@ Möchten Sie fortfahren?</translation>
     <message>
         <source>State saved to file</source>
         <translation>Speicherstand in Datei gespeichert</translation>
+    </message>
+    <message>
+        <source>No recent ROM to reload</source>
+        <translation>Kein zuletzt geöffnetes ROM zum Neuladen</translation>
+    </message>
+    <message>
+        <source>ROM reloaded</source>
+        <translation>ROM neu geladen</translation>
+    </message>
+    <message>
+        <source>Menu bar hidden, press the hotkey again to show it</source>
+        <translation>Menüleiste ausgeblendet, Tastenkürzel erneut drücken zum Einblenden</translation>
     </message>
     <message>
         <source>State save failed</source>

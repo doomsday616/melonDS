@@ -1359,6 +1359,22 @@ Please check file/folder write permissions.</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;如有連接控制器，選擇用於控制器輸入的裝置。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically map joystick buttons to their closest equivalents on the DS for controllers that are known to SDL&apos;s game controller database.&lt;/p&gt;&lt;p&gt;The joystick mappings page will be disabled when automatic mapping is in effect.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;對於 SDL 遊戲控制器資料庫中已知的控制器，自動將控制器按鍵對應到 DS 上最接近的按鍵。&lt;/p&gt;&lt;p&gt;自動對應生效時，控制器對應頁面將會停用。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Automatically map joystick buttons</source>
+        <translation>自動對應控制器按鍵</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Store the joystick mappings below only for controllers of the same model as the selected joystick. Other controllers keep using the default mapping.&lt;/p&gt;&lt;p&gt;When enabled, this mapping is used for this model instead of automatic mapping. Disabling it removes the separate mapping when OK is pressed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;下方的控制器對應僅儲存給與所選控制器同型號的控制器，其他控制器繼續使用預設對應。&lt;/p&gt;&lt;p&gt;啟用後，此型號將使用這組對應而非自動對應。取消勾選後，按下「確定」時會刪除這組獨立的對應。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Use a separate mapping for this controller model</source>
+        <translation>為此控制器型號使用獨立的對應</translation>
+    </message>
+    <message>
         <source>Configuring mappings for instance X</source>
         <translation>正在設定執行個體 X 的按鍵對應</translation>
     </message>
@@ -1482,6 +1498,22 @@ Please check file/folder write permissions.</source>
         <source>Take screenshot</source>
         <translation>擷取畫面</translation>
     </message>
+    <message>
+        <source>Cycle screen layout</source>
+        <translation>循環切換螢幕配置</translation>
+    </message>
+    <message>
+        <source>Toggle even screen sizing</source>
+        <translation>切換均等螢幕尺寸</translation>
+    </message>
+    <message>
+        <source>Reload most recent ROM</source>
+        <translation>重新載入最近的 ROM</translation>
+    </message>
+    <message>
+        <source>Toggle menu bar</source>
+        <translation>切換選單列</translation>
+    </message>
 </context>
 <context>
     <name>InterfaceSettingsDialog</name>
@@ -1516,10 +1548,6 @@ Please check file/folder write permissions.</source>
     <message>
         <source>Pause emulation when window is not in focus</source>
         <translation>視窗失去焦點時暫停模擬</translation>
-    </message>
-    <message>
-        <source>Mute audio while fast forwarding</source>
-        <translation>快轉時靜音</translation>
     </message>
     <message>
         <source>Ask for confirmation before resetting or stopping emulation</source>
@@ -1572,6 +1600,22 @@ Please check file/folder write permissions.</source>
     <message>
         <source>MAX</source>
         <translation>最大</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scales the audio volume while fast-forward is active (hotkey held or toggled). 100% leaves the volume alone, 0% mutes, and above 100% is louder than normal play.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;快轉生效時（按住或切換快轉快速鍵）調整音量。100% 維持原音量，0% 為靜音，高於 100% 則比正常遊玩時更大聲。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Fast-Forward volume</source>
+        <translation>快轉音量</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scales the audio volume while slow-mo is active (hotkey held or toggled). 100% leaves the volume alone, 0% mutes, and above 100% is louder than normal play.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;慢動作生效時（按住或切換慢動作快速鍵）調整音量。100% 維持原音量，0% 為靜音，高於 100% 則比正常遊玩時更大聲。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Slow-Mo volume</source>
+        <translation>慢動作音量</translation>
     </message>
     <message>
         <source>System default</source>
@@ -1979,6 +2023,10 @@ Please check file/folder write permissions.</source>
         <translation>螢幕間距</translation>
     </message>
     <message>
+        <source>Custom...</source>
+        <translation>自訂...</translation>
+    </message>
+    <message>
         <source>Screen layout</source>
         <translation>螢幕配置</translation>
     </message>
@@ -2227,6 +2275,10 @@ Please check file/folder write permissions.</source>
         <translation>確定要重設模擬嗎？</translation>
     </message>
     <message>
+        <source>Are you sure you want to reload the ROM?</source>
+        <translation>確定要重新載入 ROM 嗎？</translation>
+    </message>
+    <message>
         <source>Are you sure you want to stop the emulation?</source>
         <translation>確定要停止模擬嗎？</translation>
     </message>
@@ -2249,6 +2301,10 @@ Do you wish to continue?</source>
 如果現在加入區域網路遊戲，所有次要執行個體都將關閉。
 
 是否繼續？</translation>
+    </message>
+    <message>
+        <source>Gap between the screens (0-128 px):</source>
+        <translation>上下螢幕間距（0-128 像素）：</translation>
     </message>
 </context>
 <context>
@@ -2369,6 +2425,18 @@ Do you wish to continue?</source>
     <message>
         <source>State saved to file</source>
         <translation>已將即時存檔儲存至檔案</translation>
+    </message>
+    <message>
+        <source>No recent ROM to reload</source>
+        <translation>沒有可重新載入的最近 ROM</translation>
+    </message>
+    <message>
+        <source>ROM reloaded</source>
+        <translation>已重新載入 ROM</translation>
+    </message>
+    <message>
+        <source>Menu bar hidden, press the hotkey again to show it</source>
+        <translation>選單列已隱藏，再按一次快速鍵即可顯示</translation>
     </message>
     <message>
         <source>State save failed</source>

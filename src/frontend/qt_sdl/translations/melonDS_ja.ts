@@ -1359,6 +1359,22 @@ Please check file/folder write permissions.</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ジョイスティックが接続されている場合、入力に使用するジョイスティックを選択します。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically map joystick buttons to their closest equivalents on the DS for controllers that are known to SDL&apos;s game controller database.&lt;/p&gt;&lt;p&gt;The joystick mappings page will be disabled when automatic mapping is in effect.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;SDL のゲームコントローラーデータベースに登録されているコントローラーでは、ジョイスティックのボタンを DS の最も近いボタンに自動で割り当てます。&lt;/p&gt;&lt;p&gt;自動割り当てが有効な間は、ジョイスティックの割り当てページは無効になります。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Automatically map joystick buttons</source>
+        <translation>ジョイスティックのボタンを自動で割り当て</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Store the joystick mappings below only for controllers of the same model as the selected joystick. Other controllers keep using the default mapping.&lt;/p&gt;&lt;p&gt;When enabled, this mapping is used for this model instead of automatic mapping. Disabling it removes the separate mapping when OK is pressed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;以下のジョイスティックの割り当てを、選択中のジョイスティックと同じ機種のコントローラーにのみ保存します。他のコントローラーは既定の割り当てを使い続けます。&lt;/p&gt;&lt;p&gt;有効にすると、この機種では自動割り当ての代わりにこの割り当てが使われます。無効にすると、OK を押したときにこの個別の割り当ては削除されます。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Use a separate mapping for this controller model</source>
+        <translation>このコントローラーの機種に個別の割り当てを使う</translation>
+    </message>
+    <message>
         <source>Configuring mappings for instance X</source>
         <translation>インスタンス X の割り当てを編集中</translation>
     </message>
@@ -1482,6 +1498,22 @@ Please check file/folder write permissions.</source>
         <source>Take screenshot</source>
         <translation>スクリーンショットを撮る</translation>
     </message>
+    <message>
+        <source>Cycle screen layout</source>
+        <translation>画面レイアウトを順に切り替え</translation>
+    </message>
+    <message>
+        <source>Toggle even screen sizing</source>
+        <translation>均等な画面サイズの切り替え</translation>
+    </message>
+    <message>
+        <source>Reload most recent ROM</source>
+        <translation>最近使った ROM を再読み込み</translation>
+    </message>
+    <message>
+        <source>Toggle menu bar</source>
+        <translation>メニューバーの表示切り替え</translation>
+    </message>
 </context>
 <context>
     <name>InterfaceSettingsDialog</name>
@@ -1516,10 +1548,6 @@ Please check file/folder write permissions.</source>
     <message>
         <source>Pause emulation when window is not in focus</source>
         <translation>ウィンドウが非アクティブのときにエミュレーションを一時停止</translation>
-    </message>
-    <message>
-        <source>Mute audio while fast forwarding</source>
-        <translation>早送り中はミュート</translation>
     </message>
     <message>
         <source>Ask for confirmation before resetting or stopping emulation</source>
@@ -1572,6 +1600,22 @@ Please check file/folder write permissions.</source>
     <message>
         <source>MAX</source>
         <translation>最大</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scales the audio volume while fast-forward is active (hotkey held or toggled). 100% leaves the volume alone, 0% mutes, and above 100% is louder than normal play.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;早送り中（ホットキーを押している間、または切り替えでオンの間）の音量を調整します。100% で音量はそのまま、0% でミュート、100% を超えると通常より大きくなります。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Fast-Forward volume</source>
+        <translation>早送り時の音量</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Scales the audio volume while slow-mo is active (hotkey held or toggled). 100% leaves the volume alone, 0% mutes, and above 100% is louder than normal play.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;スロー中（ホットキーを押している間、または切り替えでオンの間）の音量を調整します。100% で音量はそのまま、0% でミュート、100% を超えると通常より大きくなります。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Slow-Mo volume</source>
+        <translation>スロー時の音量</translation>
     </message>
     <message>
         <source>System default</source>
@@ -1979,6 +2023,10 @@ Please check file/folder write permissions.</source>
         <translation>画面の間隔</translation>
     </message>
     <message>
+        <source>Custom...</source>
+        <translation>カスタム...</translation>
+    </message>
+    <message>
         <source>Screen layout</source>
         <translation>画面レイアウト</translation>
     </message>
@@ -2227,6 +2275,10 @@ Please check file/folder write permissions.</source>
         <translation>エミュレーションをリセットしますか？</translation>
     </message>
     <message>
+        <source>Are you sure you want to reload the ROM?</source>
+        <translation>ROM を再読み込みしますか？</translation>
+    </message>
+    <message>
         <source>Are you sure you want to stop the emulation?</source>
         <translation>エミュレーションを停止しますか？</translation>
     </message>
@@ -2249,6 +2301,10 @@ Do you wish to continue?</source>
 今 LAN プレイに参加すると、2 つ目以降のインスタンスはすべて閉じられます。
 
 続行しますか？</translation>
+    </message>
+    <message>
+        <source>Gap between the screens (0-128 px):</source>
+        <translation>画面の間隔（0～128 px）：</translation>
     </message>
 </context>
 <context>
@@ -2369,6 +2425,18 @@ Do you wish to continue?</source>
     <message>
         <source>State saved to file</source>
         <translation>ファイルにステートセーブしました</translation>
+    </message>
+    <message>
+        <source>No recent ROM to reload</source>
+        <translation>再読み込みできる最近の ROM がありません</translation>
+    </message>
+    <message>
+        <source>ROM reloaded</source>
+        <translation>ROM を再読み込みしました</translation>
+    </message>
+    <message>
+        <source>Menu bar hidden, press the hotkey again to show it</source>
+        <translation>メニューバーを非表示にしました。もう一度ホットキーを押すと表示されます</translation>
     </message>
     <message>
         <source>State save failed</source>
