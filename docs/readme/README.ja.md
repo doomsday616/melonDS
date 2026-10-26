@@ -28,11 +28,12 @@
 
 <p align="center"><img src="../images/ja/features.jpg" alt="特長：8 言語対応、自動検出、すぐに切り替え、OSD も翻訳" width="100%"></p>
 
-- **8 言語に対応**：簡体字中国語、繁体字中国語（台湾の用語）、英語、日本語、ドイツ語、フランス語、韓国語、イタリア語。どの言語も 758 項目すべて翻訳済みです。
+- **8 言語に対応**：簡体字中国語、繁体字中国語（台湾の用語）、英語、日本語、ドイツ語、フランス語、韓国語、イタリア語。どの言語も 775 項目すべて翻訳済みです。
 - **自動検出**：初回起動時に、システムの表示言語に合わせて言語を選びます。
 - **すぐに切り替え**：メニューから言語を変えるとその場で反映され、再起動は不要です。
 - **OSD も翻訳**：「スロット 1 にステートセーブしました」のような画面上の通知も日本語になります。Qt 標準のボタンやファイルダイアログも一緒に切り替わります。
 - **1.1.0 の新機能**：クイックステートセーブ／ロード（スロット 1）とスクリーンショット用の割り当て可能なホットキー（保存先は「パス設定」で指定）、「インターフェース設定」でリセット・停止の前に確認するオプション、セーブファイルのインポートで `.srm` を選択可能。
+- **1.2.0 の新機能**：画面レイアウトの順次切り替え、均等な画面サイズの切り替え、最近使った ROM の再読み込み、メニューバーの非表示に使える新しいホットキー。画面の間隔のカスタム値（「表示 > 画面の間隔 > カスタム...」）。早送り時・スロー時の音量スライダー（「インターフェース設定」）。コントローラーの自動割り当てと機種ごとの個別割り当て（どちらも既定ではオフ、既存の割り当てはそのまま）。内部解像度は最大 22 倍に。OpenGL レンダラーが OpenGL 3.1 でも動作するようになりました。
 
 ## スクリーンショット
 
@@ -48,14 +49,14 @@
 
 | 言語 | コード | 状況 |
 |---|---|---|
-| 简体中文（簡体字中国語） | `zh_CN` | 758 / 758 |
-| 繁體中文（繁体字中国語・台湾の用語） | `zh_TW` | 758 / 758 |
+| 简体中文（簡体字中国語） | `zh_CN` | 775 / 775 |
+| 繁體中文（繁体字中国語・台湾の用語） | `zh_TW` | 775 / 775 |
 | English（英語） | `en` | 原文 |
-| 日本語 | `ja` | 758 / 758 |
-| Deutsch（ドイツ語） | `de` | 758 / 758 |
-| Français（フランス語） | `fr` | 758 / 758 |
-| 한국어（韓国語） | `ko` | 758 / 758 |
-| Italiano（イタリア語） | `it` | 758 / 758 |
+| 日本語 | `ja` | 775 / 775 |
+| Deutsch（ドイツ語） | `de` | 775 / 775 |
+| Français（フランス語） | `fr` | 775 / 775 |
+| 한국어（韓国語） | `ko` | 775 / 775 |
+| Italiano（イタリア語） | `it` | 775 / 775 |
 
 ## 自動検出と言語の切り替え
 
@@ -86,15 +87,15 @@
 
 | プラットフォーム | ファイル |
 |---|---|
-| Windows（x86_64、一般的な PC） | `melonDS-i18n-1.1.0-windows-x86_64.zip` |
-| Windows（ARM64） | `melonDS-i18n-1.1.0-windows-arm64.zip` |
-| Linux（x86_64） | `melonDS-i18n-1.1.0-linux-x86_64.AppImage` |
-| Linux（aarch64） | `melonDS-i18n-1.1.0-linux-aarch64.AppImage` |
-| macOS（Intel・Apple シリコン） | `melonDS-i18n-1.1.0-macos-universal.zip` |
+| Windows（x86_64、一般的な PC） | `melonDS-i18n-1.2.0-windows-x86_64.zip` |
+| Windows（ARM64） | `melonDS-i18n-1.2.0-windows-arm64.zip` |
+| Linux（x86_64） | `melonDS-i18n-1.2.0-linux-x86_64.AppImage` |
+| Linux（aarch64） | `melonDS-i18n-1.2.0-linux-aarch64.AppImage` |
+| macOS（Intel・Apple シリコン） | `melonDS-i18n-1.2.0-macos-universal.zip` |
 
 Windows 版の zip には `melonDS.exe` が 1 つ入っているだけです。インストール不要のポータブル版で、設定は実行ファイルと同じフォルダーに保存されます。
 
-バージョン 1.1.0 には、本家 melonDS にまだ取り込まれていないプルリクエストをもとにした修正・機能が計 22 件含まれています（1.0.0 の 10 件と今回の 12 件）。今回の分は [v1.1.0 のリリースノート](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.1.0)、以前の分は [v1.0.0 のリリースノート](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0)をご覧ください。
+バージョン 1.2.0 には、本家 melonDS にまだ取り込まれていないプルリクエストをもとにした修正・機能が計 38 件含まれています（以前のバージョンの 22 件と今回の 16 件）。今回の分は [v1.2.0 のリリースノート](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.2.0)、以前の分は [v1.1.0](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.1.0) と [v1.0.0](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0) のリリースノートをご覧ください。
 
 ## クイックスタート
 
@@ -143,6 +144,7 @@ Windows では `melonDS.exe` と同じフォルダーの `melonDS.toml` に保�
 
 - melonDS は melonDS チーム（Arisotura と貢献者の皆さん）によって開発されています。本家：[melonDS-emu/melonDS](https://github.com/melonDS-emu/melonDS)
 - melonDS のアイコンは limittox によるものです。
+- 入力設定画面のコントローラーの図は [Dimensions.com](https://www.dimensions.com) のイラストを改変したもので、許可を得て使用しています（[LICENSE.md](../../src/frontend/qt_sdl/InputConfig/resources/LICENSE.md) を参照）。
 - ビルド方法や本家の完全なクレジットは [melonDS 公式リポジトリ](https://github.com/melonDS-emu/melonDS) をご覧ください。
 
 melonDS i18n は melonDS と同じく [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0) で公開されているフリーソフトウェアです。

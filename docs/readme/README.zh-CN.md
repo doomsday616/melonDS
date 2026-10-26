@@ -34,6 +34,7 @@
 - **游戏内提示也翻译**：像“已保存即时存档到槽位 1”这样的 OSD 提示同样是中文，并用系统字体渲染中日韩文字和带重音的字母。
 - **Qt 自带控件同步切换**：标准按钮、文件选择窗口也会跟着变成对应语言。
 - **1.1.0 新增**：可绑定的快速保存/读取即时存档（槽位 1）热键和截图热键（截图文件夹可在“路径设置”里指定）；“界面设置”里可开启重置/停止前确认；导入存档时可直接选 `.srm` 文件。
+- **1.2.0 新增**：新的可绑定热键，可循环切换屏幕布局、切换均等屏幕尺寸、重新加载最近的 ROM、隐藏菜单栏；自定义屏幕间距（“视图 > 屏幕间距 > 自定义...”）；快进和慢动作音量滑块（“界面设置”）；可选的手柄自动映射和按手柄型号单独映射（默认都关闭，原有映射保持不变）；内部分辨率最高 22 倍；OpenGL 渲染器现在也能在 OpenGL 3.1 上运行。
 
 ## 截图
 
@@ -49,14 +50,14 @@
 
 | 语言 | 代码 | 状态 |
 |---|---|---|
-| 简体中文 | `zh_CN` | 758 / 758 |
-| 繁體中文（台湾用语） | `zh_TW` | 758 / 758 |
+| 简体中文 | `zh_CN` | 775 / 775 |
+| 繁體中文（台湾用语） | `zh_TW` | 775 / 775 |
 | English（英语） | `en` | 原文 |
-| 日本語（日语） | `ja` | 758 / 758 |
-| Deutsch（德语） | `de` | 758 / 758 |
-| Français（法语） | `fr` | 758 / 758 |
-| 한국어（韩语） | `ko` | 758 / 758 |
-| Italiano（意大利语） | `it` | 758 / 758 |
+| 日本語（日语） | `ja` | 775 / 775 |
+| Deutsch（德语） | `de` | 775 / 775 |
+| Français（法语） | `fr` | 775 / 775 |
+| 한국어（韩语） | `ko` | 775 / 775 |
+| Italiano（意大利语） | `it` | 775 / 775 |
 
 ## 自动识别与切换
 
@@ -87,15 +88,15 @@
 
 | 平台 | 文件 |
 |---|---|
-| Windows（x86_64，绝大多数电脑） | `melonDS-i18n-1.1.0-windows-x86_64.zip` |
-| Windows（ARM64） | `melonDS-i18n-1.1.0-windows-arm64.zip` |
-| Linux（x86_64） | `melonDS-i18n-1.1.0-linux-x86_64.AppImage` |
-| Linux（aarch64） | `melonDS-i18n-1.1.0-linux-aarch64.AppImage` |
-| macOS（Intel 与 Apple 芯片通用） | `melonDS-i18n-1.1.0-macos-universal.zip` |
+| Windows（x86_64，绝大多数电脑） | `melonDS-i18n-1.2.0-windows-x86_64.zip` |
+| Windows（ARM64） | `melonDS-i18n-1.2.0-windows-arm64.zip` |
+| Linux（x86_64） | `melonDS-i18n-1.2.0-linux-x86_64.AppImage` |
+| Linux（aarch64） | `melonDS-i18n-1.2.0-linux-aarch64.AppImage` |
+| macOS（Intel 与 Apple 芯片通用） | `melonDS-i18n-1.2.0-macos-universal.zip` |
 
 Windows 压缩包里只有一个 `melonDS.exe`，属于绿色版：不用安装，设置文件就写在 exe 旁边。
 
-1.1.0 版共合入 22 项基于上游 melonDS 尚未合并的 PR 的修复和功能：1.0.0 的 10 项，加上本版新增的 12 项。新增部分见 [v1.1.0 发布说明](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.1.0)，早先的见 [v1.0.0 发布说明](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0)。
+1.2.0 版共合入 38 项基于上游 melonDS 尚未合并的 PR 的修复和功能：之前版本的 22 项，加上本版新增的 16 项。新增部分见 [v1.2.0 发布说明](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.2.0)，早先的见 [v1.1.0](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.1.0) 和 [v1.0.0](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0) 发布说明。
 
 ## 快速上手
 
@@ -144,6 +145,7 @@ Windows 上保存在 `melonDS.exe` 旁边的 `melonDS.toml`。Linux 和 macOS �
 
 - melonDS 由 melonDS 团队开发——Arisotura 及各位贡献者。上游仓库：[melonDS-emu/melonDS](https://github.com/melonDS-emu/melonDS)。
 - melonDS 图标由 limittox 绘制。
+- 输入设置窗口中的手柄示意图改编自 [Dimensions.com](https://www.dimensions.com) 的插图，已获授权使用（见 [LICENSE.md](../../src/frontend/qt_sdl/InputConfig/resources/LICENSE.md)）。
 - 构建说明和完整的上游致谢名单请见 [melonDS 官方仓库](https://github.com/melonDS-emu/melonDS)。
 
 melonDS i18n 是自由软件，与 melonDS 一样以 [GNU 通用公共许可证 第 3 版（GPLv3）](https://www.gnu.org/licenses/gpl-3.0)发布。

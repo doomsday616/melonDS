@@ -34,6 +34,7 @@
 - **Translated OSD** — on-screen notifications such as "State saved to slot 1" are translated too, rendered with a system font that supports CJK and accented characters.
 - **Qt's own widgets follow along** — standard buttons and file dialogs switch language as well.
 - **New in 1.1.0** — bindable hotkeys for quick save/load (slot 1) and for taking a screenshot (with a screenshots folder in Path settings), an optional confirmation before Reset/Stop (Interface settings), and `.srm` saves in the import dialog.
+- **New in 1.2.0** — new bindable hotkeys to cycle the screen layout, toggle even screen sizing, reload the most recent ROM and hide the menu bar; a custom screen gap (View > Screen gap > Custom...); fast-forward and slow-mo volume sliders (Interface settings); optional automatic controller mapping and per-controller-model mappings (both off by default, existing mappings are kept); internal resolution up to 22x; and the OpenGL renderer now also runs on OpenGL 3.1.
 
 ## Screenshots
 
@@ -49,14 +50,14 @@
 
 | Language | Code | Status |
 |---|---|---|
-| 简体中文 (Simplified Chinese) | `zh_CN` | 758 / 758 |
-| 繁體中文 (Traditional Chinese, Taiwan terms) | `zh_TW` | 758 / 758 |
+| 简体中文 (Simplified Chinese) | `zh_CN` | 775 / 775 |
+| 繁體中文 (Traditional Chinese, Taiwan terms) | `zh_TW` | 775 / 775 |
 | English | `en` | Source language |
-| 日本語 (Japanese) | `ja` | 758 / 758 |
-| Deutsch (German) | `de` | 758 / 758 |
-| Français (French) | `fr` | 758 / 758 |
-| 한국어 (Korean) | `ko` | 758 / 758 |
-| Italiano (Italian) | `it` | 758 / 758 |
+| 日本語 (Japanese) | `ja` | 775 / 775 |
+| Deutsch (German) | `de` | 775 / 775 |
+| Français (French) | `fr` | 775 / 775 |
+| 한국어 (Korean) | `ko` | 775 / 775 |
+| Italiano (Italian) | `it` | 775 / 775 |
 
 ## Auto-detect and switching
 
@@ -87,15 +88,15 @@ Grab the latest build from the [Releases page](https://github.com/doomsday616/me
 
 | Platform | File |
 |---|---|
-| Windows (x86_64, most PCs) | `melonDS-i18n-1.1.0-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-i18n-1.1.0-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-i18n-1.1.0-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-i18n-1.1.0-linux-aarch64.AppImage` |
-| macOS (Intel and Apple silicon) | `melonDS-i18n-1.1.0-macos-universal.zip` |
+| Windows (x86_64, most PCs) | `melonDS-i18n-1.2.0-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-i18n-1.2.0-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-i18n-1.2.0-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-i18n-1.2.0-linux-aarch64.AppImage` |
+| macOS (Intel and Apple silicon) | `melonDS-i18n-1.2.0-macos-universal.zip` |
 
 The Windows zip contains just `melonDS.exe`. It is portable: nothing is installed, and settings are written next to the executable.
 
-Version 1.1.0 includes 22 fixes and features based on upstream pull requests that have not been merged into melonDS yet: the 10 from 1.0.0 plus 12 new ones. The [v1.1.0 release notes](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.1.0) list each new one; the [v1.0.0 release notes](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0) list the earlier ones.
+Version 1.2.0 includes 38 fixes and features based on upstream pull requests that have not been merged into melonDS yet: the 22 from earlier versions plus 16 new ones. The [v1.2.0 release notes](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.2.0) list each new one; the [v1.1.0](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.1.0) and [v1.0.0](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0) release notes list the earlier ones.
 
 ## Quick start
 
@@ -144,6 +145,7 @@ The exact commands are also kept in a comment in `src/frontend/qt_sdl/CMakeLists
 
 - melonDS is made by the melonDS team — Arisotura and contributors. Upstream: [melonDS-emu/melonDS](https://github.com/melonDS-emu/melonDS).
 - melonDS icon by limittox.
+- The controller drawings in the input configuration dialog are modified from illustrations by [Dimensions.com](https://www.dimensions.com), used with permission (see [LICENSE.md](src/frontend/qt_sdl/InputConfig/resources/LICENSE.md)).
 - Build instructions and the full upstream credits are in the [upstream melonDS repository](https://github.com/melonDS-emu/melonDS).
 
 melonDS i18n is free software released under the [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0), the same license as melonDS.

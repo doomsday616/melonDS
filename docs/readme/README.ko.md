@@ -28,12 +28,13 @@
 
 <p align="center"><img src="../images/ko/features.jpg" alt="melonDS i18n 주요 기능" width="100%"></p>
 
-- **8개 언어 완전 번역** – 언어마다 인터페이스 문자열 758개를 모두 번역했습니다.
+- **8개 언어 완전 번역** – 언어마다 인터페이스 문자열 775개를 모두 번역했습니다.
 - **시스템 언어 자동 감지** – 처음 실행하면 운영체제의 표시 언어를 따라갑니다.
 - **즉시 전환** – 에뮬레이터를 다시 시작하지 않고 바로 언어를 바꿀 수 있습니다.
 - **화면 알림(OSD) 번역** – 예를 들어 "슬롯 1에 상태 저장됨" 같은 알림도 게임 화면에 한국어로 나옵니다.
 - **Qt 기본 요소도 번역** – 표준 버튼과 파일 선택 창도 선택한 언어를 따릅니다(`qtbase_*.qm` 내장).
 - **1.1.0 새 기능** – 빠른 상태 저장/불러오기(슬롯 1)와 스크린샷 찍기를 단축키로 지정할 수 있습니다(스크린샷 폴더는 "경로 설정"에서 지정). "인터페이스 설정"에서 리셋/정지 전에 확인을 묻도록 할 수 있고, 세이브 파일 가져오기에서 `.srm` 파일도 고를 수 있습니다.
+- **1.2.0 새 기능** – 화면 배치 순환, 균등 화면 크기 전환, 최근 ROM 다시 불러오기, 메뉴 표시줄 숨기기용 새 단축키를 지정할 수 있습니다. 화면 간격을 직접 정할 수 있고("보기 > 화면 간격 > 사용자 지정..."), "인터페이스 설정"에 빨리 감기·슬로 모션 음량 슬라이더가 추가됐습니다. 컨트롤러 자동 매핑과 컨트롤러 모델별 매핑을 선택적으로 쓸 수 있습니다(둘 다 기본값은 꺼짐, 기존 매핑은 그대로 유지). 내부 해상도는 최대 22배까지, OpenGL 렌더러는 이제 OpenGL 3.1에서도 동작합니다.
 
 ## 스크린샷
 
@@ -49,13 +50,13 @@
 | 언어 | 코드 | 번역 현황 |
 | --- | --- | --- |
 | English | `en` | 원문 |
-| 简体中文 (중국어 간체) | `zh_CN` | 758/758 |
-| 繁體中文 (중국어 번체, 대만 용어) | `zh_TW` | 758/758 |
-| 日本語 (일본어) | `ja` | 758/758 |
-| Deutsch (독일어) | `de` | 758/758 |
-| Français (프랑스어) | `fr` | 758/758 |
-| 한국어 | `ko` | 758/758 |
-| Italiano (이탈리아어) | `it` | 758/758 |
+| 简体中文 (중국어 간체) | `zh_CN` | 775/775 |
+| 繁體中文 (중국어 번체, 대만 용어) | `zh_TW` | 775/775 |
+| 日本語 (일본어) | `ja` | 775/775 |
+| Deutsch (독일어) | `de` | 775/775 |
+| Français (프랑스어) | `fr` | 775/775 |
+| 한국어 | `ko` | 775/775 |
+| Italiano (이탈리아어) | `it` | 775/775 |
 
 <p align="center"><img src="../images/shared/languages.jpg" alt="지원 언어" width="100%"></p>
 
@@ -82,15 +83,15 @@
 
 | 플랫폼 | 파일 |
 | --- | --- |
-| Windows (x86_64) | `melonDS-i18n-1.1.0-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-i18n-1.1.0-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-i18n-1.1.0-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-i18n-1.1.0-linux-aarch64.AppImage` |
-| macOS (Universal) | `melonDS-i18n-1.1.0-macos-universal.zip` |
+| Windows (x86_64) | `melonDS-i18n-1.2.0-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-i18n-1.2.0-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-i18n-1.2.0-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-i18n-1.2.0-linux-aarch64.AppImage` |
+| macOS (Universal) | `melonDS-i18n-1.2.0-macos-universal.zip` |
 
 Windows용 압축 파일에는 `melonDS.exe` 하나만 들어 있습니다. 설치가 필요 없는 포터블 방식이라 설정은 같은 폴더의 `melonDS.toml`에 저장됩니다.
 
-1.1.0 버전에는 원본 melonDS에 아직 병합되지 않은 풀 리퀘스트를 바탕으로 한 수정과 기능이 모두 22개 들어 있습니다(1.0.0의 10개와 이번에 추가된 12개). 이번 항목은 [v1.1.0 릴리스 노트](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.1.0), 이전 항목은 [v1.0.0 릴리스 노트](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0)에서 볼 수 있습니다.
+1.2.0 버전에는 원본 melonDS에 아직 병합되지 않은 풀 리퀘스트를 바탕으로 한 수정과 기능이 모두 38개 들어 있습니다(이전 버전의 22개와 이번에 추가된 16개). 이번 항목은 [v1.2.0 릴리스 노트](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.2.0), 이전 항목은 [v1.1.0](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.1.0) 및 [v1.0.0](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0) 릴리스 노트에서 볼 수 있습니다.
 
 ## 빠른 시작
 
@@ -140,6 +141,7 @@ Windows에서는 `melonDS.exe`와 같은 폴더의 `melonDS.toml`에 저장됩�
 
 - 에뮬레이터: melonDS 팀(Arisotura와 기여자들) – [melonDS-emu/melonDS](https://github.com/melonDS-emu/melonDS). 빌드 방법과 전체 크레딧은 해당 저장소에서 볼 수 있습니다.
 - 아이콘: limittox
+- 입력 설정 창의 컨트롤러 그림: [Dimensions.com](https://www.dimensions.com)의 일러스트를 수정한 것으로, 허가를 받아 사용합니다([LICENSE.md](../../src/frontend/qt_sdl/InputConfig/resources/LICENSE.md) 참고).
 - 라이선스: [GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0)
 
 이 프로젝트는 비공식 포크이며 melonDS 팀이나 닌텐도와 관련이 없습니다.

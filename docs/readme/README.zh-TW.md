@@ -28,11 +28,12 @@
 
 <p align="center"><img src="../images/zh-TW/features.jpg" alt="特色：8 種語言、自動偵測、即時切換、OSD 提示翻譯" width="100%"></p>
 
-- **8 種語言**：簡體中文、繁體中文（台灣用語）、英文、日文、德文、法文、韓文、義大利文，每種語言 758 條字串全部翻譯。
+- **8 種語言**：簡體中文、繁體中文（台灣用語）、英文、日文、德文、法文、韓文、義大利文，每種語言 775 條字串全部翻譯。
 - **自動偵測**：第一次啟動就依照系統的介面語言選好語言。
 - **即時切換**：在選單裡換語言立刻生效，不必重新啟動。
 - **OSD 也在地化**：像「已將即時存檔儲存至欄位 1」這類畫面上的通知也有翻譯；Qt 內建的標準按鈕與檔案對話框也會跟著切換。
 - **1.1.0 新增**：可自訂的快速儲存/載入即時存檔（欄位 1）快速鍵與擷取畫面快速鍵（可在「路徑設定」指定擷取畫面資料夾）；「介面設定」可開啟重設/停止前確認；匯入存檔時可直接選擇 `.srm` 檔。
+- **1.2.0 新增**：新的可自訂快速鍵，可循環切換螢幕配置、切換均等螢幕尺寸、重新載入最近的 ROM、隱藏選單列；自訂螢幕間距（「檢視 > 螢幕間距 > 自訂...」）；快轉與慢動作音量滑桿（「介面設定」）；可選的控制器自動對應與依控制器型號個別對應（預設皆關閉，原有對應保持不變）；內部解析度最高 22 倍；OpenGL 繪製器現在也能在 OpenGL 3.1 上執行。
 
 ## 螢幕截圖
 
@@ -48,14 +49,14 @@
 
 | 語言 | 代碼 | 狀態 |
 |---|---|---|
-| 简体中文（簡體中文） | `zh_CN` | 758 / 758 |
-| 繁體中文（台灣用語） | `zh_TW` | 758 / 758 |
+| 简体中文（簡體中文） | `zh_CN` | 775 / 775 |
+| 繁體中文（台灣用語） | `zh_TW` | 775 / 775 |
 | English（英文） | `en` | 原文 |
-| 日本語（日文） | `ja` | 758 / 758 |
-| Deutsch（德文） | `de` | 758 / 758 |
-| Français（法文） | `fr` | 758 / 758 |
-| 한국어（韓文） | `ko` | 758 / 758 |
-| Italiano（義大利文） | `it` | 758 / 758 |
+| 日本語（日文） | `ja` | 775 / 775 |
+| Deutsch（德文） | `de` | 775 / 775 |
+| Français（法文） | `fr` | 775 / 775 |
+| 한국어（韓文） | `ko` | 775 / 775 |
+| Italiano（義大利文） | `it` | 775 / 775 |
 
 ## 自動偵測與切換語言
 
@@ -86,15 +87,15 @@
 
 | 平台 | 檔案 |
 |---|---|
-| Windows（x86_64，大多數電腦） | `melonDS-i18n-1.1.0-windows-x86_64.zip` |
-| Windows（ARM64） | `melonDS-i18n-1.1.0-windows-arm64.zip` |
-| Linux（x86_64） | `melonDS-i18n-1.1.0-linux-x86_64.AppImage` |
-| Linux（aarch64） | `melonDS-i18n-1.1.0-linux-aarch64.AppImage` |
-| macOS（Intel 與 Apple 晶片） | `melonDS-i18n-1.1.0-macos-universal.zip` |
+| Windows（x86_64，大多數電腦） | `melonDS-i18n-1.2.0-windows-x86_64.zip` |
+| Windows（ARM64） | `melonDS-i18n-1.2.0-windows-arm64.zip` |
+| Linux（x86_64） | `melonDS-i18n-1.2.0-linux-x86_64.AppImage` |
+| Linux（aarch64） | `melonDS-i18n-1.2.0-linux-aarch64.AppImage` |
+| macOS（Intel 與 Apple 晶片） | `melonDS-i18n-1.2.0-macos-universal.zip` |
 
 Windows 的 zip 裡只有一個 `melonDS.exe`。它是免安裝的可攜版，不會寫入系統，設定檔就存在執行檔旁邊。
 
-1.1.0 版共收錄 22 項以上游 melonDS 尚未合併之 PR 為基礎的修正與功能：1.0.0 的 10 項，加上本版新增的 12 項。新增項目請見 [v1.1.0 發行說明](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.1.0)，先前的請見 [v1.0.0 發行說明](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0)。
+1.2.0 版共收錄 38 項以上游 melonDS 尚未合併之 PR 為基礎的修正與功能：先前版本的 22 項，加上本版新增的 16 項。新增項目請見 [v1.2.0 發行說明](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.2.0)，先前的請見 [v1.1.0](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.1.0) 與 [v1.0.0](https://github.com/doomsday616/melonDS-i18n/releases/tag/v1.0.0) 發行說明。
 
 ## 快速上手
 
@@ -143,6 +144,7 @@ Windows 上存在 `melonDS.exe` 旁邊的 `melonDS.toml`。Linux 和 macOS 上�
 
 - melonDS 由 melonDS 團隊（Arisotura 與各位貢獻者）開發。上游專案：[melonDS-emu/melonDS](https://github.com/melonDS-emu/melonDS)。
 - melonDS 圖示由 limittox 設計。
+- 輸入設定視窗中的控制器示意圖改編自 [Dimensions.com](https://www.dimensions.com) 的插圖，經授權使用（見 [LICENSE.md](../../src/frontend/qt_sdl/InputConfig/resources/LICENSE.md)）。
 - 建置說明與完整的上游致謝名單請見 [melonDS 官方儲存庫](https://github.com/melonDS-emu/melonDS)。
 
 melonDS i18n 是自由軟體，與 melonDS 相同，以 [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0) 授權釋出。
