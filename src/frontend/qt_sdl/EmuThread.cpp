@@ -26,6 +26,11 @@
 #include <string>
 #include <algorithm>
 
+#include <QDateTime>
+#include <QDir>
+#include <QFileInfo>
+#include <QImage>
+
 #include <SDL2/SDL.h>
 
 #include "main.h"
@@ -191,6 +196,8 @@ void EmuThread::run()
 
         if (emuInstance->hotkeyPressed(HK_SwapScreens)) emit swapScreensToggle();
         if (emuInstance->hotkeyPressed(HK_SwapScreenEmphasis)) emit screenEmphasisToggle();
+
+        if (emuInstance->hotkeyPressed(HK_TakeScreenshot)) emuScreenshot();
 
         if (emuStatus == emuStatus_Running || emuStatus == emuStatus_FrameStep)
         {
@@ -574,6 +581,11 @@ void EmuThread::handleMessages()
             emuInstance->osdAddMessage(0, QT_TRANSLATE_NOOP("OSD", "Reset"));
             break;
 
+        case msg_EmuScreenshot:
+            if (emuActive && emuInstance->nds)
+                takeScreenshot();
+            break;
+
         case msg_InitGL:
             emuInstance->initOpenGL(msg.param.value<int>());
             useOpenGL = true;
@@ -776,6 +788,83 @@ void EmuThread::emuReset()
 {
     sendMessage(msg_EmuReset);
     waitMessage();
+}
+
+void EmuThread::emuScreenshot()
+{
+    sendMessage(msg_EmuScreenshot);
+    waitMessage();
+}
+
+void EmuThread::takeScreenshot()
+{
+    // runs on the emu thread from handleMessages(), after drawScreen(),
+    // so the front buffer is stable and the GL context is ours
+    melonDS::NDS* nds = emuInstance->nds;
+    QImage capture;
+
+    void* topbuf; void* bottombuf;
+    if (nds->GPU.GetFramebuffers(&topbuf, &bottombuf))
+    {
+        // software renderer: two 256x192 BGRA buffers (alpha is not meaningful)
+        capture = QImage(256, 192 * 2, QImage::Format_RGB32);
+        memcpy(capture.scanLine(0), topbuf, 256 * 192 * 4);
+        memcpy(capture.scanLine(192), bottombuf, 256 * 192 * 4);
+    }
+#ifdef OGLRENDERER_ENABLED
+    else if (useOpenGL)
+    {
+        // OpenGL/compute renderer: 2-layer array texture at the internal resolution
+        emuInstance->makeCurrentGL();
+
+        GLuint texid = *(GLuint*)topbuf;
+        GLint w = 0, h = 0;
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D_ARRAY, texid);
+        glGetTexLevelParameteriv(GL_TEXTURE_2D_ARRAY, 0, GL_TEXTURE_WIDTH, &w);
+        glGetTexLevelParameteriv(GL_TEXTURE_2D_ARRAY, 0, GL_TEXTURE_HEIGHT, &h);
+
+        if (w > 0 && h > 0)
+        {
+            capture = QImage(w, h * 2, QImage::Format_RGB32);
+            glPixelStorei(GL_PACK_ALIGNMENT, 4);
+            glGetTexImage(GL_TEXTURE_2D_ARRAY, 0, GL_BGRA, GL_UNSIGNED_BYTE, capture.bits());
+        }
+    }
+#endif
+
+    if (capture.isNull())
+    {
+        emuInstance->osdAddMessage(0xFFA0A0, QT_TRANSLATE_NOOP("OSD", "Failed to take screenshot"));
+        return;
+    }
+
+    // <ROM name>_yyyy-MM-dd_hh-mm-ss[_N].png in the screenshot path (blank = ROM folder)
+    std::string base = emuInstance->baseAssetName.empty() ? "melonDS" : emuInstance->baseAssetName;
+    base += QDateTime::currentDateTime().toString("_yyyy-MM-dd_hh-mm-ss").toStdString();
+
+    const std::string& cfgpath = emuInstance->localCfg.GetString("ScreenshotPath");
+    std::string filename;
+    for (int i = 0; i < 1000; i++)
+    {
+        filename = emuInstance->getAssetPath(false, cfgpath, ".png",
+                                             i ? base + "_" + std::to_string(i) : base);
+        if (!QFileInfo::exists(QString::fromStdString(filename)))
+            break;
+    }
+
+    // a relative result (no ROM loaded, or a relative configured path) would land in
+    // the process working directory; anchor it to the melonDS directory instead
+    QString qfilename = QString::fromStdString(filename);
+    if (QDir::isRelativePath(qfilename))
+        qfilename = QDir(emuDirectory).filePath(qfilename);
+    QDir().mkpath(QFileInfo(qfilename).absolutePath());
+
+    QByteArray shortname = QFileInfo(qfilename).fileName().toUtf8();
+    if (capture.save(qfilename, "PNG"))
+        emuInstance->osdAddMessage(0, QT_TRANSLATE_NOOP("OSD", "Screenshot saved: %s"), shortname.constData());
+    else
+        emuInstance->osdAddMessage(0xFFA0A0, QT_TRANSLATE_NOOP("OSD", "Failed to save screenshot: %s"), shortname.constData());
 }
 
 bool EmuThread::emuIsRunning()

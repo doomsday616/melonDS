@@ -64,6 +64,7 @@ public:
         msg_EmuStop,
         msg_EmuFrameStep,
         msg_EmuReset,
+        msg_EmuScreenshot,
 
         msg_InitGL,
         msg_DeInitGL,
@@ -112,6 +113,7 @@ public:
     void emuExit();
     void emuFrameStep();
     void emuReset();
+    void emuScreenshot();
 
     int bootROM(const QStringList& filename, QString& errorstr);
     int bootFirmware(QString& errorstr);
@@ -171,6 +173,7 @@ private:
 
     void updateRenderer();
     void compileShaders();
+    void takeScreenshot();
 
     enum EmuStatusKind
     {

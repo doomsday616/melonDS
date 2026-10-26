@@ -70,7 +70,8 @@ static constexpr std::initializer_list<int> hk_general =
     HK_VolumeDown,
     HK_AudioMuteToggle,
     HK_QuickSaveState,
-    HK_QuickLoadState
+    HK_QuickLoadState,
+    HK_TakeScreenshot
 };
 
 static constexpr std::initializer_list<const char*> hk_general_labels =
@@ -93,7 +94,8 @@ static constexpr std::initializer_list<const char*> hk_general_labels =
     QT_TRANSLATE_NOOP("InputConfigDialog", "DSi Volume down"),
     QT_TRANSLATE_NOOP("InputConfigDialog", "Toggle audio mute"),
     QT_TRANSLATE_NOOP("InputConfigDialog", "Quick save state (slot 1)"),
-    QT_TRANSLATE_NOOP("InputConfigDialog", "Quick load state (slot 1)")
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Quick load state (slot 1)"),
+    QT_TRANSLATE_NOOP("InputConfigDialog", "Take screenshot")
 };
 
 static_assert(hk_general.size() == hk_general_labels.size());

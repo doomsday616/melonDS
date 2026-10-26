@@ -59,6 +59,7 @@ enum
     HK_GuitarGripBlue,
     HK_QuickSaveState,
     HK_QuickLoadState,
+    HK_TakeScreenshot,
     HK_MAX
 };
 
