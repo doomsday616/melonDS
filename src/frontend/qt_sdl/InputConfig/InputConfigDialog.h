@@ -22,6 +22,8 @@
 #include <QDialog>
 #include <QPushButton>
 #include <initializer_list>
+#include <map>
+#include <string>
 
 #include "Config.h"
 #include "EmuInstance.h"
@@ -141,14 +143,32 @@ private slots:
     void on_btnJoyMapSwitch_clicked();
     void on_cbxJoystick_currentIndexChanged(int id);
     void on_cbAutoMap_toggled(bool checked);
+    void on_cbModelMapping_toggled(bool checked);
 
 private:
+    // joystick mappings in dialog order; one set for the default mapping and
+    // one per controller model (SDL GUID). Edits stay here until OK is pressed.
+    struct JoyMapSet
+    {
+        int keypad[keypad_num];
+        int addons[hk_addons.size()];
+        int hkGeneral[hk_general.size()];
+        std::string name;
+    };
+
     void populatePage(QWidget* page,
         const std::initializer_list<const char*>& labels,
         int* keymap, int* joymap);
     void setupKeypadPage();
 
     void setJoyMappingEnabled(bool enabled);
+
+    void readJoyMapSet(Config::Table& table, JoyMapSet& set);
+    void writeJoyMapSet(Config::Table& table, const JoyMapSet& set);
+    void storeJoyMaps(JoyMapSet& set);
+    void loadJoyMaps(const JoyMapSet& set);
+    JoyMapSet& currentJoyMapSet();
+    void selectJoystickMapping();
 
     Ui::InputConfigDialog* ui;
 
@@ -158,6 +178,11 @@ private:
     int addonsKeyMap[hk_addons.size()], addonsJoyMap[hk_addons.size()];
     int hkGeneralKeyMap[hk_general.size()], hkGeneralJoyMap[hk_general.size()];
     int joystickID;
+
+    JoyMapSet defaultJoyMaps;
+    std::map<std::string, JoyMapSet> modelJoyMaps;
+    std::string currentJoyGUID;
+    bool editingModel;
 };
 
 

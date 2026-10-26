@@ -180,6 +180,15 @@ public:
     {
     }
 
+    // re-read the bound value after the dialog replaced it (e.g. joystick switch)
+    void refreshText()
+    {
+        if (isChecked())
+            click();
+        else
+            setText(mappingText());
+    }
+
 protected:
     void showEvent(QShowEvent* event) override
     {

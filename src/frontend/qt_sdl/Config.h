@@ -24,6 +24,7 @@
 #include <QString>
 #include <unordered_map>
 #include <tuple>
+#include <vector>
 
 #include "toml/toml11/types.hpp"
 
@@ -108,6 +109,11 @@ public:
     void SetBool(const std::string& path, bool val);
     void SetString(const std::string& path, const std::string& val);
     void SetDouble(const std::string& path, double val);
+
+    // names of the direct children of this table that are themselves tables
+    std::vector<std::string> GetTableKeys();
+    // remove a direct child of this table, if present
+    void Remove(const std::string& key);
 
     // convenience
 

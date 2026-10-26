@@ -18,6 +18,10 @@
 
 #include <QKeyEvent>
 #include <SDL2/SDL.h>
+#include <algorithm>
+#include <iterator>
+#include <string>
+#include <vector>
 
 #include "Platform.h"
 #include "SDL_gamecontroller.h"
@@ -140,20 +144,41 @@ void EmuInstance::inputLoadConfig()
     Config::Table keycfg = localCfg.GetTable("Keyboard");
     Config::Table joycfg = localCfg.GetTable("Joystick");
 
-    for (int i = 0; i < 12; i++)
+    auto loadJoySet = [](Config::Table& tbl, JoyMappingSet& set)
     {
+        for (int i = 0; i < 12; i++)
+            set.buttons[i] = tbl.GetInt(buttonNames[i]);
+
+        for (int i = 0; i < HK_MAX; i++)
+            set.hotkeys[i] = tbl.GetInt(hotkeyNames[i]);
+    };
+
+    for (int i = 0; i < 12; i++)
         keyMapping[i] = keycfg.GetInt(buttonNames[i]);
-        joyMapping[i] = joycfg.GetInt(buttonNames[i]);
-    }
 
     for (int i = 0; i < HK_MAX; i++)
-    {
         hkKeyMapping[i] = keycfg.GetInt(hotkeyNames[i]);
-        hkJoyMapping[i] = joycfg.GetInt(hotkeyNames[i]);
+
+    // the flat Joystick table is the default mapping, used by every joystick
+    // without a per-model entry (it is also where older versions stored it)
+    loadJoySet(joycfg, defaultJoyMapping);
+
+    // per-model mappings, keyed by SDL joystick GUID string
+    modelJoyMappings.clear();
+    std::vector<std::string> cfgkeys = localCfg.GetTableKeys();
+    if (std::find(cfgkeys.begin(), cfgkeys.end(), "JoystickModels") != cfgkeys.end())
+    {
+        Config::Table modelcfg = localCfg.GetTable("JoystickModels");
+        for (const std::string& guid : modelcfg.GetTableKeys())
+        {
+            Config::Table entrycfg = modelcfg.GetTable(guid);
+            loadJoySet(entrycfg, modelJoyMappings[guid]);
+        }
     }
 
-    autoJoystickMapping = joycfg.GetBool("AutoMap");
+    joyUseAutoMapping = joycfg.GetBool("AutoMap");
 
+    // opening the joystick picks the effective mapping, see applyJoystickMapping()
     setJoystick(localCfg.GetInt("JoystickID"));
     SDL_UnlockMutex(joyMutex.get());
 }
@@ -255,7 +280,10 @@ void EmuInstance::openJoystick()
 
     int num = SDL_NumJoysticks();
     if (num < 1)
+    {
+        applyJoystickMapping();
         return;
+    }
 
     if (joystickID >= num)
         joystickID = 0;
@@ -282,6 +310,99 @@ void EmuInstance::openJoystick()
             hasGyroscope = SDL_GameControllerSetSensorEnabled(controller, SDL_SENSOR_GYRO, SDL_TRUE) == 0;
         }
     }
+
+    // also runs when a joystick is hot-plugged, since inputProcess() reopens it
+    applyJoystickMapping();
+}
+
+static std::string joystickGUIDToString(SDL_JoystickGUID guid)
+{
+    bool empty = true;
+    for (int i = 0; i < 16; i++)
+    {
+        if (guid.data[i] != 0)
+        {
+            empty = false;
+            break;
+        }
+    }
+    if (empty) return "";
+
+    char buf[33];
+    SDL_JoystickGetGUIDString(guid, buf, sizeof(buf));
+    return std::string(buf);
+}
+
+std::string EmuInstance::getJoystickGUIDForIndex(int index)
+{
+    if (index < 0 || index >= SDL_NumJoysticks())
+        return "";
+
+    return joystickGUIDToString(SDL_JoystickGetDeviceGUID(index));
+}
+
+bool EmuInstance::getGameControllerJoyMapping(int index, int* mapping)
+{
+    if (index < 0 || index >= SDL_NumJoysticks())
+        return false;
+    if (!SDL_IsGameController(index))
+        return false;
+
+    // if the device is already open this returns the same handle with an extra reference
+    SDL_GameController* gc = SDL_GameControllerOpen(index);
+    if (!gc)
+        return false;
+
+    for (int i = 0; i < 12; i++)
+    {
+        SDL_GameControllerButtonBind bind = SDL_GameControllerGetBindForButton(gc, sdlButtons[i]);
+        switch (bind.bindType)
+        {
+        case SDL_CONTROLLER_BINDTYPE_BUTTON:
+            if (bind.value.button >= 0 && bind.value.button < 0xFFFF)
+                mapping[i] = bind.value.button;
+            break;
+
+        case SDL_CONTROLLER_BINDTYPE_HAT:
+            // SDL_HAT_UP/RIGHT/DOWN/LEFT match the direction bits used by joystickButtonDown()
+            if (bind.value.hat.hat >= 0 && bind.value.hat.hat < 16)
+                mapping[i] = 0x100 | (bind.value.hat.hat << 4) | (bind.value.hat.hat_mask & 0xF);
+            break;
+
+        default:
+            // axis binds are skipped: SDL2 does not report which direction of
+            // the axis the button uses, so a guess could invert the control
+            break;
+        }
+    }
+
+    SDL_GameControllerClose(gc);
+    return true;
+}
+
+void EmuInstance::applyJoystickMapping()
+{
+    // lookup order: per-model mapping for this joystick's GUID, then SDL automatic
+    // mapping (if enabled and the pad is in SDL's database), then the default mapping
+    const JoyMappingSet* set = &defaultJoyMapping;
+    bool usemodel = false;
+
+    if (joystick && !modelJoyMappings.empty())
+    {
+        auto it = modelJoyMappings.find(joystickGUIDToString(SDL_JoystickGetGUID(joystick)));
+        if (it != modelJoyMappings.end())
+        {
+            set = &it->second;
+            usemodel = true;
+        }
+    }
+
+    // inputProcess() only uses automatic mapping when a GameController was opened,
+    // and falls back to joyMapping otherwise
+    autoJoystickMapping = joyUseAutoMapping && !usemodel;
+
+    std::copy(std::begin(set->buttons), std::end(set->buttons), joyMapping);
+    std::copy(std::begin(set->hotkeys), std::end(set->hotkeys), hkJoyMapping);
 }
 
 void EmuInstance::closeJoystick()

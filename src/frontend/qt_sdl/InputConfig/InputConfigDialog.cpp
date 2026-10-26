@@ -21,6 +21,10 @@
 #include <QKeyEvent>
 #include <QDebug>
 
+#include <algorithm>
+#include <iterator>
+#include <vector>
+
 #include <SDL2/SDL.h>
 
 #include "types.h"
@@ -52,7 +56,6 @@ InputConfigDialog::InputConfigDialog(QWidget* parent) : QDialog(parent), ui(new 
     {
         const char* btn = EmuInstance::buttonNames[dskeyorder[i]];
         keypadKeyMap[i] = keycfg.GetInt(btn);
-        keypadJoyMap[i] = joycfg.GetInt(btn);
     }
 
     int i = 0;
@@ -60,7 +63,6 @@ InputConfigDialog::InputConfigDialog(QWidget* parent) : QDialog(parent), ui(new 
     {
         const char* btn = EmuInstance::hotkeyNames[hotkey];
         addonsKeyMap[i] = keycfg.GetInt(btn);
-        addonsJoyMap[i] = joycfg.GetInt(btn);
         i++;
     }
 
@@ -69,16 +71,44 @@ InputConfigDialog::InputConfigDialog(QWidget* parent) : QDialog(parent), ui(new 
     {
         const char* btn = EmuInstance::hotkeyNames[hotkey];
         hkGeneralKeyMap[i] = keycfg.GetInt(btn);
-        hkGeneralJoyMap[i] = joycfg.GetInt(btn);
         i++;
     }
 
-    populatePage(ui->tabAddons, hk_addons_labels, addonsKeyMap, addonsJoyMap);
-    populatePage(ui->tabHotkeysGeneral, hk_general_labels, hkGeneralKeyMap, hkGeneralJoyMap);
+    // the flat Joystick table is the default joystick mapping
+    readJoyMapSet(joycfg, defaultJoyMaps);
+
+    // per-model joystick mappings, keyed by SDL joystick GUID string
+    std::vector<std::string> cfgkeys = instcfg.GetTableKeys();
+    if (std::find(cfgkeys.begin(), cfgkeys.end(), "JoystickModels") != cfgkeys.end())
+    {
+        Config::Table modelcfg = instcfg.GetTable("JoystickModels");
+        for (const std::string& guid : modelcfg.GetTableKeys())
+        {
+            Config::Table entrycfg = modelcfg.GetTable(guid);
+            JoyMapSet& set = modelJoyMaps[guid];
+            readJoyMapSet(entrycfg, set);
+            set.name = entrycfg.GetString("Name");
+        }
+    }
 
     joystickID = instcfg.GetInt("JoystickID");
 
     int njoy = SDL_NumJoysticks();
+    // same fallback as EmuInstance::openJoystick(), so the GUID matches the open device
+    int joyIndex = (joystickID >= 0 && joystickID < njoy) ? joystickID : 0;
+
+    currentJoyGUID = (njoy > 0) ? EmuInstance::getJoystickGUIDForIndex(joyIndex) : "";
+    editingModel = !currentJoyGUID.empty() && (modelJoyMaps.count(currentJoyGUID) != 0);
+
+    // the mapping buttons read their value when created, so fill the
+    // working arrays with the mapping of the selected joystick first
+    loadJoyMaps(currentJoyMapSet());
+
+    populatePage(ui->tabAddons, hk_addons_labels, addonsKeyMap, addonsJoyMap);
+    populatePage(ui->tabHotkeysGeneral, hk_general_labels, hkGeneralKeyMap, hkGeneralJoyMap);
+
+    // filling the list must not trigger the joystick switch handler
+    ui->cbxJoystick->blockSignals(true);
     if (njoy > 0)
     {
         for (int i = 0; i < njoy; i++)
@@ -86,13 +116,19 @@ InputConfigDialog::InputConfigDialog(QWidget* parent) : QDialog(parent), ui(new 
             const char* name = SDL_JoystickNameForIndex(i);
             ui->cbxJoystick->addItem(QString(name));
         }
-        ui->cbxJoystick->setCurrentIndex(joystickID);
+        ui->cbxJoystick->setCurrentIndex(joyIndex);
     }
     else
     {
         ui->cbxJoystick->addItem(tr("(no joysticks available)"));
         ui->cbxJoystick->setEnabled(false);
     }
+    ui->cbxJoystick->blockSignals(false);
+
+    ui->cbModelMapping->blockSignals(true);
+    ui->cbModelMapping->setChecked(editingModel);
+    ui->cbModelMapping->setEnabled(!currentJoyGUID.empty());
+    ui->cbModelMapping->blockSignals(false);
 
     ui->cbAutoMap->setChecked(joycfg.GetBool("AutoMap"));
 
@@ -127,7 +163,7 @@ void InputConfigDialog::setupKeypadPage()
         delete pushButtonKey;
         delete pushButtonJoy;
 
-        if (ui->cbxJoystick->isEnabled() && !ui->cbAutoMap->isChecked())
+        if (ui->cbxJoystick->isEnabled() && (!ui->cbAutoMap->isChecked() || editingModel))
         {
             ui->stackMapping->setCurrentIndex(1);
         }
@@ -195,7 +231,6 @@ void InputConfigDialog::on_InputConfigDialog_accepted()
     {
         const char* btn = EmuInstance::buttonNames[dskeyorder[i]];
         keycfg.SetInt(btn, keypadKeyMap[i]);
-        joycfg.SetInt(btn, keypadJoyMap[i]);
     }
 
     int i = 0;
@@ -203,7 +238,6 @@ void InputConfigDialog::on_InputConfigDialog_accepted()
     {
         const char* btn = EmuInstance::hotkeyNames[hotkey];
         keycfg.SetInt(btn, addonsKeyMap[i]);
-        joycfg.SetInt(btn, addonsJoyMap[i]);
         i++;
     }
 
@@ -212,12 +246,28 @@ void InputConfigDialog::on_InputConfigDialog_accepted()
     {
         const char* btn = EmuInstance::hotkeyNames[hotkey];
         keycfg.SetInt(btn, hkGeneralKeyMap[i]);
-        joycfg.SetInt(btn, hkGeneralJoyMap[i]);
         i++;
     }
 
+    storeJoyMaps(currentJoyMapSet());
+    writeJoyMapSet(joycfg, defaultJoyMaps);
+
     instcfg.SetInt("JoystickID", joystickID);
     joycfg.SetBool("AutoMap", ui->cbAutoMap->isChecked());
+
+    // rewrite the per-model table so entries removed in the dialog disappear
+    instcfg.Remove("JoystickModels");
+    if (!modelJoyMaps.empty())
+    {
+        Config::Table modelcfg = instcfg.GetTable("JoystickModels");
+        for (auto& entry : modelJoyMaps)
+        {
+            Config::Table entrycfg = modelcfg.GetTable(entry.first);
+            entrycfg.SetString("Name", entry.second.name);
+            writeJoyMapSet(entrycfg, entry.second);
+        }
+    }
+
     Config::Save();
 
     emuInstance->inputLoadConfig();
@@ -247,9 +297,30 @@ void InputConfigDialog::on_cbxJoystick_currentIndexChanged(int id)
 {
     // prevent a spurious change
     if (ui->cbxJoystick->count() < 2) return;
+    if (id < 0) return;
+
+    // stop any button that is still waiting for input, then keep the edits
+    // made for the previous joystick in memory
+    for (JoyMapButton* btn : findChildren<JoyMapButton*>())
+    {
+        if (btn->isChecked())
+            btn->refreshText();
+    }
+    storeJoyMaps(currentJoyMapSet());
 
     joystickID = id;
+    // opening the newly selected joystick also makes the mapping buttons listen to it
     emuInstance->setJoystick(id);
+
+    currentJoyGUID = EmuInstance::getJoystickGUIDForIndex(id);
+    editingModel = !currentJoyGUID.empty() && (modelJoyMaps.count(currentJoyGUID) != 0);
+
+    ui->cbModelMapping->blockSignals(true);
+    ui->cbModelMapping->setChecked(editingModel);
+    ui->cbModelMapping->setEnabled(!currentJoyGUID.empty());
+    ui->cbModelMapping->blockSignals(false);
+
+    selectJoystickMapping();
     setJoyMappingEnabled(ui->cbAutoMap->isChecked());
 }
 
@@ -258,9 +329,65 @@ void InputConfigDialog::on_cbAutoMap_toggled(bool checked)
     setJoyMappingEnabled(checked);
 }
 
+void InputConfigDialog::on_cbModelMapping_toggled(bool checked)
+{
+    if (currentJoyGUID.empty()) return;
+
+    for (JoyMapButton* btn : findChildren<JoyMapButton*>())
+    {
+        if (btn->isChecked())
+            btn->refreshText();
+    }
+
+    if (checked)
+    {
+        // the edits shown so far belong to the default mapping
+        storeJoyMaps(defaultJoyMaps);
+
+        // start from what this controller currently uses: the default mapping,
+        // or SDL's automatic mapping when that is enabled and available
+        int joyIndex = ui->cbxJoystick->currentIndex();
+        JoyMapSet set = defaultJoyMaps;
+        if (ui->cbAutoMap->isChecked())
+        {
+            // buttons SDL cannot express as a raw button or hat keep the default binding
+            int btnmap[12];
+            for (int i = 0; i < keypad_num; i++)
+                btnmap[dskeyorder[i]] = set.keypad[i];
+
+            auto mutex = emuInstance->getJoyMutex();
+            SDL_LockMutex(mutex.get());
+            bool hasauto = EmuInstance::getGameControllerJoyMapping(joyIndex, btnmap);
+            SDL_UnlockMutex(mutex.get());
+
+            if (hasauto)
+            {
+                for (int i = 0; i < keypad_num; i++)
+                    set.keypad[i] = btnmap[dskeyorder[i]];
+            }
+        }
+
+        const char* name = SDL_JoystickNameForIndex(joyIndex);
+        set.name = name ? name : "";
+
+        modelJoyMaps[currentJoyGUID] = set;
+        editingModel = true;
+    }
+    else
+    {
+        // the per-model entry is dropped; it is removed from the config on OK
+        modelJoyMaps.erase(currentJoyGUID);
+        editingModel = false;
+    }
+
+    selectJoystickMapping();
+    setJoyMappingEnabled(ui->cbAutoMap->isChecked());
+}
+
 void InputConfigDialog::setJoyMappingEnabled(bool enable)
 {
-    if (enable && SDL_IsGameController(emuInstance->getJoystickID()))
+    // a per-model mapping takes precedence over automatic mapping
+    if (enable && !editingModel && SDL_IsGameController(emuInstance->getJoystickID()))
     {
         ui->stackMapping->setCurrentIndex(0);
         ui->btnJoyMapSwitch->setEnabled(false);
@@ -269,6 +396,68 @@ void InputConfigDialog::setJoyMappingEnabled(bool enable)
     {
         ui->btnJoyMapSwitch->setEnabled(true);
     }
+}
+
+void InputConfigDialog::readJoyMapSet(Config::Table& table, JoyMapSet& set)
+{
+    for (int i = 0; i < keypad_num; i++)
+        set.keypad[i] = table.GetInt(EmuInstance::buttonNames[dskeyorder[i]]);
+
+    int i = 0;
+    for (int hotkey : hk_addons)
+        set.addons[i++] = table.GetInt(EmuInstance::hotkeyNames[hotkey]);
+
+    i = 0;
+    for (int hotkey : hk_general)
+        set.hkGeneral[i++] = table.GetInt(EmuInstance::hotkeyNames[hotkey]);
+}
+
+void InputConfigDialog::writeJoyMapSet(Config::Table& table, const JoyMapSet& set)
+{
+    for (int i = 0; i < keypad_num; i++)
+        table.SetInt(EmuInstance::buttonNames[dskeyorder[i]], set.keypad[i]);
+
+    int i = 0;
+    for (int hotkey : hk_addons)
+        table.SetInt(EmuInstance::hotkeyNames[hotkey], set.addons[i++]);
+
+    i = 0;
+    for (int hotkey : hk_general)
+        table.SetInt(EmuInstance::hotkeyNames[hotkey], set.hkGeneral[i++]);
+}
+
+void InputConfigDialog::storeJoyMaps(JoyMapSet& set)
+{
+    std::copy(std::begin(keypadJoyMap), std::end(keypadJoyMap), set.keypad);
+    std::copy(std::begin(addonsJoyMap), std::end(addonsJoyMap), set.addons);
+    std::copy(std::begin(hkGeneralJoyMap), std::end(hkGeneralJoyMap), set.hkGeneral);
+}
+
+void InputConfigDialog::loadJoyMaps(const JoyMapSet& set)
+{
+    std::copy(std::begin(set.keypad), std::end(set.keypad), keypadJoyMap);
+    std::copy(std::begin(set.addons), std::end(set.addons), addonsJoyMap);
+    std::copy(std::begin(set.hkGeneral), std::end(set.hkGeneral), hkGeneralJoyMap);
+}
+
+InputConfigDialog::JoyMapSet& InputConfigDialog::currentJoyMapSet()
+{
+    if (editingModel)
+    {
+        auto it = modelJoyMaps.find(currentJoyGUID);
+        if (it != modelJoyMaps.end())
+            return it->second;
+    }
+
+    return defaultJoyMaps;
+}
+
+void InputConfigDialog::selectJoystickMapping()
+{
+    loadJoyMaps(currentJoyMapSet());
+
+    for (JoyMapButton* btn : findChildren<JoyMapButton*>())
+        btn->refreshText();
 }
 
 SDL_Joystick* InputConfigDialog::getJoystick()

@@ -21,6 +21,8 @@
 
 #include <SDL2/SDL.h>
 #include <QCoreApplication>
+#include <map>
+#include <string>
 
 #include "Platform.h"
 #include "main.h"
@@ -164,6 +166,14 @@ public:
     int getJoystickID() { return joystickID; }
     SDL_Joystick* getJoystick() { return joystick; }
     bool autoJoystickMapping;
+
+    // SDL GUID string of the joystick at the given device index, used as the
+    // key for per-model joystick mappings; empty if SDL reports no usable GUID
+    static std::string getJoystickGUIDForIndex(int index);
+    // fill mapping[12] (buttonNames order) with the raw joystick bindings SDL's
+    // game controller database uses for automatic mapping; entries SDL binds to
+    // an axis or does not bind are left untouched. Caller must hold the joy mutex.
+    static bool getGameControllerJoyMapping(int index, int* mapping);
     std::shared_ptr<SDL_mutex> getJoyMutex() { return joyMutex; }
 
     void touchScreen(int x, int y);
@@ -255,6 +265,7 @@ private:
 
     void openJoystick();
     void closeJoystick();
+    void applyJoystickMapping();
     bool joystickButtonDown(int val);
 
     void inputProcess();
@@ -369,6 +380,19 @@ private:
     int joyMapping[12];
     int hkKeyMapping[HK_MAX];
     int hkJoyMapping[HK_MAX];
+
+    // joyMapping/hkJoyMapping hold the mapping in effect for the open joystick.
+    // It is picked from these caches (filled by inputLoadConfig) whenever a
+    // joystick is opened, so hot-plugging never touches the config from the
+    // emu thread.
+    struct JoyMappingSet
+    {
+        int buttons[12];
+        int hotkeys[HK_MAX];
+    };
+    JoyMappingSet defaultJoyMapping;
+    std::map<std::string, JoyMappingSet> modelJoyMappings;
+    bool joyUseAutoMapping;
 
     int joystickID;
     SDL_Joystick* joystick;

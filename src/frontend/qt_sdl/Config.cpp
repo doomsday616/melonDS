@@ -50,6 +50,7 @@ DefaultList<int> DefaultInts =
 {
     {"Instance*.Keyboard", -1},
     {"Instance*.Joystick", -1},
+    {"Instance*.JoystickModels", -1},
     {"Instance*.Window*.Width", 256},
     {"Instance*.Window*.Height", 384},
     {"Screen.VSyncInterval", 1},
@@ -648,6 +649,29 @@ void Table::SetDouble(const std::string& path, double val)
     toml::value& tval = ResolvePath(path);
     toml::floating_format_info info = {.prec=10};
     tval = toml::value(val, info);
+}
+
+std::vector<std::string> Table::GetTableKeys()
+{
+    std::vector<std::string> ret;
+    if (!Data.is_table())
+        return ret;
+
+    for (auto& entry : Data.as_table())
+    {
+        if (entry.second.is_table())
+            ret.push_back(entry.first);
+    }
+
+    return ret;
+}
+
+void Table::Remove(const std::string& key)
+{
+    if (!Data.is_table())
+        return;
+
+    Data.as_table().erase(key);
 }
 
 toml::value& Table::ResolvePath(const std::string& path)
