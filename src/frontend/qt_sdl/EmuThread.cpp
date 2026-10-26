@@ -86,6 +86,7 @@ void EmuThread::attachWindow(MainWindow* window)
     {
         connect(this, SIGNAL(windowLimitFPSChange()), window->actLimitFramerate, SLOT(trigger()));
         connect(this, SIGNAL(swapScreensToggle()), window->actScreenSwap, SLOT(trigger()));
+        connect(this, SIGNAL(windowQuickStateChange(bool)), window, SLOT(onQuickStateChange(bool)));
     }
 }
 
@@ -105,6 +106,7 @@ void EmuThread::detachWindow(MainWindow* window)
     {
         disconnect(this, SIGNAL(windowLimitFPSChange()), window->actLimitFramerate, SLOT(trigger()));
         disconnect(this, SIGNAL(swapScreensToggle()), window->actScreenSwap, SLOT(trigger()));
+        disconnect(this, SIGNAL(windowQuickStateChange(bool)), window, SLOT(onQuickStateChange(bool)));
     }
 }
 
@@ -174,6 +176,16 @@ void EmuThread::run()
                 emuReset();
         }
         if (emuInstance->hotkeyPressed(HK_FrameStep)) emuFrameStep();
+
+        // Quick save/load run here, on the emulation thread that owns the
+        // NDS instance, and only while a game is running or paused.
+        bool quickSave = emuInstance->hotkeyPressed(HK_QuickSaveState);
+        bool quickLoad = emuInstance->hotkeyPressed(HK_QuickLoadState);
+        if (emuActive)
+        {
+            if (quickSave) quickSaveState();
+            if (quickLoad) quickLoadState();
+        }
 
         if (emuInstance->hotkeyPressed(HK_FullscreenToggle)) emit windowFullscreenToggle();
 
@@ -844,6 +856,42 @@ int EmuThread::loadState(const QString& filename)
     sendMessage({.type = msg_LoadState, .param = filename});
     waitMessage();
     return msgResult;
+}
+
+void EmuThread::quickSaveState()
+{
+    const int slot = 1;
+
+    if (emuInstance->saveState(emuInstance->getSavestateName(slot)))
+    {
+        emuInstance->osdAddMessage(0, QT_TRANSLATE_NOOP("OSD", "State saved to slot %d"), slot);
+        emit windowQuickStateChange(false);
+    }
+    else
+    {
+        emuInstance->osdAddMessage(0xFFA0A0, QT_TRANSLATE_NOOP("OSD", "State save failed"));
+    }
+}
+
+void EmuThread::quickLoadState()
+{
+    const int slot = 1;
+
+    if (!emuInstance->savestateExists(slot))
+    {
+        emuInstance->osdAddMessage(0xFFA0A0, QT_TRANSLATE_NOOP("OSD", "State slot %d is empty"), slot);
+        return;
+    }
+
+    if (emuInstance->loadState(emuInstance->getSavestateName(slot)))
+    {
+        emuInstance->osdAddMessage(0, QT_TRANSLATE_NOOP("OSD", "State loaded from slot %d"), slot);
+        emit windowQuickStateChange(true);
+    }
+    else
+    {
+        emuInstance->osdAddMessage(0xFFA0A0, QT_TRANSLATE_NOOP("OSD", "State load failed"));
+    }
 }
 
 int EmuThread::undoStateLoad()

@@ -2430,6 +2430,15 @@ void MainWindow::onEmuReset()
     actUndoStateLoad->setEnabled(false);
 }
 
+void MainWindow::onQuickStateChange(bool loaded)
+{
+    if (!hasMenu) return;
+
+    // keep the menu in sync with a quick save/load done from the hotkey
+    if (loaded) actUndoStateLoad->setEnabled(true);
+    else        actLoadState[1]->setEnabled(true);
+}
+
 void MainWindow::onUpdateVideoSettings(bool glchange)
 {
     if (!emuInstance) return;

@@ -161,8 +161,13 @@ signals:
 
     void syncVolumeLevel();
 
+    void windowQuickStateChange(bool loaded);
+
 private:
     void handleMessages();
+
+    void quickSaveState();
+    void quickLoadState();
 
     void updateRenderer();
     void compileShaders();

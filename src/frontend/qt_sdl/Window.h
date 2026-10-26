@@ -124,6 +124,7 @@ private slots:
     void onSaveState();
     void onLoadState();
     void onUndoStateLoad();
+    void onQuickStateChange(bool loaded);
     void onImportSavefile();
     void onQuit();
 
