@@ -218,6 +218,7 @@ MainWindow::MainWindow(int id, EmuInstance* inst, QWidget* parent) :
     enabledSaved(false),
     focused(true),
     wasMaximized(false),
+    sizingBeforeEven(screenSizing_EmphTop),
     confirmPending(false)
 {
 
@@ -2423,6 +2424,28 @@ void MainWindow::onScreenEmphasisToggled()
     {
         // For any other sizing mode, switch to EmphTop as a sensible default
         currentSizing = screenSizing_EmphTop;
+    }
+    windowCfg.SetInt("ScreenSizing", currentSizing);
+    actScreenSizing[currentSizing]->setChecked(true);
+
+    emit screenLayoutChange();
+}
+
+void MainWindow::onScreenEvenToggled()
+{
+    // Even <-> previous sizing mode; the previous mode is remembered per window
+    // for this session only, so a fresh start falls back to Emphasize top
+    int currentSizing = windowCfg.GetInt("ScreenSizing");
+    if (currentSizing != screenSizing_Even)
+    {
+        sizingBeforeEven = currentSizing;
+        currentSizing = screenSizing_Even;
+    }
+    else
+    {
+        currentSizing = sizingBeforeEven;
+        if (currentSizing < 0 || currentSizing >= screenSizing_MAX || currentSizing == screenSizing_Even)
+            currentSizing = screenSizing_EmphTop;
     }
     windowCfg.SetInt("ScreenSizing", currentSizing);
     actScreenSizing[currentSizing]->setChecked(true);

@@ -198,6 +198,7 @@ private slots:
     void onFullscreenToggled();
     void onScreenEmphasisToggled();
     void onScreenLayoutToggled();
+    void onScreenEvenToggled();
 
 private:
     virtual void closeEvent(QCloseEvent* event) override;
@@ -225,6 +226,9 @@ private:
     bool pausedManually;
 
     bool wasMaximized;
+
+    // sizing mode to restore when the even-sizing hotkey is pressed again
+    int sizingBeforeEven;
 
     bool confirmPending;
     bool confirmEmuAction(const QString& question);

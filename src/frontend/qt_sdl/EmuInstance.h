@@ -63,6 +63,7 @@ enum
     HK_QuickLoadState,
     HK_TakeScreenshot,
     HK_SwapScreenLayouts,
+    HK_ScreenEvenToggle,
     HK_MAX
 };
 
