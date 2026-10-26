@@ -308,7 +308,9 @@ void GPU::DoSavestate(Savestate* file) noexcept
         PaletteDirty = 0x5F;
     }
 
-    Rend->PostSavestate();
+    // Must run after ResetVRAMCache(), since re-rendering the 3D buffer on load
+    // reads texture VRAM through the flat caches.
+    Rend->PostSavestate(!file->Saving);
 }
 
 

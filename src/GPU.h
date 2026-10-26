@@ -840,7 +840,9 @@ public:
     virtual void Stop() = 0;
 
     virtual void PreSavestate() {}
-    virtual void PostSavestate() {}
+    // loading: true when a state was just loaded (the renderer should rebuild its 3D output
+    // from the restored GPU3D state), false after a state was saved
+    virtual void PostSavestate(bool loading) {}
 
     virtual void SetRenderSettings(RendererSettings& settings) = 0;
 

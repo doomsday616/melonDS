@@ -36,7 +36,7 @@ public:
     void Stop() override;
 
     void PreSavestate() override;
-    void PostSavestate() override;
+    void PostSavestate(bool loading) override;
 
     void SetRenderSettings(RendererSettings& settings) override;
 

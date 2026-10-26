@@ -308,7 +308,7 @@ void GLRenderer::Stop()
     // TODO: do we even need this anymore?
 }
 
-void GLRenderer::PostSavestate()
+void GLRenderer::PostSavestate(bool loading)
 {
     Reset();
 
@@ -316,6 +316,11 @@ void GLRenderer::PostSavestate()
     rend2D->PostSavestate();
     rend2D = dynamic_cast<GLRenderer2D*>(Rend2D_B.get());
     rend2D->PostSavestate();
+
+    // Re-render the 3D buffer from the restored state so the next frame
+    // does not show the 3D scene from before the state was loaded.
+    if (loading && !Rend3D->NeedsShaderCompile())
+        Rend3D->RenderFrame();
 }
 
 

@@ -77,10 +77,17 @@ void SoftRenderer::PreSavestate()
         rend3d->SetupRenderThread();
 }
 
-void SoftRenderer::PostSavestate()
+void SoftRenderer::PostSavestate(bool loading)
 {
     auto rend3d = dynamic_cast<SoftRenderer3D*>(Rend3D.get());
-    if (rend3d->IsThreaded())
+    if (loading)
+    {
+        // The 3D buffer still holds whatever was rendered before the state was loaded.
+        // Re-render it from the restored state so the next frame is neither stale nor blank.
+        // In threaded mode this also restarts the render thread (replacing EnableRenderThread()).
+        rend3d->RenderFrame();
+    }
+    else if (rend3d->IsThreaded())
         rend3d->EnableRenderThread();
 }
 
