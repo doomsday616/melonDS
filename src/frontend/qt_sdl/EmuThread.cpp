@@ -78,6 +78,10 @@ void EmuThread::attachWindow(MainWindow* window)
     connect(this, SIGNAL(windowFullscreenToggle()), window, SLOT(onFullscreenToggled()));
     connect(this, SIGNAL(screenEmphasisToggle()), window, SLOT(onScreenEmphasisToggled()));
 
+    // only one window may ask, or every open window would show a box
+    if (window->getWindowID() == 0)
+        connect(this, &EmuThread::windowResetRequest, window, &MainWindow::requestReset);
+
     if (window->winHasMenu())
     {
         connect(this, SIGNAL(windowLimitFPSChange()), window->actLimitFramerate, SLOT(trigger()));
@@ -95,6 +99,7 @@ void EmuThread::detachWindow(MainWindow* window)
     disconnect(this, SIGNAL(autoScreenSizingChange(int)), window->panel, SLOT(onAutoScreenSizingChanged(int)));
     disconnect(this, SIGNAL(windowFullscreenToggle()), window, SLOT(onFullscreenToggled()));
     disconnect(this, SIGNAL(screenEmphasisToggle()), window, SLOT(onScreenEmphasisToggled()));
+    disconnect(this, &EmuThread::windowResetRequest, window, &MainWindow::requestReset);
 
     if (window->winHasMenu())
     {
@@ -160,7 +165,14 @@ void EmuThread::run()
         if (emuInstance->hotkeyPressed(HK_FrameLimitToggle)) emit windowLimitFPSChange();
 
         if (emuInstance->hotkeyPressed(HK_Pause)) emuTogglePause();
-        if (emuInstance->hotkeyPressed(HK_Reset)) emuReset();
+        if (emuInstance->hotkeyPressed(HK_Reset))
+        {
+            // the confirmation box must run on the GUI thread, never here
+            if (globalCfg.GetBool("ConfirmResetStop"))
+                emit windowResetRequest();
+            else
+                emuReset();
+        }
         if (emuInstance->hotkeyPressed(HK_FrameStep)) emuFrameStep();
 
         if (emuInstance->hotkeyPressed(HK_FullscreenToggle)) emit windowFullscreenToggle();

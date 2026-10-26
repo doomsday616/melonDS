@@ -148,6 +148,7 @@ signals:
     void windowEmuStop();
     void windowEmuPause(bool pause);
     void windowEmuReset();
+    void windowResetRequest();
 
     void windowLimitFPSChange();
 

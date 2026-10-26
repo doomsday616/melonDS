@@ -114,6 +114,13 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QCheckBox" name="cbConfirmResetStop">
+        <property name="text">
+         <string>Ask for confirmation before resetting or stopping emulation</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -306,6 +313,7 @@
   <tabstop>spinMouseHideSeconds</tabstop>
   <tabstop>cbPauseLostFocus</tabstop>
   <tabstop>cbMuteFastForward</tabstop>
+  <tabstop>cbConfirmResetStop</tabstop>
   <tabstop>spinTargetFPS</tabstop>
   <tabstop>pbAccurate</tabstop>
   <tabstop>pbClean</tabstop>

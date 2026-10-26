@@ -57,6 +57,9 @@ public:
 
     bool winHasMenu() { return hasMenu; }
 
+    // Reset from the menu or hotkey; asks first when ConfirmResetStop is set.
+    void requestReset();
+
     void saveEnabled(bool enabled);
 
     void toggleFullscreen();
@@ -218,6 +221,9 @@ private:
     bool pausedManually;
 
     bool wasMaximized;
+
+    bool confirmPending;
+    bool confirmEmuAction(const QString& question);
 
     int windowID;
     bool enabledSaved;

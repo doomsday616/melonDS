@@ -217,7 +217,8 @@ MainWindow::MainWindow(int id, EmuInstance* inst, QWidget* parent) :
     emuThread(inst->getEmuThread()),
     enabledSaved(false),
     focused(true),
-    wasMaximized(false)
+    wasMaximized(false),
+    confirmPending(false)
 {
 
     showOSD = windowCfg.GetBool("ShowOSD");
@@ -378,7 +379,7 @@ MainWindow::MainWindow(int id, EmuInstance* inst, QWidget* parent) :
             connect(actPause, &QAction::triggered, this, &MainWindow::onPause);
 
             actReset = menu->addAction(tr("Reset"));
-            connect(actReset, &QAction::triggered, this, &MainWindow::onReset);
+            connect(actReset, &QAction::triggered, this, &MainWindow::requestReset);
 
             actStop = menu->addAction(tr("Stop"));
             connect(actStop, &QAction::triggered, this, &MainWindow::onStop);
@@ -1790,6 +1791,32 @@ void MainWindow::onPause(bool checked)
     }
 }
 
+bool MainWindow::confirmEmuAction(const QString& question)
+{
+    if (!globalCfg.GetBool("ConfirmResetStop")) return true;
+
+    // a hotkey can queue another request while the box is open
+    if (confirmPending) return false;
+    confirmPending = true;
+
+    emuThread->emuPause();
+    bool ok = QMessageBox::question(this, "melonDS", question,
+                                    QMessageBox::Yes | QMessageBox::No,
+                                    QMessageBox::No) == QMessageBox::Yes;
+    emuThread->emuUnpause();
+
+    confirmPending = false;
+    return ok && emuThread->emuIsActive();
+}
+
+void MainWindow::requestReset()
+{
+    if (!emuThread->emuIsActive()) return;
+    if (!confirmEmuAction(tr("Are you sure you want to reset the emulation?"))) return;
+
+    emuThread->emuReset();
+}
+
 void MainWindow::onReset()
 {
     if (!emuThread->emuIsActive()) return;
@@ -1800,6 +1827,7 @@ void MainWindow::onReset()
 void MainWindow::onStop()
 {
     if (!emuThread->emuIsActive()) return;
+    if (!confirmEmuAction(tr("Are you sure you want to stop the emulation?"))) return;
 
     emuThread->emuStop(true);
 }
