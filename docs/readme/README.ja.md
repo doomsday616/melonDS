@@ -24,6 +24,9 @@
 
 本家 melonDS は現在もメンテナンスされていますが、リリースや PR のマージには時間がかかり、コミュニティから提出された多くの修正や新機能が長いあいだマージされずに残っています。**melonDS Community** は非公式のコミュニティ版で、8 言語に対応した UI に加え、レビュー済みの質の高い本家 PR を取り込んでいます。melonDS チームおよび任天堂とは一切関係ありません。
 
+> [!IMPORTANT]
+> **これは公式の melonDS ではありません。** 公式のエミュレーターは Arisotura と melonDS チームによる [melonDS](https://github.com/melonDS-emu/melonDS) です。melonDS Community で問題が起きた場合は、melonDS チームではなく、まず[こちら](https://github.com/lazyalex616/melonDS-community/issues)に報告してください。公式の melonDS でも再現できる問題だけを本家に報告してください。melonDS チームが希望すれば、これらの翻訳は本家に提供する予定です。
+
 **melonDS Community** は、ニンテンドー DS エミュレーター [melonDS](https://github.com/melonDS-emu/melonDS) の非公式な多言語版フォークです。melonDS 1.1 をベースにしており、エミュレーションのコアは本家とまったく同じなので、ゲームの動作も変わりません。違うのは Qt フロントエンドで、Qt Linguist を使った本格的な多言語（i18n）対応に作り替えています。メニュー、すべての設定画面、メッセージやエラー、さらにゲーム画面に表示される OSD 通知まで、お使いの言語で表示されます。現在 8 言語に対応し、いずれも翻訳済みです。
 
 ## 特長
@@ -89,11 +92,11 @@
 
 | プラットフォーム | ファイル |
 |---|---|
-| Windows（x86_64、一般的な PC） | `melonDS-community-1.2.2-windows-x86_64.zip` |
-| Windows（ARM64） | `melonDS-community-1.2.2-windows-arm64.zip` |
-| Linux（x86_64） | `melonDS-community-1.2.2-linux-x86_64.AppImage` |
-| Linux（aarch64） | `melonDS-community-1.2.2-linux-aarch64.AppImage` |
-| macOS（Intel・Apple シリコン） | `melonDS-community-1.2.2-macos-universal.zip` |
+| Windows（x86_64、一般的な PC） | `melonDS-community-1.2.3-windows-x86_64.zip` |
+| Windows（ARM64） | `melonDS-community-1.2.3-windows-arm64.zip` |
+| Linux（x86_64） | `melonDS-community-1.2.3-linux-x86_64.AppImage` |
+| Linux（aarch64） | `melonDS-community-1.2.3-linux-aarch64.AppImage` |
+| macOS（Intel・Apple シリコン） | `melonDS-community-1.2.3-macos-universal.zip` |
 
 Windows 版の zip には `melonDS.exe` が 1 つ入っているだけです。インストール不要のポータブル版で、設定は実行ファイルと同じフォルダーに保存されます。
 

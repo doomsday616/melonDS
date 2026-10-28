@@ -24,6 +24,9 @@
 
 上游 melonDS 仍在維護，但發版和合併 PR 都相當緩慢，許多社群提交的修正與新功能長期未被合併。**melonDS Community** 是非官方的社群版：提供 8 種語言的介面，並合併了經過審閱的高品質上游 PR。本專案與 melonDS 團隊及任天堂均無關聯。
 
+> [!IMPORTANT]
+> **這不是官方 melonDS。** 官方模擬器是 Arisotura 與 melonDS 團隊開發的 [melonDS](https://github.com/melonDS-emu/melonDS)。使用 melonDS Community 遇到問題，請先到[這裡](https://github.com/lazyalex616/melonDS-community/issues)回報，不要直接找 melonDS 團隊。只有在官方 melonDS 版本中也能重現的問題，才到上游回報。如果 melonDS 團隊需要，這些翻譯會提供給上游使用。
+
 **melonDS Community** 是任天堂 DS 模擬器 [melonDS](https://github.com/melonDS-emu/melonDS) 的非官方多語言分支。它以 melonDS 1.1 為基礎，模擬核心與上游完全相同，遊戲跑起來一模一樣；不同的是 Qt 前端：整個介面改成標準的 Qt Linguist 多語言（i18n）架構，選單、所有設定視窗、提示與錯誤訊息，甚至遊戲畫面上跳出的 OSD 通知，都會以你的語言顯示。目前提供 8 種語言，全部翻譯完成。
 
 ## 特色
@@ -89,11 +92,11 @@
 
 | 平台 | 檔案 |
 |---|---|
-| Windows（x86_64，大多數電腦） | `melonDS-community-1.2.2-windows-x86_64.zip` |
-| Windows（ARM64） | `melonDS-community-1.2.2-windows-arm64.zip` |
-| Linux（x86_64） | `melonDS-community-1.2.2-linux-x86_64.AppImage` |
-| Linux（aarch64） | `melonDS-community-1.2.2-linux-aarch64.AppImage` |
-| macOS（Intel 與 Apple 晶片） | `melonDS-community-1.2.2-macos-universal.zip` |
+| Windows（x86_64，大多數電腦） | `melonDS-community-1.2.3-windows-x86_64.zip` |
+| Windows（ARM64） | `melonDS-community-1.2.3-windows-arm64.zip` |
+| Linux（x86_64） | `melonDS-community-1.2.3-linux-x86_64.AppImage` |
+| Linux（aarch64） | `melonDS-community-1.2.3-linux-aarch64.AppImage` |
+| macOS（Intel 與 Apple 晶片） | `melonDS-community-1.2.3-macos-universal.zip` |
 
 Windows 的 zip 裡只有一個 `melonDS.exe`。它是免安裝的可攜版，不會寫入系統，設定檔就存在執行檔旁邊。
 

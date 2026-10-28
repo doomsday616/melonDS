@@ -24,6 +24,9 @@
 
 원본 melonDS는 지금도 관리되고 있지만, 새 버전 출시와 PR 병합이 느려서 커뮤니티가 제출한 많은 수정 사항과 기능이 오랫동안 병합되지 않은 채 남아 있습니다. **melonDS Community**는 비공식 커뮤니티 에디션으로, 8개 언어를 지원하는 UI와 함께 검토를 거친 고품질 원본 PR을 병합해 두었습니다. melonDS 팀 및 닌텐도와는 아무런 관련이 없습니다.
 
+> [!IMPORTANT]
+> **이것은 공식 melonDS가 아닙니다.** 공식 에뮬레이터는 Arisotura와 melonDS 팀이 만든 [melonDS](https://github.com/melonDS-emu/melonDS)입니다. melonDS Community에서 문제가 생기면 melonDS 팀이 아니라 먼저 [여기](https://github.com/lazyalex616/melonDS-community/issues)에 알려 주세요. 공식 melonDS에서도 재현되는 문제만 원본 프로젝트에 보고해 주세요. melonDS 팀이 원한다면 이 번역은 원본 프로젝트에 제공할 예정입니다.
+
 **melonDS Community**은 닌텐도 DS 에뮬레이터 [melonDS](https://github.com/melonDS-emu/melonDS) 1.1을 기반으로 한 비공식 다국어 포크입니다. 에뮬레이션 코어는 원본과 완전히 동일하며, 바뀐 부분은 Qt 프런트엔드뿐입니다. 프런트엔드를 Qt Linguist 방식의 제대로 된 다국어 구조로 다시 정리해서, 메뉴와 모든 설정 창, 메시지, 그리고 게임 화면 위에 뜨는 알림까지 한국어로 표시됩니다.
 
 ## 주요 기능
@@ -85,11 +88,11 @@
 
 | 플랫폼 | 파일 |
 | --- | --- |
-| Windows (x86_64) | `melonDS-community-1.2.2-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-community-1.2.2-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-community-1.2.2-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-community-1.2.2-linux-aarch64.AppImage` |
-| macOS (Universal) | `melonDS-community-1.2.2-macos-universal.zip` |
+| Windows (x86_64) | `melonDS-community-1.2.3-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-community-1.2.3-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-community-1.2.3-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-community-1.2.3-linux-aarch64.AppImage` |
+| macOS (Universal) | `melonDS-community-1.2.3-macos-universal.zip` |
 
 Windows용 압축 파일에는 `melonDS.exe` 하나만 들어 있습니다. 설치가 필요 없는 포터블 방식이라 설정은 같은 폴더의 `melonDS.toml`에 저장됩니다.
 

@@ -79,6 +79,11 @@
     <binary>melonDS</binary>
   </provides>
   <releases>
+    <release version="1.2.3" date="2026-10-28">
+      <description>
+        <p>The About dialog and README now state clearly that this is not the official melonDS and where to report problems.</p>
+      </description>
+    </release>
     <release version="1.2.2" date="2026-10-26">
       <description>
         <p>melonDS Community 1.2.2, based on melonDS 1.1. The window title and About dialog now show the melonDS Community version.</p>

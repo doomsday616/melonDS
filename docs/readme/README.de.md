@@ -24,6 +24,9 @@
 
 Das ursprüngliche melonDS wird weiterhin gepflegt, doch neue Versionen und das Zusammenführen von Pull-Requests kommen nur langsam voran, und viele von der Community eingereichte Fehlerbehebungen und Funktionen sind seit langer Zeit nicht übernommen worden. **melonDS Community** ist eine inoffizielle Community-Edition: eine Oberfläche in 8 Sprachen sowie geprüfte, hochwertige Pull-Requests aus dem Originalprojekt. Das Projekt steht in keiner Verbindung zum melonDS-Team oder zu Nintendo.
 
+> [!IMPORTANT]
+> **Dies ist nicht das offizielle melonDS.** Der offizielle Emulator ist [melonDS](https://github.com/melonDS-emu/melonDS) von Arisotura und dem melonDS-Team. Wenn in melonDS Community etwas nicht funktioniert, melde es bitte zuerst [hier](https://github.com/lazyalex616/melonDS-community/issues) und nicht beim melonDS-Team. Melde ein Problem nur dann im Originalprojekt, wenn es sich auch mit einer offiziellen melonDS-Version nachstellen lässt. Die Übersetzungen sollen dem Originalprojekt angeboten werden, falls das melonDS-Team sie möchte.
+
 **melonDS Community** ist ein inoffizieller, mehrsprachiger Fork des Nintendo-DS-Emulators [melonDS](https://github.com/melonDS-emu/melonDS) auf Basis von Version 1.1. Der Emulationskern ist unverändert identisch mit dem Original – geändert wurde nur die Qt-Oberfläche, die zu einer sauberen Qt-Linguist-Lokalisierung umgebaut wurde. Menüs, sämtliche Einstellungsdialoge, Meldungen und sogar die Einblendungen im Spielbild erscheinen damit in deiner Sprache.
 
 ## Funktionen
@@ -90,11 +93,11 @@ Alle Pakete gibt es unter [Releases → latest](https://github.com/doomsday616/m
 
 | Plattform | Datei |
 |---|---|
-| Windows (x86_64) | `melonDS-community-1.2.2-windows-x86_64.zip` |
-| Windows (ARM64) | `melonDS-community-1.2.2-windows-arm64.zip` |
-| Linux (x86_64) | `melonDS-community-1.2.2-linux-x86_64.AppImage` |
-| Linux (aarch64) | `melonDS-community-1.2.2-linux-aarch64.AppImage` |
-| macOS (Universal, Intel + Apple Silicon) | `melonDS-community-1.2.2-macos-universal.zip` |
+| Windows (x86_64) | `melonDS-community-1.2.3-windows-x86_64.zip` |
+| Windows (ARM64) | `melonDS-community-1.2.3-windows-arm64.zip` |
+| Linux (x86_64) | `melonDS-community-1.2.3-linux-x86_64.AppImage` |
+| Linux (aarch64) | `melonDS-community-1.2.3-linux-aarch64.AppImage` |
+| macOS (Universal, Intel + Apple Silicon) | `melonDS-community-1.2.3-macos-universal.zip` |
 
 Das Windows-Archiv enthält nur `melonDS.exe` und ist portabel: Es wird nichts installiert, die Einstellungen landen in `melonDS.toml` im selben Ordner.
 

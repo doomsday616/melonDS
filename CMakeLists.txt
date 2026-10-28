@@ -24,7 +24,7 @@ project(melonDS
 
 # melonDS Community release version, shown in the window title, About dialog and
 # file metadata. The project VERSION above stays the upstream core version.
-set(MELONDS_COMMUNITY_VERSION "1.2.2")
+set(MELONDS_COMMUNITY_VERSION "1.2.3")
 set(MELONDS_COMMUNITY_URL "https://github.com/lazyalex616/melonDS-community")
 
 include(CheckSymbolExists)

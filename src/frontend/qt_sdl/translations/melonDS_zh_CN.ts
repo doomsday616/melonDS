@@ -24,8 +24,8 @@
         <translation>[EMBEDDED BUILD INFO PLACEHOLDER]</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Licensed under the GNU General Public License v3 or any newer version.&lt;/p&gt;&lt;p&gt;melonDS is intended only for use with software that you own.&lt;/p&gt;&lt;p&gt;The Nintendo DS and Nintendo DSi systems are the property of Nintendo.&lt;br /&gt;melonDS and the melonDS team are not affiliated with or endorsed by Nintendo.&lt;/p&gt;&lt;p&gt;melonDS Community is an unofficial community edition and is not affiliated with the melonDS team.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;依据 GNU 通用公共许可证第 3 版或任何更新版本授权。&lt;/p&gt;&lt;p&gt;melonDS 仅供用于您合法拥有的软件。&lt;/p&gt;&lt;p&gt;Nintendo DS 和 Nintendo DSi 系统为任天堂所有。&lt;br /&gt;melonDS 及 melonDS 团队与任天堂无关，也未获其认可。&lt;/p&gt;&lt;p&gt;melonDS Community 是非官方社区版，与 melonDS 团队无关。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Licensed under the GNU General Public License v3 or any newer version.&lt;/p&gt;&lt;p&gt;melonDS is intended only for use with software that you own.&lt;/p&gt;&lt;p&gt;The Nintendo DS and Nintendo DSi systems are the property of Nintendo.&lt;br /&gt;melonDS and the melonDS team are not affiliated with or endorsed by Nintendo.&lt;/p&gt;&lt;p&gt;melonDS Community is an unofficial community edition and is not affiliated with the melonDS team.&lt;br /&gt;Please report problems with it to melonDS Community, not to the melonDS team.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;依据 GNU 通用公共许可证第 3 版或任何更新版本授权。&lt;/p&gt;&lt;p&gt;melonDS 仅供用于您合法拥有的软件。&lt;/p&gt;&lt;p&gt;Nintendo DS 和 Nintendo DSi 系统为任天堂所有。&lt;br /&gt;melonDS 及 melonDS 团队与任天堂无关，也未获其认可。&lt;/p&gt;&lt;p&gt;melonDS Community 是非官方社区版，与 melonDS 团队无关。&lt;br /&gt;使用中遇到问题，请向 melonDS Community 反馈，不要找 melonDS 团队。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Visit the &amp;website</source>
